@@ -5,595 +5,410 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>La Châtaigneraie — Sport & Lifestyle Premium</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root {
   --violet: #7B2D83;
-  --violet-dark: #5e1f65;
+  --violet-dk: #5e1f65;
   --navy: #272F65;
-  --navy-dark: #1a2048;
+  --navy-dk: #1a2048;
   --blanc: #FFFFFF;
   --noir: #0D0D0D;
   --gris: #6B7280;
   --gris-lite: #F6F6F8;
-  --gold: #d4a843;
+  --or: #d4a843;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--blanc);
-  color: var(--noir);
-  overflow-x: hidden;
-}
+body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir); overflow-x:hidden; }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
    MENU OVERLAY
-═══════════════════════════════ */
+────────────────────────────── */
 #menu-overlay {
-  position: fixed; inset: 0; z-index: 300;
-  background: var(--navy-dark);
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-  display: flex; overflow: hidden; pointer-events: none;
+  position:fixed; inset:0; z-index:400;
+  background:var(--navy-dk);
+  clip-path:polygon(0 0,100% 0,100% 0,0 0);
+  transition:clip-path .75s cubic-bezier(.76,0,.24,1);
+  display:flex; overflow:hidden; pointer-events:none;
 }
-#menu-overlay.open {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  pointer-events: all;
-}
-.menu-left { flex: 1; padding: 110px 80px 60px; display: flex; flex-direction: column; justify-content: center; }
-.menu-right { width: 42%; position: relative; overflow: hidden; }
+#menu-overlay.open { clip-path:polygon(0 0,100% 0,100% 100%,0 100%); pointer-events:all; }
+.menu-left { flex:1; padding:110px 80px 60px; display:flex; flex-direction:column; justify-content:center; }
+.menu-right { width:42%; position:relative; overflow:hidden; }
 .menu-close {
-  position: absolute; top: 22px; right: 48px;
-  background: none; border: 1.5px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.7); font-size: 12px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase; padding: 10px 20px;
-  cursor: pointer; z-index: 10; transition: all .2s; font-family: inherit;
+  position:absolute; top:22px; right:48px;
+  background:none; border:1.5px solid rgba(255,255,255,.2); color:rgba(255,255,255,.6);
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  padding:10px 20px; cursor:pointer; z-index:10; transition:all .2s; font-family:inherit;
 }
-.menu-close:hover { color: var(--blanc); border-color: var(--blanc); }
-.menu-nav-list { list-style: none; }
-.menu-nav-item { border-bottom: 1px solid rgba(255,255,255,.07); }
+.menu-close:hover { color:var(--blanc); border-color:var(--blanc); }
+.menu-mode-row { display:flex; gap:10px; margin-bottom:32px; }
+.mmr-btn {
+  flex:1; padding:13px 16px; font-size:11px; font-weight:800; letter-spacing:2px;
+  text-transform:uppercase; border:1.5px solid; cursor:pointer; transition:all .2s; font-family:inherit;
+  background:none; color:rgba(255,255,255,.4); border-color:rgba(255,255,255,.15);
+}
+.mmr-btn.active-b2c { background:var(--blanc); color:var(--navy); border-color:var(--blanc); }
+.mmr-btn.active-b2b { background:var(--violet); color:var(--blanc); border-color:var(--violet); }
+.menu-nav-list { list-style:none; }
+.menu-nav-item { border-bottom:1px solid rgba(255,255,255,.07); }
 .menu-nav-item a {
-  display: flex; align-items: center; gap: 20px; padding: 20px 0;
-  font-size: clamp(26px, 3.2vw, 46px); font-weight: 900;
-  color: rgba(255,255,255,.22); text-decoration: none;
-  text-transform: uppercase; letter-spacing: -.5px; transition: color .25s;
+  display:flex; align-items:center; gap:18px; padding:19px 0;
+  font-size:clamp(24px,3vw,44px); font-weight:900;
+  color:rgba(255,255,255,.2); text-decoration:none;
+  text-transform:uppercase; transition:color .25s;
 }
-.menu-nav-item a:hover { color: var(--blanc); }
-.menu-nav-item a .num { font-size: 11px; font-weight: 600; color: var(--violet); letter-spacing: 2px; min-width: 26px; }
-/* Mode badge in menu */
-.menu-mode-badge {
-  display: inline-block; font-size: 10px; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; padding: 3px 8px;
-  margin-left: 12px; vertical-align: middle;
-}
-.menu-mode-badge.b2c { background: rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
-.menu-mode-badge.b2b { background: var(--violet); color: var(--blanc); }
+.menu-nav-item a:hover { color:var(--blanc); }
+.menu-nav-item a .num { font-size:11px; font-weight:600; color:var(--violet); letter-spacing:2px; min-width:26px; }
+.menu-footer { margin-top:36px; display:flex; gap:20px; flex-wrap:wrap; }
+.menu-footer a { color:rgba(255,255,255,.28); font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:color .2s; }
+.menu-footer a:hover { color:var(--violet); }
+.menu-img-wrap { position:absolute; inset:0; display:grid; }
+.menu-img-wrap>* { grid-column:1; grid-row:1; width:100%; height:100%; }
+.menu-img { width:100%; height:100%; object-fit:cover; clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%); transition:clip-path .8s cubic-bezier(.33,1,.68,1); }
+.menu-img.active { clip-path:polygon(0 0,100% 0,100% 100%,0 100%); }
 
-.menu-mode-switch {
-  display: flex; gap: 12px; margin-top: 32px; margin-bottom: 8px;
-}
-.mms-btn {
-  flex: 1; padding: 14px 20px; font-size: 11px; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid;
-  cursor: pointer; transition: all .2s; font-family: inherit;
-}
-.mms-btn.b2c { border-color: rgba(255,255,255,.25); background: none; color: rgba(255,255,255,.5); }
-.mms-btn.b2c.active { background: var(--blanc); color: var(--navy); border-color: var(--blanc); }
-.mms-btn.b2b { border-color: var(--violet); background: none; color: rgba(255,255,255,.5); }
-.mms-btn.b2b.active { background: var(--violet); color: var(--blanc); border-color: var(--violet); }
-
-.menu-footer { margin-top: 40px; display: flex; gap: 24px; flex-wrap: wrap; }
-.menu-footer a {
-  color: rgba(255,255,255,.3); font-size: 11px; letter-spacing: 2px;
-  text-transform: uppercase; text-decoration: none; transition: color .2s;
-}
-.menu-footer a:hover { color: var(--violet); }
-.menu-img-wrap { position: absolute; inset: 0; display: grid; }
-.menu-img-wrap > * { grid-column: 1; grid-row: 1; width: 100%; height: 100%; }
-.menu-img {
-  width: 100%; height: 100%; object-fit: cover;
-  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-  transition: clip-path .8s cubic-bezier(0.33, 1, 0.68, 1);
-}
-.menu-img.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-
-/* ═══════════════════════════════
+/* ──────────────────────────────
    NAV
-═══════════════════════════════ */
+────────────────────────────── */
 #main-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px; height: 72px; transition: background .3s, backdrop-filter .3s;
+  position:fixed; top:0; left:0; right:0; z-index:300;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 48px; height:72px; transition:background .3s;
 }
-#main-nav.hero-mode { background: transparent; }
-#main-nav.scrolled { background: rgba(26,32,72,.97); backdrop-filter: blur(12px); }
-.nav-logo { font-size: 15px; font-weight: 900; color: var(--blanc); letter-spacing: 3px; text-transform: uppercase; }
-.nav-logo span { color: var(--gold); }
-.nav-right { display: flex; align-items: center; gap: 16px; }
-/* Mode pill in nav */
-#nav-mode-pill {
-  display: flex; border: 1.5px solid rgba(255,255,255,.2); overflow: hidden;
+#main-nav.hero-mode { background:transparent; }
+#main-nav.live { background:rgba(26,32,72,.96); backdrop-filter:blur(14px); }
+.nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; }
+.nav-logo span { color:var(--or); font-style:italic; }
+.nav-right { display:flex; align-items:center; gap:14px; }
+/* mode pill */
+#nav-pill { display:flex; overflow:hidden; border:1.5px solid rgba(255,255,255,.2); }
+.np-btn {
+  padding:8px 18px; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  border:none; background:none; color:rgba(255,255,255,.4); cursor:pointer; transition:all .25s; font-family:inherit;
 }
-.nmp-btn {
-  padding: 8px 16px; font-size: 11px; font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase; border: none;
-  cursor: pointer; transition: all .2s; font-family: inherit;
-  background: none; color: rgba(255,255,255,.45);
+.np-btn.on-b2c { background:var(--blanc); color:var(--navy); }
+.np-btn.on-b2b { background:var(--violet); color:var(--blanc); }
+#nav-pill.hidden { display:none; }
+.btn-nav-resa {
+  background:var(--violet); color:var(--blanc); border:none; padding:12px 26px;
+  font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  cursor:pointer; transition:background .2s; font-family:inherit;
 }
-.nmp-btn.active.b2c { background: var(--blanc); color: var(--navy); }
-.nmp-btn.active.b2b { background: var(--violet); color: var(--blanc); }
-.btn-reserver-nav {
-  background: var(--violet); color: var(--blanc); border: none;
-  padding: 12px 28px; font-size: 12px; font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  cursor: pointer; transition: background .2s; font-family: inherit;
-}
-.btn-reserver-nav:hover { background: var(--violet-dark); }
+.btn-nav-resa:hover { background:var(--violet-dk); }
 .nav-menu-btn {
-  background: none; border: 1.5px solid rgba(255,255,255,.3);
-  color: var(--blanc); padding: 10px 18px; font-size: 12px;
-  font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-  cursor: pointer; display: flex; align-items: center; gap: 10px;
-  transition: all .2s; font-family: inherit;
+  background:none; border:1.5px solid rgba(255,255,255,.3); color:var(--blanc);
+  padding:10px 18px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  cursor:pointer; display:flex; align-items:center; gap:10px; transition:all .2s; font-family:inherit;
 }
-.nav-menu-btn:hover { border-color: var(--blanc); background: rgba(255,255,255,.08); }
-.hamburger { display: flex; flex-direction: column; gap: 4px; }
-.hamburger span { display: block; width: 16px; height: 1.5px; background: var(--blanc); }
+.nav-menu-btn:hover { border-color:var(--blanc); background:rgba(255,255,255,.08); }
+.hbg { display:flex; flex-direction:column; gap:4px; }
+.hbg span { display:block; width:16px; height:1.5px; background:var(--blanc); }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
    HERO SCROLL-EXPAND
-═══════════════════════════════ */
-#hero-section {
-  position: fixed; inset: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--navy-dark); overflow: hidden;
+────────────────────────────── */
+#hero-wrap {
+  position:fixed; inset:0; z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--navy-dk); overflow:hidden;
 }
-#hero-img-container {
-  position: absolute; border-radius: 18px; overflow: hidden;
-  box-shadow: 0 24px 80px rgba(0,0,0,.6);
-}
-.hero-img-slide {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; opacity: 0; transition: opacity 1s ease;
-}
-.hero-img-slide.active { opacity: 1; }
-#hero-img-overlay { position: absolute; inset: 0; background: rgba(0,0,0,.38); }
-.hero-title-wrap {
-  position: relative; z-index: 10;
-  display: flex; flex-direction: column; align-items: center;
-  pointer-events: none; text-align: center;
-}
-.hero-title-top {
-  font-size: clamp(11px, 1.5vw, 16px); font-weight: 600;
-  color: rgba(255,255,255,.55); letter-spacing: 6px;
-  text-transform: uppercase; margin-bottom: 10px;
-}
-.hero-title-main {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(40px, 7vw, 96px); font-weight: 900;
-  color: var(--blanc); text-transform: uppercase;
-  line-height: .92; letter-spacing: -2px;
-}
-.hero-title-main em { font-style: italic; color: var(--gold); }
-#hero-scroll-hint {
-  position: absolute; bottom: 44px; left: 50%;
-  transform: translateX(-50%); z-index: 10;
-  color: rgba(255,255,255,.45); font-size: 10px; font-weight: 600;
-  letter-spacing: 3px; text-transform: uppercase;
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  animation: floatHint 2.2s ease-in-out infinite;
-}
-#hero-scroll-hint::after {
-  content: ''; display: block; width: 1px; height: 40px;
-  background: linear-gradient(to bottom, rgba(255,255,255,.45), transparent);
-}
-@keyframes floatHint { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
-#hero-counter { position: absolute; bottom: 44px; left: 48px; z-index: 10; color: rgba(255,255,255,.35); font-size: 11px; font-weight: 600; letter-spacing: 2px; }
-#hero-skip {
-  position: absolute; bottom: 44px; right: 48px; z-index: 10;
-  background: none; border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.4); font-size: 11px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px;
-  cursor: pointer; transition: all .2s; font-family: inherit;
-}
-#hero-skip:hover { color: var(--blanc); border-color: rgba(255,255,255,.5); }
+#h-img-box { position:absolute; border-radius:18px; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.6); }
+.h-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease; }
+.h-slide.on { opacity:1; }
+#h-overlay { position:absolute; inset:0; background:rgba(0,0,0,.38); }
+.h-titles { position:relative; z-index:10; text-align:center; pointer-events:none; }
+.h-sub { font-size:clamp(10px,1.4vw,15px); font-weight:600; color:rgba(255,255,255,.5); letter-spacing:6px; text-transform:uppercase; margin-bottom:10px; }
+.h-main { font-family:'Playfair Display',serif; font-size:clamp(40px,7.5vw,104px); font-weight:900; color:var(--blanc); line-height:.9; letter-spacing:-2px; }
+.h-main em { font-style:italic; color:var(--or); }
+#h-hint { position:absolute; bottom:44px; left:50%; transform:translateX(-50%); z-index:10; color:rgba(255,255,255,.4); font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:10px; animation:floatY 2.2s ease-in-out infinite; }
+#h-hint::after { content:''; display:block; width:1px; height:40px; background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent); }
+@keyframes floatY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+#h-counter { position:absolute; bottom:44px; left:48px; z-index:10; color:rgba(255,255,255,.3); font-size:11px; font-weight:600; letter-spacing:2px; }
+#h-skip { position:absolute; bottom:44px; right:48px; z-index:10; background:none; border:1px solid rgba(255,255,255,.18); color:rgba(255,255,255,.35); font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:8px 16px; cursor:pointer; transition:all .2s; font-family:inherit; }
+#h-skip:hover { color:var(--blanc); border-color:rgba(255,255,255,.5); }
 
-/* ═══════════════════════════════
-   MAIN CONTENT
-═══════════════════════════════ */
-#main-content { opacity: 0; pointer-events: none; position: relative; z-index: 1; }
-#main-content.visible { opacity: 1; pointer-events: all; transition: opacity .6s ease; }
+/* ──────────────────────────────
+   GLOBAL PAGE WRAPPER
+────────────────────────────── */
+#app { opacity:0; pointer-events:none; }
+#app.ready { opacity:1; pointer-events:all; transition:opacity .5s ease; }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
+   CHOICE SCREEN
+────────────────────────────── */
+#choice-screen {
+  display:flex; height:100vh; overflow:hidden; cursor:default;
+  transition:opacity .4s ease, transform .4s ease;
+}
+#choice-screen.exit { opacity:0; transform:scale(1.025); pointer-events:none; }
+
+.cp {
+  position:relative; overflow:hidden; flex:1;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:72px 64px; transition:flex .55s cubic-bezier(.76,0,.24,1); cursor:pointer;
+}
+#choice-screen:hover .cp { flex:.6; }
+#choice-screen .cp:hover { flex:1.4; }
+.cp .cp-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.cp:hover .cp-bg { transform:scale(1.04); }
+.cp-overlay { position:absolute; inset:0; transition:opacity .3s; }
+.cp-b2c .cp-overlay { background:linear-gradient(to top,rgba(27,32,72,.97) 0%,rgba(27,32,72,.4) 55%,rgba(0,0,0,.08) 100%); }
+.cp-b2b .cp-overlay { background:linear-gradient(to top,rgba(70,16,78,.97) 0%,rgba(70,16,78,.4) 55%,rgba(0,0,0,.08) 100%); }
+
+.cp-inner { position:relative; z-index:2; max-width:440px; }
+.cp-b2b .cp-inner { margin-left:auto; text-align:right; }
+
+.cp-tag { display:inline-block; font-size:10px; font-weight:800; letter-spacing:4px; text-transform:uppercase; padding:5px 12px; margin-bottom:20px; border:1px solid; }
+.cp-b2c .cp-tag { color:rgba(255,255,255,.6); border-color:rgba(255,255,255,.2); }
+.cp-b2b .cp-tag { background:var(--violet); color:var(--blanc); border-color:var(--violet); }
+
+.cp h2 { font-family:'Playfair Display',serif; font-size:clamp(34px,4vw,62px); font-weight:900; color:var(--blanc); line-height:.95; margin-bottom:16px; letter-spacing:-1px; }
+.cp p { color:rgba(255,255,255,.66); font-size:14px; line-height:1.65; max-width:360px; margin-bottom:32px; }
+.cp-b2b p { margin-left:auto; }
+
+.cp-cta {
+  display:inline-flex; align-items:center; gap:12px; padding:15px 32px;
+  font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase;
+  border:none; cursor:pointer; transition:all .2s; font-family:inherit;
+}
+.cp-b2c .cp-cta { background:var(--blanc); color:var(--navy); }
+.cp-b2c .cp-cta:hover { background:#dde2ff; }
+.cp-b2b .cp-cta { background:var(--violet); color:var(--blanc); }
+.cp-b2b .cp-cta:hover { background:var(--violet-dk); }
+
+/* vertical divider + logo pill */
+.cp-divider {
+  position:absolute; left:50%; top:0; bottom:0; width:2px;
+  background:rgba(255,255,255,.12); z-index:10; transform:translateX(-50%);
+  pointer-events:none;
+}
+.cp-divider-pill {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:var(--blanc); border-radius:100px; padding:8px 18px;
+  font-size:10px; font-weight:900; letter-spacing:2px; color:var(--navy);
+  box-shadow:0 4px 20px rgba(0,0,0,.35); white-space:nowrap; z-index:20;
+}
+
+/* ──────────────────────────────
+   PAGE SECTIONS
+────────────────────────────── */
+.page-section { display:none; }
+.page-section.active { display:block; animation:fadeUp .5s ease forwards; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+
+/* ──────────────────────────────
    ANNOUNCE
-═══════════════════════════════ */
-.announce {
-  background: var(--violet); color: var(--blanc);
-  text-align: center; padding: 12px 20px; font-size: 12px; font-weight: 700; letter-spacing: .5px;
-}
-.announce span { text-decoration: underline; cursor: pointer; margin-left: 10px; opacity: .8; }
+────────────────────────────── */
+.announce-bar { text-align:center; padding:12px 20px; font-size:12px; font-weight:700; letter-spacing:.5px; }
+.announce-bar.b2c { background:var(--navy); color:rgba(255,255,255,.85); }
+.announce-bar.b2b { background:var(--violet); color:var(--blanc); }
+.announce-bar span { text-decoration:underline; cursor:pointer; margin-left:10px; opacity:.75; }
 
-/* ═══════════════════════════════
-   COMPARISON SLIDER  (B2C / B2B)
-═══════════════════════════════ */
-#comparison-section {
-  position: relative; height: 100vh; display: flex;
-  overflow: hidden; user-select: none; cursor: ew-resize;
-}
+/* ──────────────────────────────
+   SEARCH WIDGET
+────────────────────────────── */
+.search-wrap { position:relative; padding-bottom:80px; }
+.search-bg-img { position:absolute; top:0; left:0; right:0; height:260px; object-fit:cover; width:100%; }
+.search-bg-overlay { position:absolute; top:0; left:0; right:0; height:260px; }
+.sw-b2c .search-bg-overlay { background:linear-gradient(to bottom,rgba(27,32,72,.93),rgba(27,32,72,.99)); }
+.sw-b2b .search-bg-overlay { background:linear-gradient(to bottom,rgba(60,14,68,.93),rgba(60,14,68,.99)); }
+.search-inner { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:0 40px; }
+.search-heading { padding-top:52px; padding-bottom:28px; font-family:'Playfair Display',serif; font-size:clamp(26px,3.5vw,46px); font-weight:700; color:var(--blanc); }
+.search-heading em { font-style:italic; color:var(--or); }
+.search-card { background:var(--blanc); box-shadow:0 8px 48px rgba(0,0,0,.2); display:flex; align-items:stretch; overflow:hidden; }
+.swf { flex:1; display:flex; align-items:center; gap:14px; padding:22px 26px; cursor:pointer; transition:background .2s; border-right:1px solid #eaeaea; }
+.swf:hover { background:#f8f8fc; }
+.swf:last-of-type { border-right:none; }
+.swf-icon { font-size:20px; flex-shrink:0; }
+.swf-label { font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--gris); margin-bottom:3px; }
+.swf select,.swf input { border:none; background:none; font-family:inherit; font-size:14px; font-weight:700; color:var(--navy); cursor:pointer; outline:none; width:100%; appearance:none; }
+.swf input::placeholder { color:var(--navy); font-weight:700; }
+.sw-go { border:none; padding:0 40px; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background .2s; font-family:inherit; white-space:nowrap; flex-shrink:0; }
+.sw-b2c .sw-go { background:var(--navy); color:var(--blanc); }
+.sw-b2c .sw-go:hover { background:var(--violet); }
+.sw-b2b .sw-go { background:var(--violet); color:var(--blanc); }
+.sw-b2b .sw-go:hover { background:var(--violet-dk); }
 
-.cmp-side {
-  position: relative; overflow: hidden; flex-shrink: 0;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 80px 64px; transition: width 0s;
-}
-.cmp-side .cmp-bg {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; pointer-events: none;
-}
-.cmp-side .cmp-overlay { position: absolute; inset: 0; }
-.cmp-content { position: relative; z-index: 2; max-width: 420px; }
+/* ──────────────────────────────
+   HISTOIRE (B2C)
+────────────────────────────── */
+.histoire { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
+.hist-visual { position:relative; overflow:hidden; }
+.hist-visual img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+.histoire:hover .hist-visual img { transform:scale(1.03); }
+.hist-year { position:absolute; top:40px; left:40px; background:var(--or); color:#fff; font-family:'Playfair Display',serif; font-size:44px; font-weight:900; line-height:1; padding:14px 22px; }
+.hist-year span { font-family:'Inter',sans-serif; font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; display:block; margin-top:4px; opacity:.85; }
+.hist-content { background:#faf9f6; padding:80px 72px; display:flex; flex-direction:column; justify-content:center; }
+.hist-tag { font-size:10px; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:var(--violet); margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid var(--violet); display:inline-block; }
+.hist-content h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,50px); font-weight:900; color:var(--navy); line-height:1.1; margin-bottom:24px; }
+.hist-content h2 em { font-style:italic; color:var(--violet); }
+.hist-nums { display:flex; gap:0; margin:28px 0; border-top:1px solid #e5e0d8; border-bottom:1px solid #e5e0d8; }
+.hn-item { flex:1; padding:18px 0; }
+.hn-item:not(:last-child) { border-right:1px solid #e5e0d8; padding-right:20px; margin-right:20px; }
+.hn-num { font-family:'Playfair Display',serif; font-size:34px; font-weight:900; color:var(--navy); line-height:1; }
+.hn-num sup { font-size:14px; color:var(--violet); }
+.hn-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gris); margin-top:4px; }
+.hist-content p { color:#555; font-size:15px; line-height:1.8; margin-bottom:14px; }
+.btn-hist { background:none; border:none; color:var(--navy); font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; cursor:pointer; padding:0; font-family:inherit; margin-top:10px; transition:color .2s; }
+.btn-hist:hover { color:var(--violet); }
+.btn-hist::after { content:' →'; }
 
-/* B2C */
-#cmp-b2c .cmp-overlay { background: linear-gradient(to top, rgba(27,32,72,.95) 0%, rgba(27,32,72,.35) 60%, rgba(0,0,0,.08) 100%); }
-
-/* B2B */
-#cmp-b2b .cmp-overlay { background: linear-gradient(to top, rgba(80,18,88,.95) 0%, rgba(80,18,88,.35) 60%, rgba(0,0,0,.08) 100%); }
-#cmp-b2b .cmp-content { margin-left: auto; text-align: right; }
-#cmp-b2b .cmp-features li { justify-content: flex-end; }
-#cmp-b2b .cmp-features li::after { content: '→'; color: #d99de0; font-weight: 700; }
-#cmp-b2b .cmp-features li::before { display: none; }
-#cmp-b2b .btn-cmp { margin-left: auto; }
-
-.cmp-tag {
-  display: inline-block; font-size: 10px; font-weight: 800;
-  letter-spacing: 4px; text-transform: uppercase; padding: 5px 12px;
-  margin-bottom: 20px; border: 1px solid;
-}
-#cmp-b2c .cmp-tag { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.2); }
-#cmp-b2b .cmp-tag { background: var(--violet); color: var(--blanc); border-color: var(--violet); }
-
-.cmp-side h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 3.8vw, 58px); font-weight: 900;
-  color: var(--blanc); line-height: 1; margin-bottom: 14px; letter-spacing: -1px;
-}
-.cmp-side p { color: rgba(255,255,255,.68); font-size: 14px; line-height: 1.65; max-width: 360px; margin-bottom: 24px; }
-#cmp-b2b .cmp-side p { margin-left: auto; }
-
-.cmp-features { list-style: none; margin-bottom: 32px; }
-.cmp-features li {
-  color: rgba(255,255,255,.6); font-size: 12px;
-  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.06);
-  display: flex; align-items: center; gap: 8px;
-}
-#cmp-b2c .cmp-features li::before { content: '→'; color: #8fa8ff; font-weight: 700; }
-
-.btn-cmp {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 32px; font-size: 12px; font-weight: 800;
-  letter-spacing: 1.5px; text-transform: uppercase; border: none;
-  cursor: pointer; transition: all .2s; font-family: inherit;
-}
-#cmp-b2c .btn-cmp { background: var(--blanc); color: var(--navy); }
-#cmp-b2c .btn-cmp:hover { background: #dde2ff; }
-#cmp-b2b .btn-cmp { background: var(--violet); color: var(--blanc); }
-#cmp-b2b .btn-cmp:hover { background: var(--violet-dark); }
-
-/* Slider handle */
-#cmp-handle {
-  position: absolute; top: 0; bottom: 0; width: 4px;
-  background: rgba(255,255,255,.7); z-index: 20; cursor: ew-resize;
-  display: flex; align-items: center; justify-content: center;
-  transform: translateX(-50%);
-}
-#cmp-handle::before, #cmp-handle::after {
-  content: ''; position: absolute; top: 50%;
-  width: 0; height: 0; border: 7px solid transparent;
-}
-#cmp-handle::before { right: 12px; border-right-color: rgba(255,255,255,.8); margin-top: -7px; }
-#cmp-handle::after  { left: 12px;  border-left-color: rgba(255,255,255,.8);  margin-top: -7px; }
-
-.cmp-knob {
-  width: 52px; height: 52px; background: var(--blanc); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 24px rgba(0,0,0,.35); cursor: ew-resize; flex-shrink: 0;
-  font-size: 18px; transition: transform .15s;
-}
-.cmp-knob:hover, #cmp-handle.dragging .cmp-knob { transform: scale(1.12); }
-
-/* Labels on each side */
-.cmp-side-label {
-  position: absolute; top: 24px; z-index: 10;
-  font-size: 10px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,.4); padding: 6px 14px;
-  border: 1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.2);
-}
-#cmp-b2c .cmp-side-label { left: 64px; }
-#cmp-b2b .cmp-side-label { right: 64px; }
-
-/* ═══════════════════════════════
-   SEARCH WIDGET — "Que recherchez-vous ?"
-═══════════════════════════════ */
-.search-section {
-  position: relative; padding: 0 0 80px;
-}
-.search-bg {
-  position: absolute; inset: 0; height: 280px;
-  background: linear-gradient(to bottom, rgba(27,32,72,.92), rgba(27,32,72,.98)),
-    url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1400&q=70') center/cover no-repeat;
-}
-.search-inner {
-  position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 0 40px;
-}
-.search-heading {
-  padding-top: 56px; padding-bottom: 32px;
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3.5vw, 48px); font-weight: 700;
-  color: var(--blanc); letter-spacing: -.5px;
-}
-.search-heading em { font-style: italic; color: var(--gold); }
-
-.search-card {
-  background: var(--blanc); border-radius: 4px;
-  box-shadow: 0 8px 48px rgba(0,0,0,.2);
-  display: flex; align-items: stretch; overflow: hidden;
-}
-.sw-field {
-  flex: 1; display: flex; align-items: center; gap: 14px;
-  padding: 22px 28px; cursor: pointer; transition: background .2s;
-  border-right: 1px solid #eaeaea;
-}
-.sw-field:hover { background: #f8f8fc; }
-.sw-icon { font-size: 20px; flex-shrink: 0; }
-.sw-texts { display: flex; flex-direction: column; gap: 3px; }
-.sw-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); }
-.sw-select {
-  appearance: none; border: none; background: none;
-  font-family: inherit; font-size: 14px; font-weight: 700; color: var(--navy);
-  cursor: pointer; outline: none; width: 100%; padding: 0;
-}
-.sw-input {
-  border: none; background: none; font-family: inherit;
-  font-size: 14px; font-weight: 700; color: var(--navy);
-  outline: none; width: 100%; min-width: 120px;
-}
-.sw-input::placeholder { color: var(--navy); font-weight: 700; }
-.sw-cta {
-  background: var(--violet); color: var(--blanc);
-  border: none; padding: 0 40px; font-size: 13px; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
-  transition: background .2s; font-family: inherit; white-space: nowrap; flex-shrink: 0;
-}
-.sw-cta:hover { background: var(--violet-dark); }
-
-/* ═══════════════════════════════
-   HISTOIRE
-═══════════════════════════════ */
-.histoire-section {
-  display: grid; grid-template-columns: 1fr 1fr; min-height: 620px;
-}
-.histoire-visual {
-  position: relative; overflow: hidden;
-}
-.histoire-visual img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform .7s ease;
-}
-.histoire-section:hover .histoire-visual img { transform: scale(1.03); }
-.histoire-visual-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, transparent 60%, rgba(245,242,235,.6) 100%);
-}
-.histoire-year-badge {
-  position: absolute; top: 40px; left: 40px;
-  background: var(--gold); color: #fff;
-  font-family: 'Playfair Display', serif;
-  font-size: 48px; font-weight: 900; line-height: 1;
-  padding: 16px 24px;
-}
-.histoire-year-badge span { display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; opacity: .85; }
-
-.histoire-content {
-  background: #faf9f6; padding: 80px 72px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.histoire-tag {
-  display: inline-block; font-size: 10px; font-weight: 800;
-  letter-spacing: 4px; text-transform: uppercase; color: var(--violet);
-  margin-bottom: 20px; padding-bottom: 12px;
-  border-bottom: 2px solid var(--violet);
-}
-.histoire-content h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 3.5vw, 52px); font-weight: 900;
-  color: var(--navy); line-height: 1.1; margin-bottom: 24px; letter-spacing: -.5px;
-}
-.histoire-content h2 em { font-style: italic; color: var(--violet); }
-.histoire-content p {
-  color: #555; font-size: 15px; line-height: 1.8;
-  margin-bottom: 16px;
-}
-.histoire-content p:last-of-type { margin-bottom: 36px; }
-.btn-histoire {
-  display: inline-flex; align-items: center; gap: 12px;
-  background: none; border: none; color: var(--navy);
-  font-size: 12px; font-weight: 800; letter-spacing: 2px;
-  text-transform: uppercase; cursor: pointer; padding: 0;
-  font-family: inherit; transition: gap .2s;
-}
-.btn-histoire::after { content: '→'; transition: transform .2s; }
-.btn-histoire:hover::after { transform: translateX(6px); }
-.btn-histoire:hover { color: var(--violet); }
-
-/* Chiffres histoire */
-.histoire-nums {
-  display: flex; gap: 0; margin: 36px 0; border-top: 1px solid #e5e0d8; border-bottom: 1px solid #e5e0d8;
-}
-.histoire-num-item { flex: 1; padding: 20px 0; }
-.histoire-num-item:not(:last-child) { border-right: 1px solid #e5e0d8; padding-right: 24px; margin-right: 24px; }
-.histoire-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--navy); line-height: 1; }
-.histoire-num sup { font-size: 16px; color: var(--violet); }
-.histoire-num-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); margin-top: 4px; }
-
-/* ═══════════════════════════════
+/* ──────────────────────────────
    STATS
-═══════════════════════════════ */
-.stats { background: var(--navy-dark); display: flex; justify-content: center; border-top: 3px solid var(--violet); }
-.stat-item { flex: 1; max-width: 260px; padding: 36px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,.06); }
-.stat-item:last-child { border-right: none; }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--blanc); line-height: 1; margin-bottom: 8px; }
-.stat-num sup { font-size: 22px; color: var(--violet); }
-.stat-label { font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: 3px; text-transform: uppercase; }
+────────────────────────────── */
+.stats-bar { display:flex; justify-content:center; border-top:3px solid; }
+.stats-bar.b2c { background:var(--navy-dk); border-color:var(--violet); }
+.stats-bar.b2b { background:var(--violet-dk); border-color:var(--or); }
+.stat-item { flex:1; max-width:260px; padding:34px 20px; text-align:center; border-right:1px solid rgba(255,255,255,.06); }
+.stat-item:last-child { border-right:none; }
+.stat-n { font-family:'Playfair Display',serif; font-size:50px; font-weight:900; color:var(--blanc); line-height:1; margin-bottom:6px; }
+.stat-n sup { font-size:20px; color:var(--or); }
+.stat-l { font-size:10px; color:rgba(255,255,255,.35); letter-spacing:3px; text-transform:uppercase; }
 
-/* ═══════════════════════════════
-   RÉSERVATION
-═══════════════════════════════ */
-.section-resa { background: var(--gris-lite); padding: 100px 48px; text-align: center; }
-.section-label { display: inline-block; background: var(--violet); color: var(--blanc); font-size: 10px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; padding: 6px 16px; margin-bottom: 20px; }
-.section-resa h2 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 900; color: var(--navy); margin-bottom: 12px; letter-spacing: -1px; }
-.section-resa > p { color: var(--gris); font-size: 16px; margin-bottom: 56px; }
-.resa-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 1120px; margin: 0 auto; }
-.resa-card {
-  background: var(--blanc); flex: 1; min-width: 220px; max-width: 252px;
-  padding: 36px 28px; border-top: 3px solid var(--navy); text-align: left;
-  transition: all .25s; box-shadow: 0 2px 16px rgba(39,47,101,.06);
-}
-.resa-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(39,47,101,.14); border-top-color: var(--violet); }
-.resa-icon { font-size: 26px; margin-bottom: 16px; }
-.resa-card h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
-.resa-card p { font-size: 13px; color: var(--gris); line-height: 1.6; margin-bottom: 20px; }
-.resa-price { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: var(--violet); margin-bottom: 20px; }
-.resa-price span { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 400; color: var(--gris); }
-.btn-resa {
-  width: 100%; background: var(--navy); color: var(--blanc); border: none;
-  padding: 14px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
-  text-transform: uppercase; cursor: pointer; transition: all .2s; font-family: inherit;
-}
-.btn-resa:hover { background: var(--violet); }
+/* ──────────────────────────────
+   RESA CARDS (B2C)
+────────────────────────────── */
+.resa-section { background:var(--gris-lite); padding:100px 48px; text-align:center; }
+.sec-label { display:inline-block; font-size:10px; font-weight:800; letter-spacing:4px; text-transform:uppercase; padding:6px 16px; margin-bottom:20px; }
+.b2c-label { background:var(--violet); color:var(--blanc); }
+.b2b-label { background:var(--or); color:var(--blanc); }
+.sec-h2 { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,50px); font-weight:900; color:var(--navy); margin-bottom:12px; letter-spacing:-1px; }
+.sec-sub { color:var(--gris); font-size:16px; margin-bottom:56px; }
+.resa-grid { display:flex; gap:20px; justify-content:center; flex-wrap:wrap; max-width:1120px; margin:0 auto; }
+.resa-card { background:var(--blanc); flex:1; min-width:220px; max-width:252px; padding:36px 28px; border-top:3px solid var(--navy); text-align:left; transition:all .25s; box-shadow:0 2px 16px rgba(39,47,101,.06); }
+.resa-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(39,47,101,.14); border-top-color:var(--violet); }
+.rc-icon { font-size:26px; margin-bottom:16px; }
+.resa-card h3 { font-size:17px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.resa-card p { font-size:13px; color:var(--gris); line-height:1.6; margin-bottom:20px; }
+.rc-price { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--violet); margin-bottom:20px; }
+.rc-price span { font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:var(--gris); }
+.btn-rc { width:100%; background:var(--navy); color:var(--blanc); border:none; padding:14px; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:all .2s; font-family:inherit; }
+.btn-rc:hover { background:var(--violet); }
 
-/* ═══════════════════════════════
-   B2B DETAIL
-═══════════════════════════════ */
-.section-b2b { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
-.b2b-visual {
-  background: linear-gradient(to right, rgba(0,0,0,.35), rgba(0,0,0,.05)),
-    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80') center/cover;
-  min-height: 600px;
-}
-.b2b-content { background: var(--navy-dark); padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
-.b2b-tag { display: inline-block; background: var(--violet); color: var(--blanc); font-size: 10px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; padding: 6px 14px; margin-bottom: 24px; width: fit-content; }
-.b2b-content h2 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 900; color: var(--blanc); line-height: 1.05; margin-bottom: 20px; letter-spacing: -1px; }
-.b2b-content p { color: rgba(255,255,255,.6); font-size: 15px; line-height: 1.7; margin-bottom: 32px; }
-.b2b-features { list-style: none; margin-bottom: 40px; }
-.b2b-features li { color: rgba(255,255,255,.75); font-size: 14px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; gap: 12px; }
-.b2b-features li::before { content: '✓'; color: var(--violet); font-weight: 900; font-size: 15px; }
-.btn-b2b { background: var(--violet); color: var(--blanc); border: none; padding: 18px 40px; width: fit-content; font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background .2s; font-family: inherit; }
-.btn-b2b:hover { background: var(--violet-dark); }
+/* ──────────────────────────────
+   B2B SERVICES GRID
+────────────────────────────── */
+.b2b-services { padding:100px 48px; background:var(--blanc); }
+.b2b-services .sec-h2 { text-align:center; color:var(--navy); }
+.b2b-services .sec-sub { text-align:center; }
+.b2b-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:3px; max-width:1120px; margin:0 auto; }
+.b2b-card { position:relative; overflow:hidden; min-height:340px; display:flex; flex-direction:column; justify-content:flex-end; padding:48px 44px; cursor:pointer; }
+.b2b-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.b2b-card:hover img { transform:scale(1.06); }
+.b2b-card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(60,14,68,.95) 0%,rgba(60,14,68,.25) 60%,rgba(0,0,0,.06) 100%); }
+.b2b-card-content { position:relative; z-index:2; }
+.b2b-card-num { font-size:10px; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:var(--or); margin-bottom:10px; }
+.b2b-card h3 { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--blanc); margin-bottom:10px; }
+.b2b-card p { font-size:13px; color:rgba(255,255,255,.65); line-height:1.6; margin-bottom:20px; }
+.b2b-card-link { font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--or); text-decoration:none; }
+.b2b-card-link::after { content:' →'; transition:letter-spacing .2s; }
+.b2b-card:hover .b2b-card-link::after { letter-spacing:3px; }
 
-/* ═══════════════════════════════
-   LIFESTYLE
-═══════════════════════════════ */
-.section-lifestyle { padding: 100px 48px; background: var(--blanc); }
-.section-lifestyle h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 50px); font-weight: 900; text-transform: none; text-align: center; color: var(--navy); margin-bottom: 10px; letter-spacing: -.5px; }
-.section-lifestyle > p { text-align: center; color: var(--gris); font-size: 16px; margin-bottom: 56px; }
-.lifestyle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1200px; margin: 0 auto; }
-.ls-card { position: relative; overflow: hidden; height: 300px; cursor: pointer; }
-.ls-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(27,32,72,.88) 0%, rgba(27,32,72,.08) 55%); z-index: 1; }
-.ls-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
-.ls-card:hover img { transform: scale(1.07); }
-.ls-label { position: absolute; bottom: 0; padding: 28px 24px; z-index: 2; }
-.ls-label h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--blanc); margin-bottom: 4px; }
-.ls-label p { font-size: 12px; color: rgba(255,255,255,.6); }
+/* ──────────────────────────────
+   B2B PROCESS
+────────────────────────────── */
+.b2b-process { background:var(--navy-dk); padding:100px 48px; text-align:center; }
+.b2b-process .sec-h2 { color:var(--blanc); margin-bottom:12px; }
+.b2b-process .sec-sub { color:rgba(255,255,255,.5); margin-bottom:64px; }
+.process-steps { display:flex; gap:0; max-width:960px; margin:0 auto 56px; }
+.ps { flex:1; padding:0 32px; text-align:center; border-right:1px solid rgba(255,255,255,.07); }
+.ps:last-child { border-right:none; }
+.ps-num { font-family:'Playfair Display',serif; font-size:52px; font-weight:900; color:var(--violet); line-height:1; margin-bottom:16px; opacity:.5; }
+.ps h4 { font-size:14px; font-weight:800; color:var(--blanc); letter-spacing:.5px; margin-bottom:10px; }
+.ps p { font-size:13px; color:rgba(255,255,255,.45); line-height:1.65; }
+.btn-process { background:var(--violet); color:var(--blanc); border:none; padding:18px 48px; font-size:13px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background .2s; font-family:inherit; }
+.btn-process:hover { background:var(--violet-dk); }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
+   B2B WHY US
+────────────────────────────── */
+.b2b-why { display:grid; grid-template-columns:1fr 1fr; min-height:580px; }
+.b2b-why-visual { background:linear-gradient(to right,rgba(0,0,0,.3),rgba(0,0,0,0)), url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=900&q=80') center/cover; min-height:580px; }
+.b2b-why-content { background:var(--violet-dk); padding:80px 64px; display:flex; flex-direction:column; justify-content:center; }
+.b2b-why-tag { display:inline-block; background:var(--or); color:#fff; font-size:10px; font-weight:900; letter-spacing:3px; text-transform:uppercase; padding:6px 14px; margin-bottom:24px; width:fit-content; }
+.b2b-why-content h2 { font-family:'Playfair Display',serif; font-size:40px; font-weight:900; color:var(--blanc); line-height:1.05; margin-bottom:20px; }
+.b2b-why-content p { color:rgba(255,255,255,.6); font-size:15px; line-height:1.7; margin-bottom:32px; }
+.b2b-features { list-style:none; margin-bottom:40px; }
+.b2b-features li { color:rgba(255,255,255,.75); font-size:14px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.07); display:flex; align-items:center; gap:12px; }
+.b2b-features li::before { content:'✓'; color:var(--or); font-weight:900; font-size:15px; }
+.btn-b2b-devis { background:var(--or); color:#fff; border:none; padding:18px 40px; width:fit-content; font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:opacity .2s; font-family:inherit; }
+.btn-b2b-devis:hover { opacity:.88; }
+
+/* ──────────────────────────────
+   LIFESTYLE (B2C)
+────────────────────────────── */
+.lifestyle { padding:100px 48px; background:var(--blanc); }
+.lifestyle h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,4vw,48px); font-weight:900; text-align:center; color:var(--navy); margin-bottom:10px; }
+.lifestyle>p { text-align:center; color:var(--gris); font-size:16px; margin-bottom:56px; }
+.ls-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:1200px; margin:0 auto; }
+.ls-card { position:relative; overflow:hidden; height:300px; cursor:pointer; }
+.ls-card::before { content:''; position:absolute; inset:0; background:linear-gradient(to top,rgba(27,32,72,.9) 0%,rgba(27,32,72,.08) 55%); z-index:1; }
+.ls-card img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.ls-card:hover img { transform:scale(1.07); }
+.ls-label { position:absolute; bottom:0; padding:26px 24px; z-index:2; }
+.ls-label h3 { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:var(--blanc); margin-bottom:4px; }
+.ls-label p { font-size:12px; color:rgba(255,255,255,.6); }
+
+/* ──────────────────────────────
    PARTNERS
-═══════════════════════════════ */
-.section-partners { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
-.section-partners p { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.25); margin-bottom: 32px; }
-.partners-row { display: flex; gap: 52px; justify-content: center; align-items: center; flex-wrap: wrap; }
-.partner-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,.15); text-transform: uppercase; transition: color .2s; cursor: default; }
-.partner-name:hover { color: rgba(255,255,255,.5); }
+────────────────────────────── */
+.partners { padding:52px 48px; text-align:center; }
+.partners.b2c { background:var(--navy-dk); }
+.partners.b2b { background:#260d2b; }
+.partners p { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:28px; }
+.partners-row { display:flex; gap:52px; justify-content:center; align-items:center; flex-wrap:wrap; }
+.pname { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; letter-spacing:3px; color:rgba(255,255,255,.15); text-transform:uppercase; transition:color .2s; cursor:default; }
+.pname:hover { color:rgba(255,255,255,.5); }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
    FOOTER
-═══════════════════════════════ */
-footer { background: #080a14; color: rgba(255,255,255,.4); padding: 72px 48px 32px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
-.footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--blanc); letter-spacing: 1px; margin-bottom: 16px; }
-.footer-brand h3 span { color: var(--violet); font-style: italic; }
-.footer-brand p { font-size: 13px; line-height: 1.8; margin-bottom: 4px; }
-.footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--blanc); margin-bottom: 20px; }
-.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,.35); text-decoration: none; margin-bottom: 10px; transition: color .2s; }
-.footer-col a:hover { color: var(--violet); }
-.footer-bottom { background: #080a14; border-top: 1px solid rgba(255,255,255,.04); padding: 20px 48px; display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,.18); }
+────────────────────────────── */
+footer { color:rgba(255,255,255,.4); padding:72px 48px 32px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
+footer.b2c { background:#080a14; }
+footer.b2b { background:#1a062e; }
+.fb-name { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--blanc); margin-bottom:16px; }
+.fb-name span { color:var(--violet); font-style:italic; }
+footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
+.fc h4 { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--blanc); margin-bottom:20px; }
+.fc a { display:block; font-size:13px; color:rgba(255,255,255,.35); text-decoration:none; margin-bottom:10px; transition:color .2s; }
+.fc a:hover { color:var(--violet); }
+.footer-btm { border-top:1px solid rgba(255,255,255,.04); padding:20px 48px; display:flex; justify-content:space-between; font-size:11px; color:rgba(255,255,255,.18); }
+footer.b2c + .footer-btm { background:#080a14; }
+footer.b2b + .footer-btm { background:#1a062e; }
+.footer-btm-wrap { }
 
-/* ═══════════════════════════════
+/* ──────────────────────────────
    FLOATING CTA
-═══════════════════════════════ */
-.floating-cta {
-  position: fixed; bottom: 32px; right: 32px; z-index: 190;
-  background: var(--violet); color: var(--blanc); border: none;
-  padding: 16px 28px; font-size: 12px; font-weight: 800; letter-spacing: 1px;
-  text-transform: uppercase; cursor: pointer;
-  box-shadow: 0 8px 32px rgba(123,45,131,.45);
-  transition: all .2s, opacity .4s; display: flex; align-items: center; gap: 8px;
-  opacity: 0; pointer-events: none; font-family: inherit;
-}
-.floating-cta.show { opacity: 1; pointer-events: all; }
-.floating-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(123,45,131,.55); }
+────────────────────────────── */
+#fcta { position:fixed; bottom:32px; right:32px; z-index:250; background:var(--violet); color:var(--blanc); border:none; padding:16px 28px; font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase; cursor:pointer; box-shadow:0 8px 32px rgba(123,45,131,.45); transition:all .2s,opacity .4s; display:flex; align-items:center; gap:8px; opacity:0; pointer-events:none; font-family:inherit; }
+#fcta.show { opacity:1; pointer-events:all; }
+#fcta:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(123,45,131,.55); }
 
-/* ═══════════════════════════════
-   MOCKUP NOTE
-═══════════════════════════════ */
-.mockup-note {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: rgba(27,32,72,.93); color: rgba(255,255,255,.6);
-  text-align: center; padding: 8px; font-size: 11px; font-weight: 600;
-  z-index: 500; letter-spacing: .5px; backdrop-filter: blur(8px);
-}
+/* mockup note */
+.mnote { position:fixed; bottom:0; left:0; right:0; background:rgba(27,32,72,.93); color:rgba(255,255,255,.55); text-align:center; padding:8px; font-size:11px; font-weight:600; z-index:500; letter-spacing:.5px; backdrop-filter:blur(8px); }
 </style>
 </head>
 <body>
 
-<!-- ═══ MENU OVERLAY ═══ -->
+<!-- ══ MENU OVERLAY ══ -->
 <div id="menu-overlay">
   <button class="menu-close" onclick="toggleMenu()">✕ Fermer</button>
   <div class="menu-left">
-
-    <!-- Toggle B2C / B2B dans le menu -->
-    <div class="menu-mode-switch">
-      <button class="mms-btn b2c active" id="mms-b2c" onclick="setMode('b2c')">Particulier</button>
-      <button class="mms-btn b2b"        id="mms-b2b" onclick="setMode('b2b')">Entreprise</button>
+    <div class="menu-mode-row">
+      <button class="mmr-btn" id="mmr-b2c" onclick="switchMode('b2c')">Particulier</button>
+      <button class="mmr-btn" id="mmr-b2b" onclick="switchMode('b2b')">Entreprise</button>
     </div>
-
     <ul class="menu-nav-list">
       <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(0)"><span class="num">01</span>Accueil</a></li>
-      <li class="menu-nav-item">
-        <a href="#" onmouseenter="setMenuImg(1)"><span class="num">02</span>Tennis
-          <span class="menu-mode-badge b2c" id="menu-badge-tennis">Particulier</span>
-        </a>
-      </li>
-      <li class="menu-nav-item">
-        <a href="#" onmouseenter="setMenuImg(2)"><span class="num">03</span>Padel</a>
-      </li>
-      <li class="menu-nav-item">
-        <a href="#" onmouseenter="setMenuImg(3)"><span class="num">04</span>Club & Lifestyle</a>
-      </li>
-      <li class="menu-nav-item">
-        <a href="#" onmouseenter="setMenuImg(4)"><span class="num">05</span>Événements B2B
-          <span class="menu-mode-badge b2b">Entreprise</span>
-        </a>
-      </li>
-      <li class="menu-nav-item">
-        <a href="#" onmouseenter="setMenuImg(5)"><span class="num">06</span>Tarifs</a>
-      </li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(1)"><span class="num">02</span>Tennis</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(2)"><span class="num">03</span>Padel</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(3)"><span class="num">04</span>Lifestyle</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(4)"><span class="num">05</span>Événements</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(5)"><span class="num">06</span>Tarifs</a></li>
     </ul>
     <div class="menu-footer">
-      <a href="#">Contact</a>
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Réserver →</a>
+      <a href="#">Contact</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">Réserver →</a>
     </div>
   </div>
   <div class="menu-right">
@@ -608,503 +423,542 @@ footer { background: #080a14; color: rgba(255,255,255,.4); padding: 72px 48px 32
   </div>
 </div>
 
-<!-- ═══ NAV ═══ -->
+<!-- ══ NAV ══ -->
 <nav id="main-nav" class="hero-mode">
   <div class="nav-logo">La <span>Châtaigneraie</span></div>
   <div class="nav-right">
-    <!-- Mode switch pill -->
-    <div id="nav-mode-pill">
-      <button class="nmp-btn b2c active" id="nmp-b2c" onclick="setMode('b2c')">Particulier</button>
-      <button class="nmp-btn b2b"        id="nmp-b2b" onclick="setMode('b2b')">Entreprise</button>
+    <div id="nav-pill" class="hidden">
+      <button class="np-btn" id="np-b2c" onclick="switchMode('b2c')">Particulier</button>
+      <button class="np-btn" id="np-b2b" onclick="switchMode('b2b')">Entreprise</button>
     </div>
-    <button class="btn-reserver-nav">Réserver →</button>
+    <button class="btn-nav-resa">Réserver →</button>
     <button class="nav-menu-btn" onclick="toggleMenu()">
-      <div class="hamburger"><span></span><span></span><span></span></div>
-      Menu
+      <div class="hbg"><span></span><span></span><span></span></div>Menu
     </button>
   </div>
 </nav>
 
-<!-- ═══ HERO SCROLL-EXPAND ═══ -->
-<div id="hero-section">
-  <div id="hero-img-container">
-    <img class="hero-img-slide active" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1800&q=80" alt="Tennis">
-    <img class="hero-img-slide" src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1800&q=80" alt="Padel">
-    <img class="hero-img-slide" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1800&q=80" alt="Club">
-    <div id="hero-img-overlay"></div>
+<!-- ══ HERO ══ -->
+<div id="hero-wrap">
+  <div id="h-img-box">
+    <img class="h-slide on"  src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1800&q=80" alt="">
+    <img class="h-slide"     src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1800&q=80" alt="">
+    <img class="h-slide"     src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1800&q=80" alt="">
+    <div id="h-overlay"></div>
   </div>
-  <div class="hero-title-wrap">
-    <div class="hero-title-top" id="hero-title-top">Rueil-Malmaison · Depuis 1963</div>
-    <div class="hero-title-main">
-      <span id="hero-title-left">La</span>
-      <em id="hero-title-right">Châtaigneraie</em>
-    </div>
+  <div class="h-titles">
+    <div class="h-sub" id="h-sub">Rueil-Malmaison · Depuis 1963</div>
+    <div class="h-main"><span id="h-left">La</span> <em id="h-right">Châtaigneraie</em></div>
   </div>
-  <div id="hero-scroll-hint">Défiler pour découvrir</div>
-  <div id="hero-counter">01 / 03</div>
-  <button id="hero-skip" onclick="skipHero()">Passer l'intro</button>
+  <div id="h-hint">Défiler pour découvrir</div>
+  <div id="h-counter">01 / 03</div>
+  <button id="h-skip" onclick="skipHero()">Passer l'intro</button>
 </div>
 
-<!-- ═══ MAIN CONTENT ═══ -->
-<div id="main-content">
+<!-- ══ APP (shown after hero) ══ -->
+<div id="app">
 
-  <div class="announce">
-    🎾 Tournoi Padel P250 — 7 juin 2026 avec Jérôme Inzerillo &nbsp;|&nbsp; Places limitées
-    <span>Je m'inscris →</span>
-  </div>
+  <!-- ── CHOICE SCREEN ── -->
+  <div id="choice-screen">
 
-  <!-- ── COMPARISON SLIDER B2C / B2B ── -->
-  <div id="comparison-section">
+    <!-- B2C panel -->
+    <div class="cp cp-b2c" onclick="enterMode('b2c')">
+      <img class="cp-bg" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1200&q=80" alt="">
+      <div class="cp-overlay"></div>
+      <div class="cp-inner">
+        <div class="cp-tag">Particuliers</div>
+        <h2>Je viens<br>jouer.</h2>
+        <p>Courts de tennis, pistes de padel premium et coaching privé à deux pas de Paris. Réservez en 3 clics.</p>
+        <button class="cp-cta">Entrer dans l'espace Particulier →</button>
+      </div>
+    </div>
 
-    <!-- B2C side -->
-    <div class="cmp-side" id="cmp-b2c">
-      <div class="cmp-side-label">Particulier</div>
-      <img class="cmp-bg" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1200&q=80" alt="Tennis">
-      <div class="cmp-overlay"></div>
-      <div class="cmp-content">
-        <div class="cmp-tag">Espace Particulier</div>
-        <h2>Jouez.<br>Progressez.<br>Vivez.</h2>
-        <p>Courts de tennis et pistes de padel premium à deux pas de Paris. Réservez en 3 clics, jouez dans la journée.</p>
-        <ul class="cmp-features">
-          <li>7 courts tennis couverts</li>
-          <li>4 pistes padel indoor premium</li>
-          <li>Cours tous niveaux & coaching privé</li>
-          <li>Restaurant panoramique & spa</li>
+    <!-- divider -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:10;">
+      <div class="cp-divider"></div>
+      <div class="cp-divider-pill">ou</div>
+    </div>
+
+    <!-- B2B panel -->
+    <div class="cp cp-b2b" onclick="enterMode('b2b')">
+      <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="">
+      <div class="cp-overlay"></div>
+      <div class="cp-inner">
+        <div class="cp-tag">Entreprises</div>
+        <h2>Je viens<br>créer.</h2>
+        <p>Séminaires, team buildings et réceptions corporate dans un cadre d'exception à 15 min de La Défense.</p>
+        <button class="cp-cta">Entrer dans l'espace Entreprise →</button>
+      </div>
+    </div>
+
+  </div><!-- /choice-screen -->
+
+
+  <!-- ════════════════════════════════════════════
+       PAGE B2C — PARTICULIERS
+  ════════════════════════════════════════════ -->
+  <div id="page-b2c" class="page-section">
+
+    <div class="announce-bar b2c">
+      🎾 Tournoi Padel P250 — 7 juin 2026 · Places limitées
+      <span>Je m'inscris →</span>
+    </div>
+
+    <!-- Search widget B2C -->
+    <div class="search-wrap sw-b2c">
+      <img class="search-bg-img" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1400&q=70" alt="">
+      <div class="search-bg-overlay"></div>
+      <div class="search-inner">
+        <h2 class="search-heading">Que <em>recherchez-vous</em> ?</h2>
+        <div class="search-card">
+          <div class="swf">
+            <div class="swf-icon">📅</div>
+            <div><div class="swf-label">Date</div><input type="date" placeholder="Choisissez une date"></div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">🎾</div>
+            <div><div class="swf-label">Sport</div>
+              <select><option>Tennis</option><option>Padel</option><option>Cours collectif</option><option>Coaching privé</option></select>
+            </div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">👥</div>
+            <div><div class="swf-label">Joueurs</div>
+              <select><option>1 joueur</option><option>2 joueurs</option><option>3 joueurs</option><option>4 joueurs</option></select>
+            </div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">🏆</div>
+            <div><div class="swf-label">Type</div>
+              <select><option>Court libre</option><option>Cours / Stage</option><option>Abonnement membre</option></select>
+            </div>
+          </div>
+          <button class="sw-go">C'est parti !</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Histoire -->
+    <section class="histoire">
+      <div class="hist-visual">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=900&q=80" alt="La Châtaigneraie">
+        <div class="hist-year">1963<span>Fondation</span></div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-tag">Notre histoire</div>
+        <h2>60 ans de passion<br>pour <em>l'excellence</em></h2>
+        <div class="hist-nums">
+          <div class="hn-item"><div class="hn-num">60<sup>+</sup></div><div class="hn-label">Années d'histoire</div></div>
+          <div class="hn-item"><div class="hn-num">11</div><div class="hn-label">Courts & pistes</div></div>
+          <div class="hn-item"><div class="hn-num">5k<sup>+</sup></div><div class="hn-label">Membres actifs</div></div>
+        </div>
+        <p>Fondé en 1963 au cœur de Rueil-Malmaison, La Châtaigneraie est bien plus qu'un club sportif. C'est un lieu de vie, une tradition d'excellence transmise de génération en génération.</p>
+        <p>Des joueurs amateurs aux championnats nationaux — nous cultivons depuis six décennies l'art du jeu et l'art de vivre à deux pas de Paris.</p>
+        <button class="btn-hist">Découvrir notre histoire</button>
+      </div>
+    </section>
+
+    <!-- Stats B2C -->
+    <div class="stats-bar b2c">
+      <div class="stat-item"><div class="stat-n">7<sup>+</sup></div><div class="stat-l">Courts Tennis</div></div>
+      <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Pistes Padel</div></div>
+      <div class="stat-item"><div class="stat-n">60</div><div class="stat-l">Ans d'excellence</div></div>
+      <div class="stat-item"><div class="stat-n">8h–23h</div><div class="stat-l">7 jours / 7</div></div>
+    </div>
+
+    <!-- Réservation -->
+    <section class="resa-section">
+      <div class="sec-label b2c-label">Réservation rapide</div>
+      <h2 class="sec-h2">Réservez en 3 clics</h2>
+      <p class="sec-sub">Choisissez votre créneau, payez en ligne, jouez.</p>
+      <div class="resa-grid">
+        <div class="resa-card">
+          <div class="rc-icon">🎾</div><h3>Court Tennis</h3>
+          <p>Court couvert en terre battue. Disponible tous les jours, tous niveaux.</p>
+          <div class="rc-price">40€ <span>/ 1h30</span></div><button class="btn-rc">Réserver</button>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🏓</div><h3>Piste Padel</h3>
+          <p>Indoor premium. Court central panoramique disponible sur demande.</p>
+          <div class="rc-price">60€ <span>/ 1h30</span></div><button class="btn-rc">Réserver</button>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🎓</div><h3>Cours & Coaching</h3>
+          <p>Cours collectifs ou privés avec nos enseignants diplômés d'État.</p>
+          <div class="rc-price">Sur devis</div><button class="btn-rc">S'inscrire</button>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🏅</div><h3>Abonnement Membre</h3>
+          <p>Accès illimité, tarifs préférentiels, priorité de réservation.</p>
+          <div class="rc-price">Dès 89€ <span>/ mois</span></div><button class="btn-rc">Devenir membre</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lifestyle -->
+    <section class="lifestyle">
+      <h2>Un art de vivre</h2>
+      <p>Au-delà du sport, un lieu de vie premium à 20 minutes de Paris</p>
+      <div class="ls-grid">
+        <div class="ls-card">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="">
+          <div class="ls-label"><h3>Restaurant & Bar</h3><p>Vue panoramique sur les courts · Ouvert 7j/7</p></div>
+        </div>
+        <div class="ls-card">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80" alt="">
+          <div class="ls-label"><h3>Espace Fitness & Spa</h3><p>Salle de sport et espace bien-être · Accès membres</p></div>
+        </div>
+        <div class="ls-card">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="">
+          <div class="ls-label"><h3>Terrasse Estivale</h3><p>Le spot incontournable de l'été dans l'Ouest Parisien</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="partners b2c">
+      <p>Nos partenaires officiels</p>
+      <div class="partners-row">
+        <div class="pname">Wilson</div><div class="pname">Babolat</div>
+        <div class="pname">Guinot</div><div class="pname">FFT</div>
+      </div>
+    </div>
+
+    <footer class="b2c">
+      <div><p class="fb-name">La <span>Châtaigneraie</span></p>
+        <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+        <p class="fb-addr">01 47 51 66 72 · contact@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
+      </div>
+      <div class="fc"><h4>Sports</h4><a href="#">Tennis</a><a href="#">Padel</a><a href="#">Cours & École</a><a href="#">Compétitions</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#">Notre histoire</a><a href="#">Club House</a><a href="#">Restaurant</a><a href="#">Fitness & Spa</a></div>
+      <div class="fc"><h4>Infos</h4><a href="#">Tarifs</a><a href="#">Abonnements</a><a href="#">Actualités</a><a href="#">Contact</a></div>
+    </footer>
+    <div class="footer-btm footer-btm-wrap" style="background:#080a14;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span>
+      <span>Mentions légales · Confidentialité</span>
+    </div>
+
+  </div><!-- /page-b2c -->
+
+
+  <!-- ════════════════════════════════════════════
+       PAGE B2B — ENTREPRISES
+  ════════════════════════════════════════════ -->
+  <div id="page-b2b" class="page-section">
+
+    <div class="announce-bar b2b">
+      📋 Recevez votre devis personnalisé sous 24h — Événements corporate 2026
+      <span>Nous contacter →</span>
+    </div>
+
+    <!-- Search widget B2B -->
+    <div class="search-wrap sw-b2b">
+      <img class="search-bg-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400&q=70" alt="">
+      <div class="search-bg-overlay"></div>
+      <div class="search-inner">
+        <h2 class="search-heading">Quel <em>événement</em> planifiez-vous ?</h2>
+        <div class="search-card">
+          <div class="swf">
+            <div class="swf-icon">📅</div>
+            <div><div class="swf-label">Date souhaitée</div><input type="date" placeholder="Date de l'événement"></div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">🏆</div>
+            <div><div class="swf-label">Type d'événement</div>
+              <select><option>Tournoi inter-entreprises</option><option>Séminaire</option><option>Team Building</option><option>Cocktail / Réception</option></select>
+            </div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">👥</div>
+            <div><div class="swf-label">Participants</div>
+              <select><option>Moins de 20</option><option>20 à 50</option><option>50 à 100</option><option>Plus de 100</option></select>
+            </div>
+          </div>
+          <div class="swf">
+            <div class="swf-icon">💶</div>
+            <div><div class="swf-label">Budget estimé</div>
+              <select><option>À définir</option><option>5 000 – 15 000 €</option><option>15 000 – 40 000 €</option><option>40 000 € +</option></select>
+            </div>
+          </div>
+          <button class="sw-go">Obtenir un devis</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services B2B grid -->
+    <section class="b2b-services">
+      <div class="sec-label b2b-label">Nos offres</div>
+      <h2 class="sec-h2" style="margin-bottom:12px;">Des expériences<br>sur mesure</h2>
+      <p class="sec-sub">À 15 minutes de La Défense, choisissez parmi nos formats éprouvés.</p>
+      <div class="b2b-grid">
+        <div class="b2b-card">
+          <img src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=700&q=80" alt="">
+          <div class="b2b-card-overlay"></div>
+          <div class="b2b-card-content">
+            <div class="b2b-card-num">01 — Padel</div>
+            <h3>Tournois inter-entreprises</h3>
+            <p>Format P100 à P500. Organisation clé en main, arbitrage professionnel, remise de trophées.</p>
+            <a href="#" class="b2b-card-link">En savoir plus</a>
+          </div>
+        </div>
+        <div class="b2b-card">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&q=80" alt="">
+          <div class="b2b-card-overlay"></div>
+          <div class="b2b-card-content">
+            <div class="b2b-card-num">02 — Séminaire</div>
+            <h3>Espaces séminaire & réunions</h3>
+            <p>Salles modulables jusqu'à 150 personnes, restauration gastronomique, terrasse panoramique.</p>
+            <a href="#" class="b2b-card-link">En savoir plus</a>
+          </div>
+        </div>
+        <div class="b2b-card">
+          <img src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=700&q=80" alt="">
+          <div class="b2b-card-overlay"></div>
+          <div class="b2b-card-content">
+            <div class="b2b-card-num">03 — Sport</div>
+            <h3>Team Building sportif</h3>
+            <p>Ateliers tennis & padel animés par nos coaches, accessible à tous les niveaux.</p>
+            <a href="#" class="b2b-card-link">En savoir plus</a>
+          </div>
+        </div>
+        <div class="b2b-card">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="">
+          <div class="b2b-card-overlay"></div>
+          <div class="b2b-card-content">
+            <div class="b2b-card-num">04 — Réception</div>
+            <h3>Cocktails & soirées privées</h3>
+            <p>Privatisation complète du club, jusqu'à 150 convives, traiteur et animation sur mesure.</p>
+            <a href="#" class="b2b-card-link">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="b2b-process">
+      <div class="sec-label b2b-label">Simple & rapide</div>
+      <h2 class="sec-h2" style="color:var(--blanc);">De l'idée à l'événement</h2>
+      <p class="sec-sub">Notre équipe dédiée vous accompagne à chaque étape.</p>
+      <div class="process-steps">
+        <div class="ps"><div class="ps-num">01</div><h4>Vous nous contactez</h4><p>Par formulaire, téléphone ou email — réponse sous 24h garantie.</p></div>
+        <div class="ps"><div class="ps-num">02</div><h4>Devis sur mesure</h4><p>Proposition détaillée adaptée à votre budget et votre format.</p></div>
+        <div class="ps"><div class="ps-num">03</div><h4>Nous organisons tout</h4><p>Planning, logistique, restauration — vous n'avez qu'à arriver.</p></div>
+        <div class="ps"><div class="ps-num">04</div><h4>Vous profitez</h4><p>Votre équipe repart avec des souvenirs mémorables.</p></div>
+      </div>
+      <button class="btn-process">Demander un devis →</button>
+    </section>
+
+    <!-- Why us -->
+    <section class="b2b-why">
+      <div class="b2b-why-visual"></div>
+      <div class="b2b-why-content">
+        <div class="b2b-why-tag">Pourquoi La Châtaigneraie</div>
+        <h2>Le choix de l'excellence corporate</h2>
+        <p>À 15 min de La Défense, notre club premium réunit sport, gastronomie et espaces événementiels dans un cadre verdoyant unique en Île-de-France.</p>
+        <ul class="b2b-features">
+          <li>4 pistes padel + 7 courts tennis disponibles à la privatisation</li>
+          <li>Restaurant panoramique & terrasse jusqu'à 150 couverts</li>
+          <li>Équipe événementielle dédiée avec 60 ans d'expérience</li>
+          <li>Partenaire officiel Wilson & FFT pour vos tournois</li>
+          <li>Parking gratuit · Accessible en RER & voiture</li>
         </ul>
-        <button class="btn-cmp" onclick="setMode('b2c')">Découvrir & Réserver →</button>
+        <button class="btn-b2b-devis">Obtenir mon devis →</button>
+      </div>
+    </section>
+
+    <!-- Stats B2B -->
+    <div class="stats-bar b2b">
+      <div class="stat-item"><div class="stat-n">150<sup>+</sup></div><div class="stat-l">Événements / an</div></div>
+      <div class="stat-item"><div class="stat-n">15'</div><div class="stat-l">De La Défense</div></div>
+      <div class="stat-item"><div class="stat-n">60</div><div class="stat-l">Ans d'expérience</div></div>
+      <div class="stat-item"><div class="stat-n">24h</div><div class="stat-l">Délai devis</div></div>
+    </div>
+
+    <div class="partners b2b">
+      <p>Ils nous font confiance</p>
+      <div class="partners-row">
+        <div class="pname">Wilson</div><div class="pname">Babolat</div>
+        <div class="pname">Guinot</div><div class="pname">FFT</div>
       </div>
     </div>
 
-    <!-- Slider handle -->
-    <div id="cmp-handle">
-      <div class="cmp-knob">⇔</div>
-    </div>
-
-    <!-- B2B side -->
-    <div class="cmp-side" id="cmp-b2b">
-      <div class="cmp-side-label">Entreprise</div>
-      <img class="cmp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="B2B">
-      <div class="cmp-overlay"></div>
-      <div class="cmp-content">
-        <div class="cmp-tag">Espace Entreprise</div>
-        <h2>Créez<br>l'événement<br>parfait.</h2>
-        <p>À 15 min de La Défense. Séminaires, team buildings sportifs et réceptions dans un cadre d'exception.</p>
-        <ul class="cmp-features">
-          <li>Tournois inter-entreprises Padel & Tennis</li>
-          <li>Séminaires & espaces privatisables</li>
-          <li>Cocktails jusqu'à 150 personnes</li>
-          <li>Devis personnalisé sous 24h</li>
-        </ul>
-        <button class="btn-cmp" onclick="setMode('b2b')">Demander un devis →</button>
+    <footer class="b2b">
+      <div><p class="fb-name">La <span>Châtaigneraie</span></p>
+        <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+        <p class="fb-addr">01 47 51 66 72</p>
+        <p class="fb-addr">b2b@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Devis sous 24h · 7j/7</p>
       </div>
+      <div class="fc"><h4>Événements</h4><a href="#">Tournois Padel</a><a href="#">Séminaires</a><a href="#">Team Building</a><a href="#">Réceptions</a></div>
+      <div class="fc"><h4>Espaces</h4><a href="#">Salles modulables</a><a href="#">Terrasse</a><a href="#">Restaurant</a><a href="#">Courts privatisés</a></div>
+      <div class="fc"><h4>Contact B2B</h4><a href="#">Demander un devis</a><a href="#">Nos références</a><a href="#">Brochure PDF</a><a href="#">Accès & Plan</a></div>
+    </footer>
+    <div class="footer-btm" style="background:#1a062e;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span>
+      <span>Mentions légales · Confidentialité</span>
     </div>
 
-  </div><!-- /comparison-section -->
+  </div><!-- /page-b2b -->
 
-  <!-- ── SEARCH WIDGET ── -->
-  <div class="search-section">
-    <div class="search-bg"></div>
-    <div class="search-inner">
-      <h2 class="search-heading">Que <em>recherchez-vous</em> ?</h2>
-      <div class="search-card">
-        <div class="sw-field">
-          <div class="sw-icon">📅</div>
-          <div class="sw-texts">
-            <div class="sw-label">Date</div>
-            <input type="date" class="sw-input" placeholder="Choisissez une date">
-          </div>
-        </div>
-        <div class="sw-field">
-          <div class="sw-icon">🎾</div>
-          <div class="sw-texts">
-            <div class="sw-label">Sport</div>
-            <select class="sw-select">
-              <option>Tennis</option>
-              <option>Padel</option>
-              <option>Cours collectif</option>
-              <option>Coaching privé</option>
-            </select>
-          </div>
-        </div>
-        <div class="sw-field">
-          <div class="sw-icon">👥</div>
-          <div class="sw-texts">
-            <div class="sw-label">Joueurs</div>
-            <select class="sw-select">
-              <option>1 joueur</option>
-              <option>2 joueurs</option>
-              <option>3 joueurs</option>
-              <option>4 joueurs</option>
-            </select>
-          </div>
-        </div>
-        <div class="sw-field" style="border-right:none;">
-          <div class="sw-icon">🏆</div>
-          <div class="sw-texts">
-            <div class="sw-label">Type</div>
-            <select class="sw-select">
-              <option>Court libre</option>
-              <option>Cours / Stage</option>
-              <option>Événement corporate</option>
-              <option>Abonnement membre</option>
-            </select>
-          </div>
-        </div>
-        <button class="sw-cta">C'est parti !</button>
-      </div>
-    </div>
-  </div>
+</div><!-- /app -->
 
-  <!-- ── HISTOIRE ── -->
-  <section class="histoire-section">
-    <div class="histoire-visual">
-      <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=900&q=80" alt="La Châtaigneraie">
-      <div class="histoire-visual-overlay"></div>
-      <div class="histoire-year-badge">1963<span>Fondation</span></div>
-    </div>
-    <div class="histoire-content">
-      <div class="histoire-tag">Notre histoire</div>
-      <h2>60 ans de passion<br>pour <em>l'excellence</em></h2>
-      <div class="histoire-nums">
-        <div class="histoire-num-item">
-          <div class="histoire-num">60<sup>+</sup></div>
-          <div class="histoire-num-label">Années d'histoire</div>
-        </div>
-        <div class="histoire-num-item">
-          <div class="histoire-num">11</div>
-          <div class="histoire-num-label">Courts & pistes</div>
-        </div>
-        <div class="histoire-num-item">
-          <div class="histoire-num">5k<sup>+</sup></div>
-          <div class="histoire-num-label">Membres actifs</div>
-        </div>
-      </div>
-      <p>Fondé en 1963 au cœur de Rueil-Malmaison, La Châtaigneraie est bien plus qu'un club sportif. C'est un lieu de vie, une tradition d'excellence transmise de génération en génération, à deux pas de Paris.</p>
-      <p>Des joueurs amateurs aux championnats nationaux, des familles aux grands événements corporate — nous cultivons depuis six décennies l'art du jeu et l'art de vivre.</p>
-      <button class="btn-histoire">Découvrir notre histoire</button>
-    </div>
-  </section>
-
-  <!-- ── STATS ── -->
-  <div class="stats">
-    <div class="stat-item">
-      <div class="stat-num">7<sup>+</sup></div>
-      <div class="stat-label">Courts Tennis</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Pistes Padel</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">60</div>
-      <div class="stat-label">Ans d'excellence</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">8h–23h</div>
-      <div class="stat-label">7 jours / 7</div>
-    </div>
-  </div>
-
-  <!-- ── RÉSERVATION ── -->
-  <section class="section-resa">
-    <div class="section-label">Réservation rapide</div>
-    <h2>Réservez en 3 clics</h2>
-    <p>Choisissez votre créneau, payez en ligne, jouez.</p>
-    <div class="resa-cards">
-      <div class="resa-card">
-        <div class="resa-icon">🎾</div>
-        <h3>Court Tennis</h3>
-        <p>Court couvert en terre battue. Disponible tous les jours, tous niveaux.</p>
-        <div class="resa-price">40€ <span>/ 1h30</span></div>
-        <button class="btn-resa">Réserver</button>
-      </div>
-      <div class="resa-card">
-        <div class="resa-icon">🏓</div>
-        <h3>Piste Padel</h3>
-        <p>Indoor premium. Court central panoramique disponible sur demande.</p>
-        <div class="resa-price">60€ <span>/ 1h30</span></div>
-        <button class="btn-resa">Réserver</button>
-      </div>
-      <div class="resa-card">
-        <div class="resa-icon">🎓</div>
-        <h3>Cours & Coaching</h3>
-        <p>Cours collectifs ou privés avec nos enseignants diplômés d'État.</p>
-        <div class="resa-price">Sur devis</div>
-        <button class="btn-resa">S'inscrire</button>
-      </div>
-      <div class="resa-card">
-        <div class="resa-icon">💼</div>
-        <h3>Abonnement Membre</h3>
-        <p>Accès illimité, tarifs préférentiels, priorité de réservation.</p>
-        <div class="resa-price">Dès 89€ <span>/ mois</span></div>
-        <button class="btn-resa">Devenir membre</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── B2B DÉTAIL ── -->
-  <section class="section-b2b">
-    <div class="b2b-visual"></div>
-    <div class="b2b-content">
-      <div class="b2b-tag">Entreprises & Événements</div>
-      <h2>Offres B2B<br>sur mesure</h2>
-      <p>Privatisation complète, espaces modulables, restauration incluse. Le cadre idéal pour vos événements corporate à 15 min de La Défense.</p>
-      <ul class="b2b-features">
-        <li>Tournois de Padel inter-entreprises</li>
-        <li>Séminaires avec privatisation restaurant & terrasse</li>
-        <li>Team Building sportif (Tennis + Padel)</li>
-        <li>Cocktails & réceptions jusqu'à 150 personnes</li>
-        <li>Devis personnalisé sous 24h</li>
-      </ul>
-      <button class="btn-b2b">Demander un devis →</button>
-    </div>
-  </section>
-
-  <!-- ── LIFESTYLE ── -->
-  <section class="section-lifestyle">
-    <h2>Un art de vivre</h2>
-    <p>Au-delà du sport, un lieu de vie premium à 20 minutes de Paris</p>
-    <div class="lifestyle-grid">
-      <div class="ls-card">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant">
-        <div class="ls-label"><h3>Restaurant & Bar</h3><p>Vue panoramique sur les courts · Ouvert 7j/7</p></div>
-      </div>
-      <div class="ls-card">
-        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80" alt="Fitness">
-        <div class="ls-label"><h3>Espace Fitness & Bien-être</h3><p>Salle de sport et espace spa · Accès membres</p></div>
-      </div>
-      <div class="ls-card">
-        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="Terrasse">
-        <div class="ls-label"><h3>Terrasse Estivale</h3><p>Le spot incontournable de l'été dans l'Ouest Parisien</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PARTNERS ── -->
-  <div class="section-partners">
-    <p>Nos partenaires officiels</p>
-    <div class="partners-row">
-      <div class="partner-name">Wilson</div>
-      <div class="partner-name">Babolat</div>
-      <div class="partner-name">Guinot</div>
-      <div class="partner-name">FFT</div>
-    </div>
-  </div>
-
-  <!-- ── FOOTER ── -->
-  <footer>
-    <div class="footer-brand">
-      <h3>La <span>Châtaigneraie</span></h3>
-      <p>6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
-      <p>01 47 51 66 72</p>
-      <p>contact@tcchataigneraie.com</p>
-      <p style="margin-top:12px;color:rgba(255,255,255,.2);font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
-    </div>
-    <div class="footer-col">
-      <h4>Sports</h4>
-      <a href="#">Tennis</a><a href="#">Padel</a>
-      <a href="#">Cours & École</a><a href="#">Compétitions</a>
-    </div>
-    <div class="footer-col">
-      <h4>Le Club</h4>
-      <a href="#">Notre histoire</a><a href="#">Club House</a>
-      <a href="#">Restaurant</a><a href="#">Fitness & Spa</a>
-    </div>
-    <div class="footer-col">
-      <h4>Entreprises</h4>
-      <a href="#">Séminaires</a><a href="#">Team Building</a>
-      <a href="#">Tournois corporate</a><a href="#">Demander un devis</a>
-    </div>
-  </footer>
-  <div class="footer-bottom">
-    <span>© 2026 Tennis Club de la Châtaigneraie</span>
-    <span>Mentions légales · Politique de confidentialité</span>
-  </div>
-
-</div><!-- /main-content -->
-
-<button class="floating-cta" id="floating-cta">🎾 Réserver maintenant</button>
-<div class="mockup-note">🎨 MAQUETTE V2 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
+<button id="fcta">🎾 Réserver maintenant</button>
+<div class="mnote">🎨 MAQUETTE V3 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
 
 <script>
-/* ════════════════════════════
+/* ══════════════════════════════
    HERO SCROLL-EXPAND
-════════════════════════════ */
-const heroSection = document.getElementById('hero-section');
-const heroImgCont = document.getElementById('hero-img-container');
-const heroOverlay = document.getElementById('hero-img-overlay');
-const titleLeft   = document.getElementById('hero-title-left');
-const titleRight  = document.getElementById('hero-title-right');
-const titleTop    = document.getElementById('hero-title-top');
-const scrollHint  = document.getElementById('hero-scroll-hint');
-const mainContent = document.getElementById('main-content');
-const mainNav     = document.getElementById('main-nav');
-const floatingCta = document.getElementById('floating-cta');
+══════════════════════════════ */
+const heroWrap = document.getElementById('hero-wrap');
+const hImgBox  = document.getElementById('h-img-box');
+const hOvlay   = document.getElementById('h-overlay');
+const hLeft    = document.getElementById('h-left');
+const hRight   = document.getElementById('h-right');
+const hSub     = document.getElementById('h-sub');
+const hHint    = document.getElementById('h-hint');
+const appEl    = document.getElementById('app');
+const mainNav  = document.getElementById('main-nav');
+const fctaEl   = document.getElementById('fcta');
 
-let heroProgress = 0, heroExpanded = false, touchY0 = 0;
+let hp = 0, heroDone = false, ty0 = 0;
 document.body.style.overflow = 'hidden';
 
-function lerp(a, b, t) { return a + (b - a) * t; }
+const lerp = (a,b,t) => a + (b-a)*t;
 
 function applyHero(p) {
   const vw = window.innerWidth, vh = window.innerHeight;
-  const mobile = vw < 768;
-  heroImgCont.style.width        = lerp(mobile ? 260 : 340, vw, p) + 'px';
-  heroImgCont.style.height       = lerp(mobile ? 360 : 460, vh, p) + 'px';
-  heroImgCont.style.borderRadius = lerp(18, 0, p) + 'px';
-  const shift = mobile ? 38 : 72;
-  titleLeft.style.transform  = `translateX(-${p * shift}vw)`;
-  titleRight.style.transform = `translateX(${p * shift}vw)`;
-  titleTop.style.opacity     = Math.max(0, 1 - p * 3);
-  scrollHint.style.opacity   = Math.max(0, 1 - p * 4);
-  heroOverlay.style.background = `rgba(0,0,0,${Math.max(0, .38 - p * .38)})`;
+  const mob = vw < 768;
+  hImgBox.style.width        = lerp(mob?260:340, vw, p)+'px';
+  hImgBox.style.height       = lerp(mob?360:460, vh, p)+'px';
+  hImgBox.style.borderRadius = lerp(18, 0, p)+'px';
+  const sh = mob ? 38 : 72;
+  hLeft.style.transform  = `translateX(-${p*sh}vw)`;
+  hRight.style.transform = `translateX(${p*sh}vw)`;
+  hSub.style.opacity  = Math.max(0, 1-p*3);
+  hHint.style.opacity = Math.max(0, 1-p*4);
+  hOvlay.style.background = `rgba(0,0,0,${Math.max(0,.38-p*.38)})`;
 }
 
-function completeHero() {
-  heroExpanded = true;
-  heroSection.style.transition = 'opacity .5s ease, transform .4s ease';
-  heroSection.style.opacity    = '0';
-  heroSection.style.transform  = 'scale(1.03)';
+function finishHero() {
+  heroWrap.style.transition = 'opacity .5s ease, transform .4s ease';
+  heroWrap.style.opacity    = '0';
+  heroWrap.style.transform  = 'scale(1.03)';
   setTimeout(() => {
-    heroSection.style.display = 'none';
+    heroWrap.style.display = 'none';
     document.body.style.overflow = '';
-    mainContent.classList.add('visible');
+    appEl.classList.add('ready');
     mainNav.classList.remove('hero-mode');
-    mainNav.classList.add('scrolled');
-    floatingCta.classList.add('show');
-    window.scrollTo(0, 0);
-  }, 500);
+    mainNav.classList.add('live');
+    fctaEl.classList.add('show');
+    window.scrollTo(0,0);
+    heroDone = true;
+  }, 480);
 }
 
-function skipHero() { heroProgress = 1; applyHero(1); completeHero(); }
+function skipHero() { hp=1; applyHero(1); finishHero(); }
 
 window.addEventListener('wheel', e => {
-  if (heroExpanded) return;
+  if (heroDone) return;
   e.preventDefault();
-  heroProgress = Math.min(Math.max(heroProgress + e.deltaY * .0012, 0), 1);
-  applyHero(heroProgress);
-  if (heroProgress >= 1) completeHero();
-}, { passive: false });
+  hp = Math.min(Math.max(hp + e.deltaY*.0012, 0), 1);
+  applyHero(hp);
+  if (hp >= 1) finishHero();
+}, { passive:false });
 
-window.addEventListener('touchstart', e => { if (!heroExpanded) touchY0 = e.touches[0].clientY; }, { passive: true });
+window.addEventListener('touchstart', e => { if (!heroDone) ty0 = e.touches[0].clientY; }, { passive:true });
 window.addEventListener('touchmove', e => {
-  if (heroExpanded) return;
-  e.preventDefault();
-  const dy = touchY0 - e.touches[0].clientY;
-  heroProgress = Math.min(Math.max(heroProgress + dy * (dy < 0 ? .008 : .005), 0), 1);
-  applyHero(heroProgress);
-  touchY0 = e.touches[0].clientY;
-  if (heroProgress >= 1) completeHero();
-}, { passive: false });
+  if (heroDone) return; e.preventDefault();
+  const dy = ty0 - e.touches[0].clientY;
+  hp = Math.min(Math.max(hp + dy*(dy<0?.008:.005), 0), 1);
+  applyHero(hp); ty0 = e.touches[0].clientY;
+  if (hp >= 1) finishHero();
+}, { passive:false });
 
 applyHero(0);
 
-/* Slideshow */
-const slides  = document.querySelectorAll('.hero-img-slide');
-const counter = document.getElementById('hero-counter');
-let slideIdx  = 0;
+/* slideshow */
+const slides  = document.querySelectorAll('.h-slide');
+const counter = document.getElementById('h-counter');
+let si = 0;
 setInterval(() => {
-  if (heroExpanded || heroProgress > 0.3) return;
-  slides[slideIdx].classList.remove('active');
-  slideIdx = (slideIdx + 1) % slides.length;
-  slides[slideIdx].classList.add('active');
-  counter.textContent = String(slideIdx + 1).padStart(2, '0') + ' / 0' + slides.length;
+  if (heroDone || hp > .3) return;
+  slides[si].classList.remove('on');
+  si = (si+1) % slides.length;
+  slides[si].classList.add('on');
+  counter.textContent = String(si+1).padStart(2,'0')+' / 0'+slides.length;
 }, 4000);
 
-/* ════════════════════════════
-   COMPARISON SLIDER
-════════════════════════════ */
-const cmpSection = document.getElementById('comparison-section');
-const cmpB2C     = document.getElementById('cmp-b2c');
-const cmpB2B     = document.getElementById('cmp-b2b');
-const cmpHandle  = document.getElementById('cmp-handle');
+/* ══════════════════════════════
+   MODE SYSTEM
+══════════════════════════════ */
+let currentMode = null; // null = choice screen, 'b2c' or 'b2b'
 
-let cmpPos = 72; // 72% B2C, 28% B2B
-let cmpDragging = false;
-
-function setCmpPos(pos) {
-  cmpPos = Math.max(15, Math.min(85, pos));
-  cmpB2C.style.width    = cmpPos + '%';
-  cmpB2B.style.width    = (100 - cmpPos) + '%';
-  cmpHandle.style.left  = cmpPos + '%';
+function enterMode(mode) {
+  currentMode = mode;
+  // Exit choice screen
+  const cs = document.getElementById('choice-screen');
+  cs.classList.add('exit');
+  setTimeout(() => {
+    cs.style.display = 'none';
+    showPage(mode);
+  }, 420);
 }
 
-setCmpPos(cmpPos);
+function showPage(mode) {
+  // Hide both pages
+  document.getElementById('page-b2c').classList.remove('active');
+  document.getElementById('page-b2b').classList.remove('active');
+  // Show chosen
+  document.getElementById('page-'+mode).classList.add('active');
+  updateNavMode(mode);
+  window.scrollTo(0,0);
+}
 
-cmpHandle.addEventListener('mousedown', e => { cmpDragging = true; cmpHandle.classList.add('dragging'); e.preventDefault(); });
-window.addEventListener('mouseup', () => { cmpDragging = false; cmpHandle.classList.remove('dragging'); });
-window.addEventListener('mousemove', e => {
-  if (!cmpDragging) return;
-  const rect = cmpSection.getBoundingClientRect();
-  setCmpPos(((e.clientX - rect.left) / rect.width) * 100);
-});
-
-/* Touch for slider */
-cmpHandle.addEventListener('touchstart', e => { cmpDragging = true; e.preventDefault(); }, { passive: false });
-window.addEventListener('touchend', () => { cmpDragging = false; });
-window.addEventListener('touchmove', e => {
-  if (!cmpDragging) return;
-  const rect = cmpSection.getBoundingClientRect();
-  setCmpPos(((e.touches[0].clientX - rect.left) / rect.width) * 100);
-}, { passive: true });
-
-/* ════════════════════════════
-   MODE B2C / B2B
-════════════════════════════ */
-let currentMode = 'b2c';
-
-function setMode(mode) {
+function switchMode(mode) {
+  if (mode === currentMode) { if (menuOpen) toggleMenu(); return; }
   currentMode = mode;
-
-  /* Nav pill */
-  document.getElementById('nmp-b2c').classList.toggle('active', mode === 'b2c');
-  document.getElementById('nmp-b2b').classList.toggle('active', mode === 'b2b');
-
-  /* Menu switches */
-  document.getElementById('mms-b2c').classList.toggle('active', mode === 'b2c');
-  document.getElementById('mms-b2b').classList.toggle('active', mode === 'b2b');
-
-  /* Animate slider to preferred side */
-  const target = mode === 'b2c' ? 80 : 20;
-  animateCmp(target);
-
-  /* Close menu if open */
+  const leaving = document.getElementById('page-'+(mode==='b2c'?'b2b':'b2c'));
+  leaving.style.opacity = '0';
+  leaving.style.transition = 'opacity .3s ease';
+  setTimeout(() => {
+    leaving.classList.remove('active');
+    leaving.style.opacity = '';
+    leaving.style.transition = '';
+    document.getElementById('page-'+mode).classList.add('active');
+    updateNavMode(mode);
+    window.scrollTo(0,0);
+  }, 300);
   if (menuOpen) toggleMenu();
 }
 
-function animateCmp(target) {
-  const start = cmpPos, duration = 600;
-  const startTime = performance.now();
-  function step(now) {
-    const t = Math.min((now - startTime) / duration, 1);
-    const ease = t < .5 ? 2*t*t : -1 + (4-2*t)*t;
-    setCmpPos(start + (target - start) * ease);
-    if (t < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
+function updateNavMode(mode) {
+  const pill = document.getElementById('nav-pill');
+  pill.classList.remove('hidden');
+  document.getElementById('np-b2c').className = 'np-btn' + (mode==='b2c' ? ' on-b2c':'');
+  document.getElementById('np-b2b').className = 'np-btn' + (mode==='b2b' ? ' on-b2b':'');
+  document.getElementById('mmr-b2c').className = 'mmr-btn' + (mode==='b2c' ? ' active-b2c':'');
+  document.getElementById('mmr-b2b').className = 'mmr-btn' + (mode==='b2b' ? ' active-b2b':'');
+  // CTA text
+  fctaEl.textContent = mode === 'b2c' ? '🎾 Réserver maintenant' : '📋 Demander un devis';
+  fctaEl.style.background = mode === 'b2b' ? 'var(--or)' : 'var(--violet)';
 }
 
-/* ════════════════════════════
+/* ══════════════════════════════
    MENU
-════════════════════════════ */
+══════════════════════════════ */
 let menuOpen = false;
-
 function toggleMenu() {
   menuOpen = !menuOpen;
   document.getElementById('menu-overlay').classList.toggle('open', menuOpen);
-  if (heroExpanded) document.body.style.overflow = menuOpen ? 'hidden' : '';
+  if (heroDone) document.body.style.overflow = menuOpen ? 'hidden' : '';
 }
-
 const menuImgs = document.querySelectorAll('.menu-img');
-let activeMenuImg = 0;
-
+let ami = 0;
 function setMenuImg(i) {
-  menuImgs[activeMenuImg].classList.remove('active');
-  menuImgs[i].classList.add('active');
-  activeMenuImg = i;
+  menuImgs[ami].classList.remove('active');
+  menuImgs[i].classList.add('active'); ami = i;
 }
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) toggleMenu(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape' && menuOpen) toggleMenu(); });
 </script>
 </body>
 </html>
