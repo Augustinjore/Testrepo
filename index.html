@@ -142,22 +142,24 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
    CHOICE SCREEN
 ────────────────────────────── */
 #choice-screen {
-  display:flex; height:100vh; overflow:hidden;
+  display:flex; flex-direction:column;
   transition:opacity .4s ease, transform .4s ease;
 }
 #choice-screen.exit { opacity:0; transform:scale(1.02); pointer-events:none; }
+
+/* Panels row — full viewport height */
+.cp-row { position:relative; display:flex; height:100vh; overflow:hidden; }
+.cp-row:hover .cp { flex:.55; }
+.cp-row .cp:hover { flex:1.45; }
 
 .cp {
   position:relative; overflow:hidden; flex:1;
   display:flex; flex-direction:column; justify-content:flex-end;
   padding:72px 64px; transition:flex .6s cubic-bezier(.76,0,.24,1); cursor:pointer;
 }
-#choice-screen:hover .cp { flex:.55; }
-#choice-screen .cp:hover { flex:1.45; }
 .cp .cp-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
 .cp:hover .cp-bg { transform:scale(1.03); }
 .cp-overlay { position:absolute; inset:0; }
-/* Light overlays so images breathe */
 .cp-b2c .cp-overlay { background:linear-gradient(to top,rgba(17,17,17,.88) 0%,rgba(17,17,17,.4) 45%,rgba(17,17,17,.08) 100%); }
 .cp-b2b .cp-overlay { background:linear-gradient(to top,rgba(17,17,17,.88) 0%,rgba(17,17,17,.4) 45%,rgba(17,17,17,.08) 100%); }
 
@@ -185,6 +187,46 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
   font-size:10px; font-weight:800; letter-spacing:2px; color:var(--noir);
   box-shadow:0 4px 24px rgba(0,0,0,.25); white-space:nowrap; z-index:20;
 }
+
+/* ── Informational sections (no CTAs) ── */
+.cs-scroll-hint {
+  display:flex; flex-direction:column; align-items:center; gap:12px;
+  padding:32px 20px 24px; background:var(--blanc);
+}
+.cs-sh-text { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gris-mid); }
+.cs-sh-line { width:1px; height:36px; background:linear-gradient(to bottom,var(--gris-mid),transparent); }
+
+.cs-stats {
+  display:flex; justify-content:center; background:var(--blanc);
+  border-top:1px solid var(--gris-lt); border-bottom:1px solid var(--gris-lt);
+}
+.cs-stat { flex:1; max-width:260px; padding:44px 20px; text-align:center; border-right:1px solid var(--gris-lt); }
+.cs-stat:last-child { border-right:none; }
+.cs-stat-n { font-family:'Playfair Display',serif; font-size:46px; font-weight:900; color:var(--noir); line-height:1; margin-bottom:8px; }
+.cs-stat-n sup { font-size:16px; color:var(--navy); }
+.cs-stat-l { font-size:9px; color:var(--gris-mid); letter-spacing:3px; text-transform:uppercase; }
+
+.cs-histoire { display:grid; grid-template-columns:1fr 1fr; min-height:540px; border-top:1px solid var(--gris-lt); }
+.cs-hist-visual { position:relative; overflow:hidden; }
+.cs-hist-visual img { width:100%; height:100%; object-fit:cover; display:block; }
+.cs-hist-year { position:absolute; top:36px; left:36px; background:var(--blanc); color:var(--navy); font-family:'Playfair Display',serif; font-size:38px; font-weight:900; line-height:1; padding:12px 20px; box-shadow:0 4px 20px rgba(0,0,0,.15); }
+.cs-hist-year span { font-family:'Inter',sans-serif; font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; display:block; margin-top:4px; color:var(--violet); }
+.cs-hist-content { background:var(--blanc); padding:80px 72px; display:flex; flex-direction:column; justify-content:center; border-left:1px solid var(--gris-lt); }
+.cs-tag-label { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--violet); margin-bottom:20px; display:inline-block; }
+.cs-hist-content h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.2vw,46px); font-weight:900; color:var(--noir); line-height:1.05; margin-bottom:24px; }
+.cs-hist-content h2 em { font-style:italic; color:var(--navy); }
+.cs-hist-content p { color:var(--gris); font-size:15px; line-height:1.8; margin-bottom:14px; }
+
+.cs-offres { background:var(--creme); padding:96px 48px; border-top:1px solid var(--gris-lt); }
+.cs-offres-inner { max-width:1100px; margin:0 auto; }
+.cs-offres-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,46px); font-weight:900; color:var(--noir); margin-bottom:12px; letter-spacing:-1px; text-align:center; }
+.cs-offres-sub { color:var(--gris); font-size:15px; margin:0 auto 52px; max-width:600px; text-align:center; }
+.cs-offres-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--gris-lt); border:1px solid var(--gris-lt); }
+.cs-offre-card { background:var(--blanc); padding:44px 32px; transition:background .2s; }
+.cs-offre-card:hover { background:var(--gris-xlt); }
+.cs-offre-icon { font-size:26px; margin-bottom:20px; }
+.cs-offre-card h3 { font-size:16px; font-weight:700; color:var(--noir); margin-bottom:10px; }
+.cs-offre-card p { font-size:13px; color:var(--gris); line-height:1.7; }
 
 /* ──────────────────────────────
    PAGE SECTIONS
@@ -444,35 +486,100 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   <!-- ── CHOICE SCREEN ── -->
   <div id="choice-screen">
 
-    <!-- B2C panel -->
-    <div class="cp cp-b2c" onclick="enterMode('b2c')">
-      <img class="cp-bg" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1200&q=80" alt="Tennis La Châtaigneraie">
-      <div class="cp-overlay"></div>
-      <div class="cp-inner">
-        <div class="cp-tag">Espace Particulier</div>
-        <h2>Particulier</h2>
-        <p>Tennis, padel, cours et bien-être — réservez votre créneau en quelques secondes.</p>
-        <button class="cp-cta">Entrer →</button>
+    <!-- Panels row (100vh) -->
+    <div class="cp-row">
+
+      <!-- B2C panel -->
+      <div class="cp cp-b2c" onclick="enterMode('b2c')">
+        <img class="cp-bg" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1200&q=80" alt="Tennis La Châtaigneraie">
+        <div class="cp-overlay"></div>
+        <div class="cp-inner">
+          <div class="cp-tag">Espace Particulier</div>
+          <h2>Particulier</h2>
+          <p>Tennis, padel, cours et bien-être — réservez votre créneau en quelques secondes.</p>
+          <button class="cp-cta">Entrer →</button>
+        </div>
       </div>
+
+      <!-- divider -->
+      <div style="position:absolute;inset:0;pointer-events:none;z-index:10;">
+        <div class="cp-divider"></div>
+        <div class="cp-divider-pill">ou</div>
+      </div>
+
+      <!-- B2B panel -->
+      <div class="cp cp-b2b" onclick="enterMode('b2b')">
+        <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="Événements entreprise">
+        <div class="cp-overlay"></div>
+        <div class="cp-inner">
+          <div class="cp-tag">Espace Entreprise</div>
+          <h2>Entreprise</h2>
+          <p>Séminaires, team buildings et réceptions — un cadre d'exception à 15 min de La Défense.</p>
+          <button class="cp-cta">Entrer →</button>
+        </div>
+      </div>
+
+    </div><!-- /cp-row -->
+
+    <!-- Scroll hint -->
+    <div class="cs-scroll-hint">
+      <div class="cs-sh-text">Découvrir le club</div>
+      <div class="cs-sh-line"></div>
     </div>
 
-    <!-- divider -->
-    <div style="position:absolute;inset:0;pointer-events:none;z-index:10;">
-      <div class="cp-divider"></div>
-      <div class="cp-divider-pill">ou</div>
+    <!-- Chiffres clés -->
+    <div class="cs-stats">
+      <div class="cs-stat"><div class="cs-stat-n">1963</div><div class="cs-stat-l">Fondation</div></div>
+      <div class="cs-stat"><div class="cs-stat-n">11</div><div class="cs-stat-l">Courts & pistes</div></div>
+      <div class="cs-stat"><div class="cs-stat-n">5k<sup>+</sup></div><div class="cs-stat-l">Membres actifs</div></div>
+      <div class="cs-stat"><div class="cs-stat-n">8h–23h</div><div class="cs-stat-l">7 jours / 7</div></div>
     </div>
 
-    <!-- B2B panel -->
-    <div class="cp cp-b2b" onclick="enterMode('b2b')">
-      <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="Événements entreprise">
-      <div class="cp-overlay"></div>
-      <div class="cp-inner">
-        <div class="cp-tag">Espace Entreprise</div>
-        <h2>Entreprise</h2>
-        <p>Séminaires, team buildings et réceptions — un cadre d'exception à 15 min de La Défense.</p>
-        <button class="cp-cta">Entrer →</button>
+    <!-- Histoire (informatif, sans CTA) -->
+    <section class="cs-histoire">
+      <div class="cs-hist-visual">
+        <img src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=900&q=80" alt="La Châtaigneraie">
+        <div class="cs-hist-year">1963<span>Fondation</span></div>
       </div>
-    </div>
+      <div class="cs-hist-content">
+        <div class="cs-tag-label">Notre histoire</div>
+        <h2>60 ans de passion<br>pour <em>l'excellence</em></h2>
+        <p>Fondé en 1963 au cœur de Rueil-Malmaison, La Châtaigneraie est bien plus qu'un club sportif. C'est un lieu de vie, une tradition d'excellence transmise de génération en génération.</p>
+        <p>Des joueurs amateurs aux championnats nationaux — nous cultivons depuis six décennies l'art du jeu et l'art de vivre à deux pas de Paris.</p>
+        <p>Aujourd'hui, le club accueille plus de 5 000 membres et organise chaque année des tournois homologués FFT, des stages intensifs et des événements d'entreprise de premier plan.</p>
+      </div>
+    </section>
+
+    <!-- Ce que propose le club (informatif, sans CTA) -->
+    <section class="cs-offres">
+      <div class="cs-offres-inner">
+        <div class="cs-tag-label" style="display:block;text-align:center;">Le club en un coup d'œil</div>
+        <h2 class="cs-offres-h2">Un lieu, quatre univers</h2>
+        <p class="cs-offres-sub">De la compétition au séminaire d'entreprise, La Châtaigneraie vous accueille dans un cadre verdoyant d'exception à 20 minutes de Paris.</p>
+        <div class="cs-offres-grid">
+          <div class="cs-offre-card">
+            <div class="cs-offre-icon">🎾</div>
+            <h3>Tennis</h3>
+            <p>7 courts dont plusieurs couverts en terre battue. Enseignement pour tous niveaux, du débutant aux compétiteurs fédéraux.</p>
+          </div>
+          <div class="cs-offre-card">
+            <div class="cs-offre-icon">🏓</div>
+            <h3>Padel</h3>
+            <p>4 pistes indoor de dernière génération, dont un court central panoramique pour les tournois homologués FFT.</p>
+          </div>
+          <div class="cs-offre-card">
+            <div class="cs-offre-icon">🍽️</div>
+            <h3>Restaurant & Bar</h3>
+            <p>Vue panoramique sur les courts, carte soignée et terrasse estivale. Le club-house à l'image du lieu : premium et convivial.</p>
+          </div>
+          <div class="cs-offre-card">
+            <div class="cs-offre-icon">💼</div>
+            <h3>Espaces entreprise</h3>
+            <p>Salles de séminaire modulables, terrasse privatisable et organisation d'événements corporate à 15 min de La Défense.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </div><!-- /choice-screen -->
 
@@ -805,7 +912,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 </div><!-- /app -->
 
 <button id="fcta">🎾 Réserver maintenant</button>
-<div class="mnote">🎨 MAQUETTE V3 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
+<div class="mnote">🎨 MAQUETTE V5 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
 
 <script>
 /* ══════════════════════════════
@@ -851,7 +958,6 @@ function finishHero() {
     appEl.classList.add('ready');
     mainNav.classList.remove('hero-mode');
     mainNav.classList.add('live');
-    fctaEl.classList.add('show');
     window.scrollTo(0,0);
     heroDone = true;
   }, 480);
@@ -909,8 +1015,7 @@ function goHome() {
   // Reset nav
   currentMode = null;
   document.getElementById('nav-pill').classList.add('hidden');
-  fctaEl.style.background = 'var(--violet)';
-  fctaEl.textContent = '🎾 Réserver maintenant';
+  fctaEl.classList.remove('show');
   window.scrollTo(0, 0);
   if (menuOpen) toggleMenu();
 }
@@ -963,6 +1068,7 @@ function updateNavMode(mode) {
   // CTA text
   fctaEl.textContent = mode === 'b2c' ? '🎾 Réserver maintenant' : '📋 Demander un devis';
   fctaEl.style.background = mode === 'b2b' ? 'var(--or)' : 'var(--violet)';
+  fctaEl.classList.add('show');
 }
 
 /* ══════════════════════════════
