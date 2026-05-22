@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Châtaigneraie — Sport & Lifestyle Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --violet: #7B2D83;
+  --violet-dark: #5e1f65;
+  --navy: #272F65;
+  --navy-dark: #1a2048;
+  --blanc: #FFFFFF;
+  --noir: #0D0D0D;
+  --gris: #6B7280;
+  --gris-lite: #F6F6F8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background: var(--blanc);
+  color: var(--noir);
+  overflow-x: hidden;
+}
+
+/* ── MENU OVERLAY ── */
+#menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--navy-dark);
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  transition: clip-path 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+  display: flex;
+  overflow: hidden;
+  pointer-events: none;
+}
+#menu-overlay.open {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  pointer-events: all;
+}
+
+.menu-left {
+  flex: 1;
+  padding: 110px 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.menu-right {
+  width: 42%;
+  position: relative;
+  overflow: hidden;
+}
+.menu-close {
+  position: absolute;
+  top: 22px;
+  right: 48px;
+  background: none;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+}
+.menu-close:hover { color: var(--blanc); border-color: var(--blanc); }
+
+.menu-nav-list { list-style: none; }
+.menu-nav-item {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.menu-nav-item a {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 0;
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 900;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  transition: color 0.25s;
+  cursor: pointer;
+}
+.menu-nav-item a:hover { color: var(--blanc); }
+.menu-nav-item a .num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--violet);
+  letter-spacing: 2px;
+  min-width: 28px;
+}
+
+.menu-footer {
+  margin-top: 40px;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.menu-footer a {
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.menu-footer a:hover { color: var(--violet); }
+
+/* Hover slider images */
+.menu-img-wrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+}
+.menu-img-wrap > * {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+}
+.menu-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: clip-path 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.menu-img.active {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* ── NAV ── */
+#main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 72px;
+  transition: background 0.3s, backdrop-filter 0.3s;
+}
+#main-nav.hero-mode {
+  background: transparent;
+}
+#main-nav.scrolled {
+  background: rgba(27, 32, 72, 0.97);
+  backdrop-filter: blur(12px);
+}
+
+.nav-logo {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--blanc);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.nav-logo span { color: #d4a843; }
+
+.nav-right { display: flex; align-items: center; gap: 16px; }
+
+.btn-reserver-nav {
+  background: var(--violet);
+  color: var(--blanc);
+  border: none;
+  padding: 12px 28px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+.btn-reserver-nav:hover { background: var(--violet-dark); }
+
+.nav-menu-btn {
+  background: none;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: var(--blanc);
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.nav-menu-btn:hover { border-color: var(--blanc); background: rgba(255,255,255,0.08); }
+
+.hamburger { display: flex; flex-direction: column; gap: 4px; }
+.hamburger span {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--blanc);
+}
+
+/* ── HERO SCROLL EXPAND ── */
+#hero-section {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+  overflow: hidden;
+}
+
+#hero-img-container {
+  position: absolute;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  transition: none;
+}
+
+.hero-img-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.hero-img-slide.active { opacity: 1; }
+
+#hero-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  transition: none;
+}
+
+.hero-title-wrap {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  pointer-events: none;
+  text-align: center;
+}
+
+.hero-title-top {
+  font-size: clamp(14px, 2vw, 22px);
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.hero-title-main {
+  font-size: clamp(44px, 7vw, 100px);
+  font-weight: 900;
+  color: var(--blanc);
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -2px;
+}
+.hero-title-main em {
+  font-style: normal;
+  color: #d4a843;
+}
+
+#hero-title-left { display: block; }
+#hero-title-right { display: block; }
+
+#hero-scroll-hint {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: rgba(255,255,255,0.5);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: floatHint 2.2s ease-in-out infinite;
+}
+#hero-scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+}
+
+@keyframes floatHint {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+#hero-skip {
+  position: absolute;
+  bottom: 44px;
+  right: 48px;
+  z-index: 10;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+#hero-skip:hover { color: var(--blanc); border-color: rgba(255,255,255,0.5); }
+
+/* image counter */
+#hero-counter {
+  position: absolute;
+  bottom: 44px;
+  left: 48px;
+  z-index: 10;
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+/* ── MAIN CONTENT ── */
+#main-content {
+  opacity: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+#main-content.visible {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.6s ease;
+}
+
+/* ── ANNOUNCE ── */
+.announce {
+  background: var(--violet);
+  color: var(--blanc);
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.announce span {
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: 0.8;
+}
+
+/* ── B2C/B2B SPLIT ── */
+.section-choice {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  position: relative;
+}
+
+.choice-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px 72px;
+  min-height: 100vh;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+}
+.choice-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s ease;
+  z-index: 0;
+}
+.choice-card:hover::before { transform: scale(1.04); }
+
+.choice-card.b2c::before {
+  background:
+    linear-gradient(to top, rgba(27,32,72,0.96) 0%, rgba(27,32,72,0.45) 50%, rgba(0,0,0,0.12) 100%),
+    url('https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1000&q=80') center/cover;
+}
+.choice-card.b2b::before {
+  background:
+    linear-gradient(to top, rgba(91,23,99,0.96) 0%, rgba(91,23,99,0.45) 50%, rgba(0,0,0,0.12) 100%),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1000&q=80') center/cover;
+}
+
+.choice-content { position: relative; z-index: 1; }
+
+.choice-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  margin-bottom: 24px;
+  border: 1px solid;
+}
+.choice-card.b2c .choice-tag {
+  color: rgba(255,255,255,0.7);
+  border-color: rgba(255,255,255,0.25);
+}
+.choice-card.b2b .choice-tag {
+  background: var(--violet);
+  color: var(--blanc);
+  border-color: var(--violet);
+}
+
+.choice-card h2 {
+  font-size: clamp(36px, 4.5vw, 68px);
+  font-weight: 900;
+  color: var(--blanc);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 18px;
+  letter-spacing: -1px;
+}
+
+.choice-card p {
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 380px;
+  margin-bottom: 32px;
+}
+
+.choice-features {
+  list-style: none;
+  margin-bottom: 40px;
+}
+.choice-features li {
+  color: rgba(255,255,255,0.65);
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.choice-card.b2c .choice-features li::before { content: '→'; color: #8fa8ff; font-weight: 700; }
+.choice-card.b2b .choice-features li::before { content: '→'; color: #d99de0; font-weight: 700; }
+
+.btn-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 36px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.choice-card.b2c .btn-choice {
+  background: var(--blanc);
+  color: var(--navy);
+}
+.choice-card.b2c .btn-choice:hover { background: #e4e8ff; }
+.choice-card.b2b .btn-choice {
+  background: var(--violet);
+  color: var(--blanc);
+}
+.choice-card.b2b .btn-choice:hover { background: var(--violet-dark); }
+
+.choice-divider {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: var(--blanc);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: var(--navy);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.35);
+}
+
+/* ── STATS ── */
+.stats {
+  background: var(--navy-dark);
+  display: flex;
+  justify-content: center;
+  border-top: 3px solid var(--violet);
+}
+.stat-item {
+  flex: 1;
+  max-width: 260px;
+  padding: 36px 20px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--blanc);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-num sup { font-size: 24px; color: var(--violet); }
+.stat-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ── RÉSERVATION ── */
+.section-resa {
+  background: var(--gris-lite);
+  padding: 100px 48px;
+  text-align: center;
+}
+.section-label {
+  display: inline-block;
+  background: var(--violet);
+  color: var(--blanc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+}
+.section-resa h2 {
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+.section-resa > p {
+  color: var(--gris);
+  font-size: 16px;
+  margin-bottom: 56px;
+}
+.resa-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.resa-card {
+  background: var(--blanc);
+  flex: 1;
+  min-width: 220px;
+  max-width: 252px;
+  padding: 36px 28px;
+  border-top: 3px solid var(--navy);
+  text-align: left;
+  transition: all 0.25s;
+  box-shadow: 0 2px 16px rgba(39,47,101,0.06);
+}
+.resa-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(39,47,101,0.14);
+  border-top-color: var(--violet);
+}
+.resa-icon { font-size: 28px; margin-bottom: 18px; }
+.resa-card h3 { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.resa-card p { font-size: 13px; color: var(--gris); line-height: 1.6; margin-bottom: 20px; }
+.resa-price { font-size: 28px; font-weight: 900; color: var(--violet); margin-bottom: 20px; }
+.resa-price span { font-size: 13px; font-weight: 400; color: var(--gris); }
+.btn-resa {
+  width: 100%;
+  background: var(--navy);
+  color: var(--blanc);
+  border: none;
+  padding: 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.btn-resa:hover { background: var(--violet); }
+
+/* ── B2B DETAIL ── */
+.section-b2b {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.b2b-visual {
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.05)),
+    url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=900&q=80') center/cover;
+  min-height: 600px;
+}
+.b2b-content {
+  background: var(--navy-dark);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.b2b-tag {
+  display: inline-block;
+  background: var(--violet);
+  color: var(--blanc);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+.b2b-content h2 {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--blanc);
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+.b2b-content p {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.b2b-features { list-style: none; margin-bottom: 40px; }
+.b2b-features li {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.b2b-features li::before { content: '✓'; color: var(--violet); font-weight: 900; font-size: 15px; }
+.btn-b2b {
+  background: var(--violet);
+  color: var(--blanc);
+  border: none;
+  padding: 18px 40px;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+.btn-b2b:hover { background: var(--violet-dark); }
+
+/* ── LIFESTYLE ── */
+.section-lifestyle {
+  padding: 100px 48px;
+  background: var(--blanc);
+}
+.section-lifestyle h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--navy);
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+.section-lifestyle > p {
+  text-align: center;
+  color: var(--gris);
+  font-size: 16px;
+  margin-bottom: 56px;
+}
+.lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.ls-card {
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  cursor: pointer;
+}
+.ls-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(27,32,72,0.88) 0%, rgba(27,32,72,0.1) 60%);
+  z-index: 1;
+}
+.ls-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.ls-card:hover img { transform: scale(1.07); }
+.ls-label {
+  position: absolute;
+  bottom: 0;
+  padding: 28px 24px;
+  z-index: 2;
+}
+.ls-label h3 { font-size: 19px; font-weight: 800; color: var(--blanc); margin-bottom: 4px; }
+.ls-label p { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+/* ── PARTNERS ── */
+.section-partners {
+  background: var(--navy-dark);
+  padding: 56px 48px;
+  text-align: center;
+}
+.section-partners p {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 32px;
+}
+.partners-row {
+  display: flex;
+  gap: 52px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.partner-name {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.15);
+  text-transform: uppercase;
+  transition: color 0.2s;
+  cursor: default;
+}
+.partner-name:hover { color: rgba(255,255,255,0.5); }
+
+/* ── FOOTER ── */
+footer {
+  background: #080a14;
+  color: rgba(255,255,255,0.4);
+  padding: 72px 48px 32px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.footer-brand h3 {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--blanc);
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+.footer-brand h3 span { color: var(--violet); }
+.footer-brand p { font-size: 13px; line-height: 1.8; margin-bottom: 4px; }
+.footer-col h4 {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blanc);
+  margin-bottom: 20px;
+}
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--violet); }
+.footer-bottom {
+  background: #080a14;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255,255,255,0.18);
+}
+
+/* ── FLOATING CTA ── */
+.floating-cta {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 190;
+  background: var(--violet);
+  color: var(--blanc);
+  border: none;
+  padding: 16px 28px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(123,45,131,0.45);
+  transition: all 0.2s, opacity 0.4s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  font-family: inherit;
+}
+.floating-cta.show {
+  opacity: 1;
+  pointer-events: all;
+}
+.floating-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(123,45,131,0.55);
+}
+
+/* ── MAQUETTE NOTE ── */
+.mockup-note {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(27,32,72,0.95);
+  color: rgba(255,255,255,0.65);
+  text-align: center;
+  padding: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  z-index: 500;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(8px);
+}
+</style>
+</head>
+<body>
+
+<!-- ── FULLSCREEN MENU OVERLAY ── -->
+<div id="menu-overlay">
+  <button class="menu-close" onclick="toggleMenu()">✕ Fermer</button>
+  <div class="menu-left">
+    <ul class="menu-nav-list">
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(0)"><span class="num">01</span>Accueil</a>
+      </li>
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(1)"><span class="num">02</span>Tennis</a>
+      </li>
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(2)"><span class="num">03</span>Padel</a>
+      </li>
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(3)"><span class="num">04</span>Club & Lifestyle</a>
+      </li>
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(4)"><span class="num">05</span>Événements B2B</a>
+      </li>
+      <li class="menu-nav-item">
+        <a href="#" onmouseenter="setMenuImg(5)"><span class="num">06</span>Tarifs</a>
+      </li>
+    </ul>
+    <div class="menu-footer">
+      <a href="#">Contact</a>
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Réserver →</a>
+    </div>
+  </div>
+  <div class="menu-right">
+    <div class="menu-img-wrap">
+      <img class="menu-img active" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=900&q=80" alt="">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=900&q=80" alt="">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=900&q=80" alt="">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80" alt="">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&q=80" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav id="main-nav" class="hero-mode">
+  <div class="nav-logo">La <span>Châtaigneraie</span></div>
+  <div class="nav-right">
+    <button class="btn-reserver-nav">Réserver →</button>
+    <button class="nav-menu-btn" onclick="toggleMenu()">
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      Menu
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO SCROLL-EXPAND ── -->
+<div id="hero-section">
+  <div id="hero-img-container">
+    <img class="hero-img-slide active"
+      src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1800&q=80" alt="Tennis">
+    <img class="hero-img-slide"
+      src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=1800&q=80" alt="Padel">
+    <img class="hero-img-slide"
+      src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1800&q=80" alt="Club">
+    <div id="hero-img-overlay"></div>
+  </div>
+
+  <div class="hero-title-wrap" id="hero-title-wrap">
+    <div class="hero-title-top" id="hero-title-top">Rueil-Malmaison · Depuis 1963</div>
+    <div class="hero-title-main">
+      <span id="hero-title-left">La</span>
+      <em id="hero-title-right">Châtaigneraie</em>
+    </div>
+  </div>
+
+  <div id="hero-scroll-hint">Défiler pour découvrir</div>
+  <div id="hero-counter">01 / 03</div>
+  <button id="hero-skip" onclick="skipHero()">Passer l'intro</button>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div id="main-content">
+
+  <div class="announce">
+    🎾 Tournoi Padel P250 — 7 juin 2026 avec Jérôme Inzerillo &nbsp;|&nbsp; Places limitées
+    <span>Je m'inscris →</span>
+  </div>
+
+  <!-- B2C / B2B SPLIT -->
+  <section class="section-choice">
+    <a class="choice-card b2c" href="#">
+      <div class="choice-content">
+        <div class="choice-tag">Particuliers</div>
+        <h2>Jouez,<br>progressez,<br>vivez</h2>
+        <p>Courts de tennis et pistes de padel premium à deux pas de Paris. Réservez en 3 clics, jouez dans la journée.</p>
+        <ul class="choice-features">
+          <li>7 courts tennis couverts</li>
+          <li>4 pistes padel indoor premium</li>
+          <li>Cours tous niveaux & coaching privé</li>
+          <li>Restaurant & espace bien-être</li>
+        </ul>
+        <button class="btn-choice">Découvrir & Réserver →</button>
+      </div>
+    </a>
+    <div class="choice-divider">OU</div>
+    <a class="choice-card b2b" href="#">
+      <div class="choice-content">
+        <div class="choice-tag">Entreprises</div>
+        <h2>Créez<br>l'événement<br>parfait</h2>
+        <p>À 15 minutes de La Défense, le cadre idéal pour vos séminaires, team buildings sportifs et réceptions corporate.</p>
+        <ul class="choice-features">
+          <li>Tournois inter-entreprises Padel & Tennis</li>
+          <li>Séminaires & espaces privatisables</li>
+          <li>Cocktails & réceptions jusqu'à 150 pers.</li>
+          <li>Devis personnalisé sous 24h</li>
+        </ul>
+        <button class="btn-choice">Demander un devis →</button>
+      </div>
+    </a>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-num">7<sup>+</sup></div>
+      <div class="stat-label">Courts Tennis</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Pistes Padel</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">60</div>
+      <div class="stat-label">Ans d'excellence</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8h–23h</div>
+      <div class="stat-label">7 jours / 7</div>
+    </div>
+  </div>
+
+  <!-- RÉSERVATION -->
+  <section class="section-resa">
+    <div class="section-label">Réservation rapide</div>
+    <h2>Réservez en 3 clics</h2>
+    <p>Choisissez votre créneau, payez en ligne, jouez. Simple et rapide.</p>
+    <div class="resa-cards">
+      <div class="resa-card">
+        <div class="resa-icon">🎾</div>
+        <h3>Court Tennis</h3>
+        <p>Court couvert en terre battue. Disponible tous les jours, pour tous niveaux.</p>
+        <div class="resa-price">40€ <span>/ 1h30</span></div>
+        <button class="btn-resa">Réserver</button>
+      </div>
+      <div class="resa-card">
+        <div class="resa-icon">🏓</div>
+        <h3>Piste Padel</h3>
+        <p>Piste indoor premium. Court central panoramique disponible sur demande.</p>
+        <div class="resa-price">60€ <span>/ 1h30</span></div>
+        <button class="btn-resa">Réserver</button>
+      </div>
+      <div class="resa-card">
+        <div class="resa-icon">🎓</div>
+        <h3>Cours & Coaching</h3>
+        <p>Cours collectifs ou privés avec nos enseignants diplômés d'État.</p>
+        <div class="resa-price">Sur devis</div>
+        <button class="btn-resa">S'inscrire</button>
+      </div>
+      <div class="resa-card">
+        <div class="resa-icon">💼</div>
+        <h3>Abonnement Membre</h3>
+        <p>Accès illimité, tarifs préférentiels, priorité de réservation toute l'année.</p>
+        <div class="resa-price">Dès 89€ <span>/ mois</span></div>
+        <button class="btn-resa">Devenir membre</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B DETAIL -->
+  <section class="section-b2b">
+    <div class="b2b-visual"></div>
+    <div class="b2b-content">
+      <div class="b2b-tag">Entreprises & Événements</div>
+      <h2>Offres<br>B2B sur mesure</h2>
+      <p>À 15 minutes de La Défense, La Châtaigneraie est le lieu idéal pour vos événements corporate. Privatisation complète, espaces modulables, restauration incluse.</p>
+      <ul class="b2b-features">
+        <li>Tournois de Padel inter-entreprises</li>
+        <li>Séminaires avec privatisation restaurant & terrasse</li>
+        <li>Team Building sportif (Tennis + Padel)</li>
+        <li>Cocktails & réceptions jusqu'à 150 personnes</li>
+        <li>Devis personnalisé sous 24h</li>
+      </ul>
+      <button class="btn-b2b">Demander un devis →</button>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE -->
+  <section class="section-lifestyle">
+    <h2>Un art de vivre</h2>
+    <p>Au-delà du sport, un lieu de vie premium à 20 minutes de Paris</p>
+    <div class="lifestyle-grid">
+      <div class="ls-card">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="Restaurant">
+        <div class="ls-label">
+          <h3>Restaurant & Bar</h3>
+          <p>Vue panoramique sur les courts · Ouvert 7j/7</p>
+        </div>
+      </div>
+      <div class="ls-card">
+        <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80" alt="Fitness">
+        <div class="ls-label">
+          <h3>Espace Fitness & Bien-être</h3>
+          <p>Salle de sport et espace spa · Accès membres</p>
+        </div>
+      </div>
+      <div class="ls-card">
+        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="Terrasse">
+        <div class="ls-label">
+          <h3>Terrasse Estivale</h3>
+          <p>Le spot incontournable de l'été dans l'Ouest Parisien</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <div class="section-partners">
+    <p>Nos partenaires officiels</p>
+    <div class="partners-row">
+      <div class="partner-name">Wilson</div>
+      <div class="partner-name">Babolat</div>
+      <div class="partner-name">Guinot</div>
+      <div class="partner-name">FFT</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      <h3>La <span>Châtaigneraie</span></h3>
+      <p>6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+      <p>01 47 51 66 72</p>
+      <p>contact@tcchataigneraie.com</p>
+      <p style="margin-top:12px;color:rgba(255,255,255,0.25);font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
+    </div>
+    <div class="footer-col">
+      <h4>Sports</h4>
+      <a href="#">Tennis</a>
+      <a href="#">Padel</a>
+      <a href="#">Cours & École</a>
+      <a href="#">Compétitions</a>
+    </div>
+    <div class="footer-col">
+      <h4>Le Club</h4>
+      <a href="#">Notre histoire</a>
+      <a href="#">Club House</a>
+      <a href="#">Restaurant</a>
+      <a href="#">Fitness & Spa</a>
+      <a href="#">Pro Shop</a>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprises</h4>
+      <a href="#">Séminaires</a>
+      <a href="#">Team Building</a>
+      <a href="#">Tournois corporate</a>
+      <a href="#">Demander un devis</a>
+      <a href="#">Contact B2B</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2026 Tennis Club de la Châtaigneraie</span>
+    <span>Mentions légales · Politique de confidentialité</span>
+  </div>
+
+</div><!-- /main-content -->
+
+<!-- FLOATING CTA -->
+<button class="floating-cta" id="floating-cta">🎾 Réserver maintenant</button>
+
+<!-- MAQUETTE NOTE -->
+<div class="mockup-note">🎨 MAQUETTE V1 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
+
+<script>
+/* ── SCROLL-EXPAND HERO ── */
+const heroSection  = document.getElementById('hero-section');
+const heroImgCont  = document.getElementById('hero-img-container');
+const heroOverlay  = document.getElementById('hero-img-overlay');
+const titleLeft    = document.getElementById('hero-title-left');
+const titleRight   = document.getElementById('hero-title-right');
+const titleTop     = document.getElementById('hero-title-top');
+const scrollHint   = document.getElementById('hero-scroll-hint');
+const mainContent  = document.getElementById('main-content');
+const mainNav      = document.getElementById('main-nav');
+const floatingCta  = document.getElementById('floating-cta');
+
+let progress = 0;
+let expanded = false;
+let touchY0  = 0;
+
+document.body.style.overflow = 'hidden';
+
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+function applyProgress(p) {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const mobile = vw < 768;
+
+  const startW = mobile ? 260 : 340;
+  const startH = mobile ? 360 : 460;
+
+  const w = lerp(startW, vw, p);
+  const h = lerp(startH, vh, p);
+
+  heroImgCont.style.width  = w + 'px';
+  heroImgCont.style.height = h + 'px';
+  heroImgCont.style.borderRadius = lerp(18, 0, p) + 'px';
+  heroImgCont.style.boxShadow = p > 0.9
+    ? 'none'
+    : `0 ${lerp(24, 0, p)}px ${lerp(80, 0, p)}px rgba(0,0,0,0.6)`;
+
+  const shift = mobile ? 38 : 70;
+  titleLeft.style.transform  = `translateX(-${p * shift}vw)`;
+  titleRight.style.transform = `translateX(${p * shift}vw)`;
+  titleTop.style.opacity     = Math.max(0, 1 - p * 3);
+
+  const alpha = Math.max(0, 0.38 - p * 0.38);
+  heroOverlay.style.background = `rgba(0,0,0,${alpha})`;
+  scrollHint.style.opacity = Math.max(0, 1 - p * 4);
+}
+
+function completeHero() {
+  expanded = true;
+  heroSection.style.transition = 'opacity 0.5s ease, transform 0.4s ease';
+  heroSection.style.opacity    = '0';
+  heroSection.style.transform  = 'scale(1.03)';
+  setTimeout(() => {
+    heroSection.style.display = 'none';
+    document.body.style.overflow = '';
+    mainContent.classList.add('visible');
+    mainNav.classList.remove('hero-mode');
+    mainNav.classList.add('scrolled');
+    floatingCta.classList.add('show');
+    window.scrollTo(0, 0);
+  }, 500);
+}
+
+function skipHero() {
+  progress = 1;
+  applyProgress(1);
+  completeHero();
+}
+
+window.addEventListener('wheel', e => {
+  if (expanded) return;
+  e.preventDefault();
+  progress = Math.min(Math.max(progress + e.deltaY * 0.0012, 0), 1);
+  applyProgress(progress);
+  if (progress >= 1) completeHero();
+}, { passive: false });
+
+window.addEventListener('touchstart', e => {
+  if (expanded) return;
+  touchY0 = e.touches[0].clientY;
+}, { passive: true });
+
+window.addEventListener('touchmove', e => {
+  if (expanded) return;
+  e.preventDefault();
+  const dy    = touchY0 - e.touches[0].clientY;
+  const delta = dy * (dy < 0 ? 0.008 : 0.005);
+  progress = Math.min(Math.max(progress + delta, 0), 1);
+  applyProgress(progress);
+  touchY0 = e.touches[0].clientY;
+  if (progress >= 1) completeHero();
+}, { passive: false });
+
+applyProgress(0);
+
+/* ── IMAGE CYCLING ── */
+const slides  = document.querySelectorAll('.hero-img-slide');
+const counter = document.getElementById('hero-counter');
+let slideIdx  = 0;
+
+setInterval(() => {
+  if (expanded || progress > 0.3) return;
+  slides[slideIdx].classList.remove('active');
+  slideIdx = (slideIdx + 1) % slides.length;
+  slides[slideIdx].classList.add('active');
+  counter.textContent = String(slideIdx + 1).padStart(2, '0') + ' / 0' + slides.length;
+}, 4000);
+
+/* ── MENU ── */
+let menuOpen = false;
+
+function toggleMenu() {
+  menuOpen = !menuOpen;
+  const overlay = document.getElementById('menu-overlay');
+  overlay.classList.toggle('open', menuOpen);
+  if (expanded) document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+
+const menuImgs = document.querySelectorAll('.menu-img');
+let activeImg  = 0;
+
+function setMenuImg(i) {
+  menuImgs[activeImg].classList.remove('active');
+  menuImgs[i].classList.add('active');
+  activeImg = i;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOpen) toggleMenu();
+});
+
+/* ── NAV scroll behaviour ── */
+window.addEventListener('scroll', () => {
+  if (!expanded) return;
+  mainNav.classList.toggle('scrolled', window.scrollY >= 0);
+});
+</script>
+</body>
+</html>
