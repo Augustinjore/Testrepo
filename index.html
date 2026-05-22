@@ -78,7 +78,8 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 }
 #main-nav.hero-mode { background:transparent; }
 #main-nav.live { background:rgba(26,32,72,.96); backdrop-filter:blur(14px); }
-.nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; background:none; border:none; cursor:pointer; padding:0; transition:opacity .2s; }
+.nav-logo:hover { opacity:.75; }
 .nav-logo span { color:var(--or); font-style:italic; }
 .nav-right { display:flex; align-items:center; gap:14px; }
 /* mode pill */
@@ -153,7 +154,7 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 .cp .cp-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
 .cp:hover .cp-bg { transform:scale(1.04); }
 .cp-overlay { position:absolute; inset:0; transition:opacity .3s; }
-.cp-b2c .cp-overlay { background:linear-gradient(to top,rgba(27,32,72,.97) 0%,rgba(27,32,72,.4) 55%,rgba(0,0,0,.08) 100%); }
+.cp-b2c .cp-overlay { background:linear-gradient(to top,rgba(27,32,72,.92) 0%,rgba(27,32,72,.45) 40%,rgba(27,32,72,.15) 70%,rgba(27,32,72,.05) 100%); }
 .cp-b2b .cp-overlay { background:linear-gradient(to top,rgba(70,16,78,.97) 0%,rgba(70,16,78,.4) 55%,rgba(0,0,0,.08) 100%); }
 
 .cp-inner { position:relative; z-index:2; max-width:440px; }
@@ -425,7 +426,7 @@ footer.b2b + .footer-btm { background:#1a062e; }
 
 <!-- ══ NAV ══ -->
 <nav id="main-nav" class="hero-mode">
-  <div class="nav-logo">La <span>Châtaigneraie</span></div>
+  <button class="nav-logo" onclick="goHome()" title="Retour à l'accueil">La <span>Châtaigneraie</span></button>
   <div class="nav-right">
     <div id="nav-pill" class="hidden">
       <button class="np-btn" id="np-b2c" onclick="switchMode('b2c')">Particulier</button>
@@ -463,13 +464,13 @@ footer.b2b + .footer-btm { background:#1a062e; }
 
     <!-- B2C panel -->
     <div class="cp cp-b2c" onclick="enterMode('b2c')">
-      <img class="cp-bg" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1200&q=80" alt="">
+      <img class="cp-bg" src="https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=1200&q=80" alt="Tennis La Châtaigneraie">
       <div class="cp-overlay"></div>
       <div class="cp-inner">
-        <div class="cp-tag">Particuliers</div>
-        <h2>Je viens<br>jouer.</h2>
-        <p>Courts de tennis, pistes de padel premium et coaching privé à deux pas de Paris. Réservez en 3 clics.</p>
-        <button class="cp-cta">Entrer dans l'espace Particulier →</button>
+        <div class="cp-tag">Espace Particulier</div>
+        <h2>Particulier</h2>
+        <p>Tennis, padel, cours et bien-être — réservez votre créneau en quelques secondes.</p>
+        <button class="cp-cta">Entrer →</button>
       </div>
     </div>
 
@@ -481,13 +482,13 @@ footer.b2b + .footer-btm { background:#1a062e; }
 
     <!-- B2B panel -->
     <div class="cp cp-b2b" onclick="enterMode('b2b')">
-      <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="">
+      <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="Événements entreprise">
       <div class="cp-overlay"></div>
       <div class="cp-inner">
-        <div class="cp-tag">Entreprises</div>
-        <h2>Je viens<br>créer.</h2>
-        <p>Séminaires, team buildings et réceptions corporate dans un cadre d'exception à 15 min de La Défense.</p>
-        <button class="cp-cta">Entrer dans l'espace Entreprise →</button>
+        <div class="cp-tag">Espace Entreprise</div>
+        <h2>Entreprise</h2>
+        <p>Séminaires, team buildings et réceptions — un cadre d'exception à 15 min de La Défense.</p>
+        <button class="cp-cta">Entrer →</button>
       </div>
     </div>
 
@@ -513,24 +514,43 @@ footer.b2b + .footer-btm { background:#1a062e; }
         <div class="search-card">
           <div class="swf">
             <div class="swf-icon">📅</div>
-            <div><div class="swf-label">Date</div><input type="date" placeholder="Choisissez une date"></div>
+            <div><div class="swf-label">Date souhaitée</div><input type="date"></div>
           </div>
           <div class="swf">
             <div class="swf-icon">🎾</div>
-            <div><div class="swf-label">Sport</div>
-              <select><option>Tennis</option><option>Padel</option><option>Cours collectif</option><option>Coaching privé</option></select>
+            <div><div class="swf-label">Activité</div>
+              <select>
+                <option value="">Choisir…</option>
+                <option>Tennis</option>
+                <option>Padel</option>
+                <option>Salle de sport</option>
+                <option>Restaurant / Repas</option>
+              </select>
             </div>
           </div>
           <div class="swf">
             <div class="swf-icon">👥</div>
-            <div><div class="swf-label">Joueurs</div>
-              <select><option>1 joueur</option><option>2 joueurs</option><option>3 joueurs</option><option>4 joueurs</option></select>
+            <div><div class="swf-label">Nombre de joueurs</div>
+              <select>
+                <option value="">Combien ?</option>
+                <option>1 joueur</option>
+                <option>2 joueurs</option>
+                <option>3 joueurs</option>
+                <option>4 joueurs</option>
+                <option>5 joueurs et +</option>
+              </select>
             </div>
           </div>
           <div class="swf">
-            <div class="swf-icon">🏆</div>
-            <div><div class="swf-label">Type</div>
-              <select><option>Court libre</option><option>Cours / Stage</option><option>Abonnement membre</option></select>
+            <div class="swf-icon">🏅</div>
+            <div><div class="swf-label">Type de réservation</div>
+              <select>
+                <option value="">Quel format ?</option>
+                <option>Court libre</option>
+                <option>Cours collectif</option>
+                <option>Cours privé</option>
+                <option>Stage intensif</option>
+              </select>
             </div>
           </div>
           <button class="sw-go">C'est parti !</button>
@@ -892,6 +912,26 @@ setInterval(() => {
    MODE SYSTEM
 ══════════════════════════════ */
 let currentMode = null; // null = choice screen, 'b2c' or 'b2b'
+
+function goHome() {
+  if (!heroDone) return;
+  // Hide any active page
+  document.getElementById('page-b2c').classList.remove('active');
+  document.getElementById('page-b2b').classList.remove('active');
+  // Restore choice screen
+  const cs = document.getElementById('choice-screen');
+  cs.style.display = 'flex';
+  cs.classList.remove('exit');
+  cs.style.opacity = '0';
+  requestAnimationFrame(() => { cs.style.transition = 'opacity .4s ease'; cs.style.opacity = '1'; });
+  // Reset nav
+  currentMode = null;
+  document.getElementById('nav-pill').classList.add('hidden');
+  fctaEl.style.background = 'var(--violet)';
+  fctaEl.textContent = '🎾 Réserver maintenant';
+  window.scrollTo(0, 0);
+  if (menuOpen) toggleMenu();
+}
 
 function enterMode(mode) {
   currentMode = mode;
