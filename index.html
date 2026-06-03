@@ -435,6 +435,126 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 
 /* mockup note */
 .mnote { position:fixed; bottom:0; left:0; right:0; background:rgba(17,17,17,.92); color:rgba(255,255,255,.4); text-align:center; padding:8px; font-size:11px; font-weight:500; z-index:500; letter-spacing:.5px; }
+
+/* ──────────────────────────────
+   PAGE HERO (all inner pages)
+────────────────────────────── */
+.page-hero {
+  position:relative; height:70vh; min-height:480px; overflow:hidden;
+  display:flex; align-items:flex-end; padding-bottom:72px;
+  background-size:cover; background-position:center;
+}
+.page-hero-tennis    { background-image:url('https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp'); }
+.page-hero-padel     { background-image:url('https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp'); }
+.page-hero-competition { background-image:url('https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1800&q=80'); }
+.page-hero-club      { background-image:url('https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp'); }
+.page-hero-entreprise { background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1800&q=80'); }
+.ph-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(17,17,17,.86) 0%, rgba(17,17,17,.18) 100%);
+}
+.ph-content { position:relative; z-index:2; padding:0 64px; max-width:1100px; }
+.ph-tag { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:16px; }
+.ph-title { font-family:'Playfair Display',serif; font-size:clamp(42px,7vw,88px); font-weight:900; color:var(--blanc); line-height:.9; letter-spacing:-2px; margin-bottom:20px; }
+.ph-title em { font-style:italic; color:var(--or); }
+.ph-sub { font-size:11px; color:rgba(255,255,255,.5); letter-spacing:3px; text-transform:uppercase; margin-bottom:32px; }
+.btn-ph-book {
+  display:inline-block; background:var(--violet); color:var(--blanc);
+  text-decoration:none; border:none; padding:14px 36px;
+  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  cursor:pointer; transition:background .2s; font-family:inherit;
+}
+.btn-ph-book:hover { background:var(--violet-dk); }
+.btn-ph-book.navy { background:var(--navy); }
+.btn-ph-book.navy:hover { background:var(--navy-dk); }
+
+/* ──────────────────────────────
+   HOME — INFOS PRATIQUES
+────────────────────────────── */
+.cs-infoprat { background:var(--creme); padding:96px 48px; border-top:1px solid var(--gris-lt); }
+.cs-infoprat-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+.cs-ip-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,46px); font-weight:900; color:var(--noir); margin-bottom:32px; letter-spacing:-1px; }
+.cs-ip-h2 em { font-style:italic; color:var(--navy); }
+.cs-horaires-grid { border:1px solid var(--gris-lt); background:var(--blanc); }
+.cs-hor-row { display:flex; justify-content:space-between; padding:16px 24px; border-bottom:1px solid var(--gris-lt); font-size:14px; }
+.cs-hor-row:last-child { border-bottom:none; }
+.cs-hor-row span:first-child { color:var(--noir); font-weight:600; }
+.cs-hor-row span:last-child { color:var(--navy); font-weight:700; font-family:'Playfair Display',serif; font-size:15px; }
+.cs-hor-note span:first-child { color:var(--gris); font-weight:500; }
+.cs-contact-list { display:flex; flex-direction:column; gap:18px; }
+.cs-cl-item { display:flex; gap:16px; align-items:flex-start; font-size:14px; color:var(--noir); line-height:1.6; }
+.cs-cl-icon { flex-shrink:0; font-size:20px; margin-top:1px; }
+
+/* ──────────────────────────────
+   COMPÉTITION
+────────────────────────────── */
+.comp-levels { padding:96px 48px; background:var(--blanc); }
+.comp-levels-inner { max-width:1100px; margin:0 auto; }
+.comp-levels-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--gris-lt); border:1px solid var(--gris-lt); margin-top:52px; }
+.comp-level-card { background:var(--blanc); padding:44px 36px; transition:background .2s; }
+.comp-level-card:hover { background:var(--gris-xlt); }
+.comp-level-badge { display:inline-block; padding:4px 12px; font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
+.clb-debutant { background:rgba(123,45,131,.08); color:var(--violet); }
+.clb-inter    { background:rgba(39,47,101,.08);  color:var(--navy); }
+.clb-avance   { background:rgba(17,17,17,.06);   color:var(--noir); }
+.comp-level-card h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--noir); margin-bottom:6px; }
+.comp-classement { font-size:11px; font-weight:600; letter-spacing:1px; color:var(--gris-mid); margin-bottom:16px; }
+.comp-level-card p { font-size:13px; color:var(--gris); line-height:1.7; margin-bottom:16px; }
+.comp-level-card ul { list-style:none; }
+.comp-level-card ul li { font-size:12px; color:var(--gris); padding:5px 0; border-bottom:1px solid var(--gris-lt); display:flex; gap:8px; }
+.comp-level-card ul li::before { content:'→'; color:var(--violet); font-weight:700; flex-shrink:0; }
+.comp-calendar { padding:96px 48px; background:var(--creme); border-top:1px solid var(--gris-lt); }
+.comp-calendar-inner { max-width:1100px; margin:0 auto; }
+.comp-table { width:100%; border-collapse:collapse; margin-top:48px; background:var(--blanc); border:1px solid var(--gris-lt); }
+.comp-table th { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gris-mid); padding:16px 20px; text-align:left; border-bottom:2px solid var(--gris-lt); background:var(--gris-xlt); }
+.comp-table td { font-size:13px; padding:18px 20px; border-bottom:1px solid var(--gris-lt); color:var(--noir); vertical-align:middle; }
+.comp-table tr:last-child td { border-bottom:none; }
+.comp-table tr:hover td { background:var(--gris-xlt); }
+.ct-date { font-weight:700; white-space:nowrap; color:var(--navy); }
+.ct-sport-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; padding:3px 10px; text-transform:uppercase; }
+.ctb-tennis { background:rgba(123,45,131,.08); color:var(--violet); }
+.ctb-padel  { background:rgba(39,47,101,.08);  color:var(--navy); }
+.ct-status { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 12px; }
+.cts-ouvert { background:rgba(0,150,80,.1); color:#007040; }
+.cts-complet { background:rgba(200,50,50,.1); color:#b03030; }
+.cts-avenir  { background:rgba(0,0,0,.05); color:var(--gris); }
+
+/* ──────────────────────────────
+   DEVIS FORM (Entreprise)
+────────────────────────────── */
+.devis-section { padding:96px 48px; background:var(--blanc); border-top:1px solid var(--gris-lt); }
+.devis-inner { max-width:860px; margin:0 auto; }
+.devis-form { display:grid; grid-template-columns:1fr 1fr; margin-top:48px; }
+.df-field { background:var(--blanc); padding:22px 26px; display:flex; flex-direction:column; gap:8px; border:1px solid var(--gris-lt); margin:-1px 0 0 -1px; }
+.df-field.full { grid-column:span 2; }
+.df-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gris-mid); }
+.df-field input,.df-field select,.df-field textarea { border:none; background:none; font-family:inherit; font-size:14px; font-weight:500; color:var(--noir); outline:none; width:100%; resize:none; }
+.df-field input:focus,.df-field select:focus,.df-field textarea:focus { color:var(--noir); }
+.df-field select { appearance:none; cursor:pointer; }
+.df-field textarea { min-height:100px; line-height:1.7; }
+.btn-devis-submit { grid-column:span 2; background:var(--navy); color:var(--blanc); border:1px solid var(--navy); padding:20px; font-size:11px; font-weight:800; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:background .2s; font-family:inherit; margin-top:1px; }
+.btn-devis-submit:hover { background:var(--navy-dk); }
+.devis-confirm { display:none; text-align:center; padding:64px 48px; background:rgba(39,47,101,.04); border:1px solid var(--gris-lt); margin-top:1px; }
+.devis-confirm.show { display:block; }
+.devis-confirm-icon { font-size:48px; margin-bottom:20px; }
+.devis-confirm h3 { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--navy); margin-bottom:12px; }
+.devis-confirm p { font-size:15px; color:var(--gris); line-height:1.7; }
+
+/* ──────────────────────────────
+   CLUB PAGE
+────────────────────────────── */
+.club-espaces { padding:96px 48px; background:var(--blanc); }
+.club-espaces .sec-h2 { text-align:left; }
+.club-espaces .sec-sub { text-align:left; }
+.club-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; max-width:1120px; margin:52px auto 0; background:var(--gris-lt); border:1px solid var(--gris-lt); }
+.club-card { position:relative; overflow:hidden; min-height:320px; display:flex; flex-direction:column; justify-content:flex-end; padding:44px 40px; cursor:pointer; }
+.club-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.club-card:hover img { transform:scale(1.05); }
+.club-card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(17,17,17,.9) 0%,rgba(17,17,17,.15) 55%,rgba(17,17,17,.02) 100%); }
+.club-card-content { position:relative; z-index:2; }
+.club-card-num { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:8px; }
+.club-card h3 { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--blanc); margin-bottom:6px; }
+.club-card p { font-size:13px; color:rgba(255,255,255,.6); line-height:1.55; }
 </style>
 </head>
 <body>
@@ -444,21 +564,23 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   <button class="menu-close" onclick="toggleMenu()">✕ Fermer</button>
   <div class="menu-left">
     <ul class="menu-nav-list">
-      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(0)"><span class="num">01</span>Le Club</a></li>
-      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(1)"><span class="num">02</span>Tennis</a></li>
-      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(2)"><span class="num">03</span>Padel</a></li>
-      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(3)"><span class="num">04</span>Espaces Entreprise</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(0)" onclick="enterMode('tennis');toggleMenu();return false;"><span class="num">01</span>Tennis</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(1)" onclick="enterMode('padel');toggleMenu();return false;"><span class="num">02</span>Padel</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(2)" onclick="enterMode('competition');toggleMenu();return false;"><span class="num">03</span>Compétition</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(3)" onclick="enterMode('entreprise');toggleMenu();return false;"><span class="num">04</span>Espaces Entreprise</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(4)" onclick="enterMode('club');toggleMenu();return false;"><span class="num">05</span>Le Club</a></li>
     </ul>
     <div class="menu-footer">
-      <a href="#">Contact</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">Réserver →</a>
+      <a href="#">Contact</a><a href="#">Instagram</a><a href="#">Facebook</a><a href="https://www.anybuddy.com" target="_blank">Réserver →</a>
     </div>
   </div>
   <div class="menu-right">
     <div class="menu-img-wrap">
-      <img class="menu-img active" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="Le Club">
-      <img class="menu-img" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=900&q=80" alt="Tennis">
+      <img class="menu-img active" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="Tennis">
       <img class="menu-img" src="https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp" alt="Padel">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=900&q=80" alt="Compétition">
       <img class="menu-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80" alt="Espaces Entreprise">
+      <img class="menu-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Le Club">
     </div>
   </div>
 </div>
@@ -472,10 +594,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
     </button>
   </div>
   <div class="nav-right">
-    <div id="nav-pill" class="hidden">
-      <button class="np-btn" id="np-b2c" onclick="switchMode('b2c')">Particulier</button>
-      <button class="np-btn" id="np-b2b" onclick="switchMode('b2b')">Entreprise</button>
-    </div>
+    <div id="nav-pill" class="hidden"></div>
     <button class="btn-nav-resa">Réserver →</button>
   </div>
 </nav>
@@ -512,31 +631,31 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
         <h1 class="cs-hero-title">La <em>Châtaigneraie</em></h1>
         <p class="cs-hero-sub">Que souhaitez-vous explorer ?</p>
         <div class="cs-choices">
-          <div class="cs-choice" onclick="enterMode('b2c')">
+          <div class="cs-choice" onclick="enterMode('tennis')">
             <div class="cs-choice-glass">
               <div class="cs-choice-icon">🎾</div>
               <div class="cs-choice-label">Tennis</div>
             </div>
           </div>
-          <div class="cs-choice" onclick="enterMode('b2c')">
+          <div class="cs-choice" onclick="enterMode('padel')">
             <div class="cs-choice-glass">
               <div class="cs-choice-icon">🏓</div>
               <div class="cs-choice-label">Padel</div>
             </div>
           </div>
-          <div class="cs-choice" onclick="enterMode('b2c')">
+          <div class="cs-choice" onclick="enterMode('competition')">
             <div class="cs-choice-glass">
               <div class="cs-choice-icon">🏆</div>
               <div class="cs-choice-label">Compétition</div>
             </div>
           </div>
-          <div class="cs-choice" onclick="enterMode('b2b')">
+          <div class="cs-choice" onclick="enterMode('entreprise')">
             <div class="cs-choice-glass">
               <div class="cs-choice-icon">💼</div>
               <div class="cs-choice-label">Événements<br>Entreprise</div>
             </div>
           </div>
-          <div class="cs-choice" onclick="scrollToClubInfo()">
+          <div class="cs-choice" onclick="enterMode('club')">
             <div class="cs-choice-glass">
               <div class="cs-choice-icon">🏛️</div>
               <div class="cs-choice-label">Le Club</div>
@@ -573,32 +692,28 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
       </div>
     </section>
 
-    <!-- Ce que propose le club (informatif, sans CTA) -->
-    <section class="cs-offres">
-      <div class="cs-offres-inner">
-        <div class="cs-tag-label" style="display:block;text-align:center;">Le club en un coup d'œil</div>
-        <h2 class="cs-offres-h2">Un lieu, quatre univers</h2>
-        <p class="cs-offres-sub">De la compétition au séminaire d'entreprise, La Châtaigneraie vous accueille dans un cadre verdoyant d'exception à 20 minutes de Paris.</p>
-        <div class="cs-offres-grid">
-          <div class="cs-offre-card">
-            <div class="cs-offre-icon">🎾</div>
-            <h3>Tennis</h3>
-            <p>7 courts dont plusieurs couverts en terre battue. Enseignement pour tous niveaux, du débutant aux compétiteurs fédéraux.</p>
+    <!-- Horaires & Infos pratiques -->
+    <section class="cs-infoprat">
+      <div class="cs-infoprat-inner">
+        <div class="cs-infoprat-block">
+          <div class="cs-tag-label">Horaires d'ouverture</div>
+          <h2 class="cs-ip-h2">Ouvert 7 jours<br>sur <em>7</em></h2>
+          <div class="cs-horaires-grid">
+            <div class="cs-hor-row"><span>Lundi – Vendredi</span><span>8h00 – 23h00</span></div>
+            <div class="cs-hor-row"><span>Samedi</span><span>8h00 – 22h00</span></div>
+            <div class="cs-hor-row"><span>Dimanche</span><span>8h00 – 21h00</span></div>
+            <div class="cs-hor-row cs-hor-note"><span>Jours fériés</span><span>9h00 – 20h00</span></div>
           </div>
-          <div class="cs-offre-card">
-            <div class="cs-offre-icon">🏓</div>
-            <h3>Padel</h3>
-            <p>4 pistes indoor de dernière génération, dont un court central panoramique pour les tournois homologués FFT.</p>
-          </div>
-          <div class="cs-offre-card">
-            <div class="cs-offre-icon">🍽️</div>
-            <h3>Restaurant & Bar</h3>
-            <p>Vue panoramique sur les courts, carte soignée et terrasse estivale. Le club-house à l'image du lieu : premium et convivial.</p>
-          </div>
-          <div class="cs-offre-card">
-            <div class="cs-offre-icon">💼</div>
-            <h3>Espaces entreprise</h3>
-            <p>Salles de séminaire modulables, terrasse privatisable et organisation d'événements corporate à 15 min de La Défense.</p>
+        </div>
+        <div class="cs-infoprat-block">
+          <div class="cs-tag-label">Accès & Contact</div>
+          <h2 class="cs-ip-h2">Nous<br><em>trouver</em></h2>
+          <div class="cs-contact-list">
+            <div class="cs-cl-item"><span class="cs-cl-icon">📍</span><span>6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">📞</span><span>01 47 51 66 72</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">✉️</span><span>contact@tcchataigneraie.com</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">🚇</span><span>RER A — Rueil-Malmaison (10 min à pied)</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">🚗</span><span>Parking gratuit sur place (150 places)</span></div>
           </div>
         </div>
       </div>
@@ -608,69 +723,417 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 
 
   <!-- ════════════════════════════════════════════
-       PAGE B2C — PARTICULIERS
+       PAGE TENNIS
   ════════════════════════════════════════════ -->
-  <div id="page-b2c" class="page-section">
+  <div id="page-tennis" class="page-section">
 
-    <div class="announce-bar b2c">
-      🎾 Tournoi Padel P250 — 7 juin 2026 · Places limitées
-      <span>Je m'inscris →</span>
+    <div class="announce-bar">
+      🎾 Cours d'été — Inscriptions ouvertes · Adultes & enfants, tous niveaux
+      <span>Voir les cours →</span>
     </div>
 
-    <!-- Search widget B2C -->
-    <div class="search-wrap sw-b2c">
-      <img class="search-bg-img" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1400,h_800,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="">
-      <div class="search-bg-overlay"></div>
-      <div class="search-inner">
-        <h2 class="search-heading">Que <em>recherchez-vous</em> ?</h2>
-        <div class="search-card">
-          <div class="swf">
-            <div class="swf-icon">📅</div>
-            <div><div class="swf-label">Date souhaitée</div><input type="date"></div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">🎾</div>
-            <div><div class="swf-label">Activité</div>
-              <select>
-                <option value="">Choisir…</option>
-                <option>Tennis</option>
-                <option>Padel</option>
-                <option>Salle de sport</option>
-                <option>Restaurant / Repas</option>
-              </select>
-            </div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">👥</div>
-            <div><div class="swf-label">Nombre de joueurs</div>
-              <select>
-                <option value="">Combien ?</option>
-                <option>1 joueur</option>
-                <option>2 joueurs</option>
-                <option>3 joueurs</option>
-                <option>4 joueurs</option>
-                <option>5 joueurs et +</option>
-              </select>
-            </div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">🏅</div>
-            <div><div class="swf-label">Type de réservation</div>
-              <select>
-                <option value="">Quel format ?</option>
-                <option>Court libre</option>
-                <option>Cours collectif</option>
-                <option>Cours privé</option>
-                <option>Stage intensif</option>
-              </select>
-            </div>
-          </div>
-          <button class="sw-go">C'est parti !</button>
-        </div>
+    <div class="page-hero page-hero-tennis">
+      <div class="ph-overlay"></div>
+      <div class="ph-content">
+        <div class="ph-tag">Espace Tennis</div>
+        <h1 class="ph-title">Courts de <em>Tennis</em></h1>
+        <p class="ph-sub">7 courts · Terre battue · Éclairés · 8h–23h</p>
+        <a href="https://www.anybuddy.com" target="_blank" rel="noopener" class="btn-ph-book">Réserver sur Anybuddy →</a>
       </div>
     </div>
 
-    <!-- Histoire -->
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-n">7</div><div class="stat-l">Courts</div></div>
+      <div class="stat-item"><div class="stat-n">5</div><div class="stat-l">Extérieurs éclairés</div></div>
+      <div class="stat-item"><div class="stat-n">2</div><div class="stat-l">Couverts (bubble)</div></div>
+      <div class="stat-item"><div class="stat-n">TB</div><div class="stat-l">Terre battue</div></div>
+    </div>
+
+    <section class="resa-section" style="background:var(--blanc);">
+      <div class="sec-label b2c-label">Nos installations</div>
+      <h2 class="sec-h2">7 courts de tennis</h2>
+      <p class="sec-sub">Tous en terre battue. Courts extérieurs éclairés, courts couverts disponibles toute l'année.</p>
+      <div class="resa-grid">
+        <div class="resa-card">
+          <div class="rc-icon">☀️</div>
+          <h3>Courts 1 à 5 — Extérieurs</h3>
+          <p>Terre battue, éclairage LED. Tribunes sur le court central. Accessibles d'avril à octobre en conditions optimales.</p>
+          <div class="rc-price">40€ <span>/ 1h30</span></div>
+          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🏠</div>
+          <h3>Courts 6 & 7 — Couverts</h3>
+          <p>Sous bulle pressurisée. Disponibles 12 mois sur 12, idéals en hiver ou par mauvais temps.</p>
+          <div class="rc-price">50€ <span>/ 1h30</span></div>
+          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🎓</div>
+          <h3>Cours collectifs</h3>
+          <p>Adultes & enfants (dès 4 ans). Groupes par niveau, animés par nos enseignants diplômés d'État BE.</p>
+          <div class="rc-price">25€ <span>/ heure</span></div>
+          <button class="btn-rc">S'inscrire</button>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🏅</div>
+          <h3>Cours privé & coaching</h3>
+          <p>Cours individuel ou duo avec un coach dédié. Programme personnalisé selon vos objectifs.</p>
+          <div class="rc-price">70€ <span>/ heure</span></div>
+          <button class="btn-rc">Prendre RDV</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="histoire">
+      <div class="hist-visual">
+        <img src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="Courts Tennis La Châtaigneraie">
+        <div class="hist-year">7<span>Courts</span></div>
+      </div>
+      <div class="hist-content">
+        <div class="hist-tag">École de tennis</div>
+        <h2>Progresser à chaque <em>niveau</em></h2>
+        <div class="hist-nums">
+          <div class="hn-item"><div class="hn-num">4<sup>+</sup></div><div class="hn-label">Dès 4 ans</div></div>
+          <div class="hn-item"><div class="hn-num">8</div><div class="hn-label">Enseignants BE</div></div>
+          <div class="hn-item"><div class="hn-num">300<sup>+</sup></div><div class="hn-label">Élèves / saison</div></div>
+        </div>
+        <p>De l'initiation pour les tout-petits aux stages compétiteurs, notre équipe pédagogique accompagne chaque joueur dans sa progression avec un programme adapté.</p>
+        <p>Cours adultes lundi–vendredi · Cours enfants mercredi & weekend · Stages vacances scolaires</p>
+        <button class="btn-hist" onclick="enterMode('competition')">Voir les compétitions</button>
+      </div>
+    </section>
+
+    <div class="stats-bar" style="background:var(--creme);border-top:none;">
+      <div class="stat-item"><div class="stat-n">89€</div><div class="stat-l">Abonnement / mois</div></div>
+      <div class="stat-item"><div class="stat-n">-20%</div><div class="stat-l">Réduction membres</div></div>
+      <div class="stat-item"><div class="stat-n">∞</div><div class="stat-l">Réservations illimitées</div></div>
+      <div class="stat-item"><div class="stat-n">24h</div><div class="stat-l">Priorité de réservation</div></div>
+    </div>
+
+    <div class="partners">
+      <p>Partenaires officiels tennis</p>
+      <div class="partners-row">
+        <div class="pname">Wilson</div><div class="pname">Babolat</div>
+        <div class="pname">FFT</div><div class="pname">Head</div>
+      </div>
+    </div>
+
+    <footer>
+      <div><p class="fb-name">La <span>Châtaigneraie</span></p>
+        <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+        <p class="fb-addr">01 47 51 66 72 · contact@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
+      </div>
+      <div class="fc"><h4>Tennis</h4><a href="#">Courts & tarifs</a><a href="#">École de tennis</a><a href="#">Cours adultes</a><a href="#">Stages</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#" onclick="enterMode('padel');return false;">Padel</a><a href="#" onclick="enterMode('club');return false;">Club House</a><a href="#" onclick="enterMode('entreprise');return false;">Entreprise</a></div>
+      <div class="fc"><h4>Infos</h4><a href="#">Tarifs membres</a><a href="#" onclick="enterMode('competition');return false;">Compétitions</a><a href="#">Contact</a></div>
+    </footer>
+    <div class="footer-btm footer-btm-wrap" style="background:#0f1535;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span><span>Mentions légales · Confidentialité</span>
+    </div>
+
+  </div><!-- /page-tennis -->
+
+
+  <!-- ════════════════════════════════════════════
+       PAGE PADEL
+  ════════════════════════════════════════════ -->
+  <div id="page-padel" class="page-section">
+
+    <div class="announce-bar">
+      🏓 Tournoi P250 — 7 juin 2026 · Places disponibles · Homologué FFP
+      <span>Je m'inscris →</span>
+    </div>
+
+    <div class="page-hero page-hero-padel">
+      <div class="ph-overlay"></div>
+      <div class="ph-content">
+        <div class="ph-tag">Espace Padel</div>
+        <h1 class="ph-title">Pistes de <em>Padel</em></h1>
+        <p class="ph-sub">4 pistes · 100% indoor · Court panoramique · 8h–23h</p>
+        <a href="https://www.anybuddy.com" target="_blank" rel="noopener" class="btn-ph-book">Réserver sur Anybuddy →</a>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Pistes indoor</div></div>
+      <div class="stat-item"><div class="stat-n">100%</div><div class="stat-l">Couvertes</div></div>
+      <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">Court central panoramique</div></div>
+      <div class="stat-item"><div class="stat-n">FFP</div><div class="stat-l">Homologuée</div></div>
+    </div>
+
+    <section class="resa-section" style="background:var(--blanc);">
+      <div class="sec-label b2c-label">Nos installations</div>
+      <h2 class="sec-h2">4 pistes de padel</h2>
+      <p class="sec-sub">100 % indoor, accessibles toute l'année. Court central panoramique pour les tournois homologués FFP.</p>
+      <div class="resa-grid">
+        <div class="resa-card">
+          <div class="rc-icon">🏓</div>
+          <h3>Pistes 1 & 2 — Standards</h3>
+          <p>Courts indoor verre 3 côtés. Idéals pour les parties loisir et les entraînements réguliers.</p>
+          <div class="rc-price">30€ <span>/ 1h (2j)</span></div>
+          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🏆</div>
+          <h3>Pistes 3 & 4 — Court Central</h3>
+          <p>Court panoramique avec tribunes 100 places. Utilisé pour les tournois homologués.</p>
+          <div class="rc-price">60€ <span>/ 1h30 (4j)</span></div>
+          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🎓</div>
+          <h3>Cours collectifs padel</h3>
+          <p>Initiation et perfectionnement. Groupes de 4 max, coaches certifiés FIP.</p>
+          <div class="rc-price">30€ <span>/ heure</span></div>
+          <button class="btn-rc">S'inscrire</button>
+        </div>
+        <div class="resa-card">
+          <div class="rc-icon">🥇</div>
+          <h3>Cours privé padel</h3>
+          <p>Cours individuel ou duo. Analyse vidéo disponible. Idéal pour les compétiteurs.</p>
+          <div class="rc-price">80€ <span>/ heure</span></div>
+          <button class="btn-rc">Prendre RDV</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="b2b-why">
+      <div class="b2b-why-visual" style="background-image:url('https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp');"></div>
+      <div class="b2b-why-content">
+        <div class="b2b-why-tag">Pourquoi le padel ici</div>
+        <h2>Le padel le plus premium<br>de l'Ouest parisien</h2>
+        <p>Inaugurées en 2022, nos 4 pistes indoor sont aux derniers standards FFP. Le court central accueille des tournois homologués toute l'année.</p>
+        <ul class="b2b-features">
+          <li>4 pistes 100% indoor verre panoramique</li>
+          <li>Court central avec tribunes 100 places</li>
+          <li>Boutique équipement padel sur place</li>
+          <li>Location de raquettes disponible</li>
+          <li>Tournois homologués FFP réguliers</li>
+        </ul>
+        <a href="https://www.anybuddy.com" target="_blank" rel="noopener"><button class="btn-b2b-devis">Réserver une piste →</button></a>
+      </div>
+    </section>
+
+    <div class="partners">
+      <p>Partenaires officiels padel</p>
+      <div class="partners-row">
+        <div class="pname">Bullpadel</div><div class="pname">FFP</div>
+        <div class="pname">Head</div><div class="pname">Adidas</div>
+      </div>
+    </div>
+
+    <footer>
+      <div><p class="fb-name">La <span>Châtaigneraie</span></p>
+        <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+        <p class="fb-addr">01 47 51 66 72 · contact@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
+      </div>
+      <div class="fc"><h4>Padel</h4><a href="#">Pistes & tarifs</a><a href="#">Cours & coaching</a><a href="#" onclick="enterMode('competition');return false;">Tournois</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#" onclick="enterMode('tennis');return false;">Tennis</a><a href="#" onclick="enterMode('club');return false;">Club House</a><a href="#" onclick="enterMode('entreprise');return false;">Entreprise</a></div>
+      <div class="fc"><h4>Infos</h4><a href="#">Tarifs membres</a><a href="#">Abonnements</a><a href="#">Contact</a></div>
+    </footer>
+    <div class="footer-btm footer-btm-wrap" style="background:#0f1535;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span><span>Mentions légales · Confidentialité</span>
+    </div>
+
+  </div><!-- /page-padel -->
+
+
+  <!-- ════════════════════════════════════════════
+       PAGE COMPÉTITION
+  ════════════════════════════════════════════ -->
+  <div id="page-competition" class="page-section">
+
+    <div class="announce-bar">
+      🏆 Open d'Été P250 — 12 juillet 2026 · Inscriptions ouvertes · Homologué FFP
+      <span>Je m'inscris →</span>
+    </div>
+
+    <div class="page-hero page-hero-competition">
+      <div class="ph-overlay"></div>
+      <div class="ph-content">
+        <div class="ph-tag">Espace Compétition</div>
+        <h1 class="ph-title"><em>Compétitions</em></h1>
+        <p class="ph-sub">Tournois homologués FFT & FFP · Tous niveaux · Saison 2026</p>
+      </div>
+    </div>
+
+    <section class="comp-levels">
+      <div class="comp-levels-inner">
+        <div class="sec-label b2c-label" style="display:inline-block;">Niveaux de jeu</div>
+        <h2 class="sec-h2" style="text-align:left;">Trouvez votre niveau,<br>trouvez votre tournoi</h2>
+        <p class="sec-sub" style="text-align:left;margin-bottom:0;">Le classement FFT va de NC (non classé) à 1/6 (élite). Tous les niveaux sont accueillis à La Châtaigneraie.</p>
+        <div class="comp-levels-grid">
+          <div class="comp-level-card">
+            <div class="comp-level-badge clb-debutant">Débutant</div>
+            <h3>Découverte</h3>
+            <div class="comp-classement">NC · 30/5 · 30/4</div>
+            <p>Vous débutez ou jouez pour le plaisir ? Ces tournois internes sont faits pour vous : ambiance conviviale, matchs équilibrés.</p>
+            <ul>
+              <li>Championnats internes</li>
+              <li>Leagues amicales</li>
+              <li>Tournois de rentrée</li>
+            </ul>
+          </div>
+          <div class="comp-level-card">
+            <div class="comp-level-badge clb-inter">Intermédiaire</div>
+            <h3>Compétition</h3>
+            <div class="comp-classement">30/3 · 30/2 · 30/1 · 15/5 · 15/4</div>
+            <p>Tournois homologués FFT de catégorie P100 et P250. Confrontez-vous à des joueurs de votre niveau dans un cadre officiel.</p>
+            <ul>
+              <li>Tournois FFT P100 / P250</li>
+              <li>Championnats par équipes</li>
+              <li>Tournois padel FFP P100</li>
+            </ul>
+          </div>
+          <div class="comp-level-card">
+            <div class="comp-level-badge clb-avance">Avancé</div>
+            <h3>Performance</h3>
+            <div class="comp-classement">15/3 · 15/2 · 15/1 · 5/6 → 1/6</div>
+            <p>Tournois P500 et régionaux. Stages compétiteurs. Sélections pour les championnats de France.</p>
+            <ul>
+              <li>Tournois FFT P500</li>
+              <li>Championnats régionaux</li>
+              <li>Stages haute performance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comp-calendar">
+      <div class="comp-calendar-inner">
+        <div class="sec-label b2c-label" style="display:inline-block;">Saison 2026</div>
+        <h2 class="sec-h2" style="text-align:left;">Calendrier des tournois</h2>
+        <p class="sec-sub" style="text-align:left;margin-bottom:0;">Tournois homologués FFT et FFP. Inscriptions via tenniscompetition.fft.fr ou directement à l'accueil.</p>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Date</th><th>Épreuve</th><th>Sport</th><th>Niveau minimum</th><th>Format</th><th>Places</th><th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="ct-date">14 juin 2026</td><td><strong>Coupe d'Été Débutants</strong></td><td><span class="ct-sport-badge ctb-tennis">Tennis</span></td><td>NC – 30/5</td><td>Simple + Double</td><td>48</td><td><span class="ct-status cts-ouvert">Ouvert</span></td></tr>
+            <tr><td class="ct-date">21 juin 2026</td><td><strong>Tournoi Padel P100</strong></td><td><span class="ct-sport-badge ctb-padel">Padel</span></td><td>Tous niveaux</td><td>Double mixte</td><td>32 équipes</td><td><span class="ct-status cts-ouvert">Ouvert</span></td></tr>
+            <tr><td class="ct-date">28 juin 2026</td><td><strong>Championnat Interne Été</strong></td><td><span class="ct-sport-badge ctb-tennis">Tennis</span></td><td>Tous niveaux</td><td>Poules + KO</td><td>64</td><td><span class="ct-status cts-ouvert">Ouvert</span></td></tr>
+            <tr><td class="ct-date">12 juil. 2026</td><td><strong>Open d'Été P250</strong></td><td><span class="ct-sport-badge ctb-padel">Padel</span></td><td>15/4 et +</td><td>Double masculin</td><td>16 équipes</td><td><span class="ct-status cts-ouvert">Ouvert</span></td></tr>
+            <tr><td class="ct-date">19 juil. 2026</td><td><strong>Stage Compétiteur FFT</strong></td><td><span class="ct-sport-badge ctb-tennis">Tennis</span></td><td>30 et +</td><td>Stage intensif (5j)</td><td>12</td><td><span class="ct-status cts-complet">Complet</span></td></tr>
+            <tr><td class="ct-date">13 sept. 2026</td><td><strong>Tournoi de la Rentrée P100</strong></td><td><span class="ct-sport-badge ctb-tennis">Tennis</span></td><td>30/5 et +</td><td>Simple</td><td>48</td><td><span class="ct-status cts-avenir">À venir</span></td></tr>
+            <tr><td class="ct-date">4 oct. 2026</td><td><strong>Tournoi Inter-Entreprises</strong></td><td><span class="ct-sport-badge ctb-padel">Padel</span></td><td>Tous niveaux</td><td>Double mixte</td><td>20 équipes</td><td><span class="ct-status cts-avenir">À venir</span></td></tr>
+            <tr><td class="ct-date">8 nov. 2026</td><td><strong>Tournoi d'Hiver P500</strong></td><td><span class="ct-sport-badge ctb-tennis">Tennis</span></td><td>15/3 et +</td><td>Simple + Double</td><td>32</td><td><span class="ct-status cts-avenir">À venir</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="b2b-process">
+      <div class="sec-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:inline-block;">Comment s'inscrire</div>
+      <h2 class="sec-h2" style="color:var(--blanc);">3 étapes pour participer</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.55);">Inscription en ligne ou directement à l'accueil du club.</p>
+      <div class="process-steps">
+        <div class="ps"><div class="ps-num">01</div><h4>Licence FFT</h4><p>Obtenez votre licence sur fft.fr ou à l'accueil. Obligatoire pour les tournois homologués.</p></div>
+        <div class="ps"><div class="ps-num">02</div><h4>Inscription</h4><p>Sur tenniscompetition.fft.fr ou via l'appli TennisCompet avant la date limite affichée.</p></div>
+        <div class="ps"><div class="ps-num">03</div><h4>À vous de jouer !</h4><p>Présentez-vous le jour J, consultez votre tableau, arbitrage fourni en demi-finales et finale.</p></div>
+      </div>
+    </section>
+
+    <div class="partners">
+      <p>Organisés en partenariat avec</p>
+      <div class="partners-row">
+        <div class="pname">FFT</div><div class="pname">FFP</div>
+        <div class="pname">Wilson</div><div class="pname">Bullpadel</div>
+      </div>
+    </div>
+
+    <footer>
+      <div><p class="fb-name">La <span>Châtaigneraie</span></p>
+        <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
+        <p class="fb-addr">01 47 51 66 72 · contact@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
+      </div>
+      <div class="fc"><h4>Compétitions</h4><a href="#">Calendrier 2026</a><a href="#">Niveaux FFT</a><a href="#">S'inscrire</a><a href="#">Résultats</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#" onclick="enterMode('tennis');return false;">Tennis</a><a href="#" onclick="enterMode('padel');return false;">Padel</a><a href="#" onclick="enterMode('club');return false;">Club House</a></div>
+      <div class="fc"><h4>Infos</h4><a href="#">Licence FFT</a><a href="#">Règlement</a><a href="#">Contact</a></div>
+    </footer>
+    <div class="footer-btm footer-btm-wrap" style="background:#0f1535;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span><span>Mentions légales · Confidentialité</span>
+    </div>
+
+  </div><!-- /page-competition -->
+
+
+  <!-- ════════════════════════════════════════════
+       PAGE CLUB
+  ════════════════════════════════════════════ -->
+  <div id="page-club" class="page-section">
+
+    <div class="announce-bar" style="background:var(--navy);">
+      🏛️ Espace Fitness rénové — Accès inclus pour tous les membres · Ouvert 7j/7 dès 8h
+      <span>En savoir plus →</span>
+    </div>
+
+    <div class="page-hero page-hero-club">
+      <div class="ph-overlay"></div>
+      <div class="ph-content">
+        <div class="ph-tag">Le Club</div>
+        <h1 class="ph-title">Un art de <em>vivre</em></h1>
+        <p class="ph-sub">Sport · Restauration · Bien-être · Depuis 1963</p>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-n">1963</div><div class="stat-l">Fondation</div></div>
+      <div class="stat-item"><div class="stat-n">5k<sup>+</sup></div><div class="stat-l">Membres actifs</div></div>
+      <div class="stat-item"><div class="stat-n">3</div><div class="stat-l">Espaces restauration</div></div>
+      <div class="stat-item"><div class="stat-n">8h–23h</div><div class="stat-l">7 jours / 7</div></div>
+    </div>
+
+    <section class="club-espaces">
+      <div class="sec-label b2b-label" style="display:inline-block;margin-bottom:20px;">Nos espaces</div>
+      <h2 class="sec-h2">Un lieu, quatre univers</h2>
+      <p class="sec-sub">Bar, restaurant, fitness, terrasse — le club vous accueille bien au-delà du terrain.</p>
+      <div class="club-grid">
+        <div class="club-card">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="Restaurant & Bar">
+          <div class="club-card-overlay"></div>
+          <div class="club-card-content">
+            <div class="club-card-num">01 — Restauration</div>
+            <h3>Restaurant & Bar</h3>
+            <p>Vue panoramique sur les courts. Carte soignée, vins sélectionnés, terrasse estivale. Ouvert à tous, 7j/7.</p>
+          </div>
+        </div>
+        <div class="club-card">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=900&q=80" alt="Fitness">
+          <div class="club-card-overlay"></div>
+          <div class="club-card-content">
+            <div class="club-card-num">02 — Forme</div>
+            <h3>Fitness & Musculation</h3>
+            <p>Salle rénovée équipée Technogym. Cardio, musculation, cours collectifs yoga / pilates / HIIT. Inclus membres.</p>
+          </div>
+        </div>
+        <div class="club-card">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=900&q=80" alt="Vestiaires">
+          <div class="club-card-overlay"></div>
+          <div class="club-card-content">
+            <div class="club-card-num">03 — Confort</div>
+            <h3>Vestiaires Premium</h3>
+            <p>Vestiaires hommes & femmes spacieux. Casiers sécurisés, douches eau chaude, sèche-cheveux.</p>
+          </div>
+        </div>
+        <div class="club-card">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=900&q=80" alt="Terrasse">
+          <div class="club-card-overlay"></div>
+          <div class="club-card-content">
+            <div class="club-card-num">04 — Extérieur</div>
+            <h3>Terrasse Estivale</h3>
+            <p>Le spot incontournable de l'été. Vue sur les courts, cocktails, animations. Privatisable pour vos événements.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="histoire">
       <div class="hist-visual">
         <img src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_900,h_700,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="La Châtaigneraie">
@@ -680,207 +1143,218 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
         <div class="hist-tag">Notre histoire</div>
         <h2>60 ans de passion<br>pour <em>l'excellence</em></h2>
         <div class="hist-nums">
-          <div class="hn-item"><div class="hn-num">60<sup>+</sup></div><div class="hn-label">Années d'histoire</div></div>
+          <div class="hn-item"><div class="hn-num">60<sup>+</sup></div><div class="hn-label">Ans d'histoire</div></div>
           <div class="hn-item"><div class="hn-num">11</div><div class="hn-label">Courts & pistes</div></div>
           <div class="hn-item"><div class="hn-num">5k<sup>+</sup></div><div class="hn-label">Membres actifs</div></div>
         </div>
         <p>Fondé en 1963 au cœur de Rueil-Malmaison, La Châtaigneraie est bien plus qu'un club sportif. C'est un lieu de vie, une tradition d'excellence transmise de génération en génération.</p>
-        <p>Des joueurs amateurs aux championnats nationaux — nous cultivons depuis six décennies l'art du jeu et l'art de vivre à deux pas de Paris.</p>
-        <button class="btn-hist">Découvrir notre histoire</button>
+        <p>Aujourd'hui, le club accueille plus de 5 000 membres et organise chaque année des tournois homologués FFT, des stages intensifs et des événements d'entreprise de premier plan.</p>
       </div>
     </section>
 
-    <!-- Stats B2C -->
-    <div class="stats-bar b2c">
-      <div class="stat-item"><div class="stat-n">7<sup>+</sup></div><div class="stat-l">Courts Tennis</div></div>
-      <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Pistes Padel</div></div>
-      <div class="stat-item"><div class="stat-n">60</div><div class="stat-l">Ans d'excellence</div></div>
-      <div class="stat-item"><div class="stat-n">8h–23h</div><div class="stat-l">7 jours / 7</div></div>
-    </div>
-
-    <!-- Réservation -->
-    <section class="resa-section">
-      <div class="sec-label b2c-label">Réservation rapide</div>
-      <h2 class="sec-h2">Réservez en 3 clics</h2>
-      <p class="sec-sub">Choisissez votre créneau, payez en ligne, jouez.</p>
-      <div class="resa-grid">
-        <div class="resa-card">
-          <div class="rc-icon">🎾</div><h3>Court Tennis</h3>
-          <p>Court couvert en terre battue. Disponible tous les jours, tous niveaux.</p>
-          <div class="rc-price">40€ <span>/ 1h30</span></div><button class="btn-rc">Réserver</button>
+    <section class="cs-infoprat">
+      <div class="cs-infoprat-inner">
+        <div class="cs-infoprat-block">
+          <div class="cs-tag-label">Horaires d'ouverture</div>
+          <h2 class="cs-ip-h2">Ouvert 7 jours<br>sur <em>7</em></h2>
+          <div class="cs-horaires-grid">
+            <div class="cs-hor-row"><span>Lundi – Vendredi</span><span>8h00 – 23h00</span></div>
+            <div class="cs-hor-row"><span>Samedi</span><span>8h00 – 22h00</span></div>
+            <div class="cs-hor-row"><span>Dimanche</span><span>8h00 – 21h00</span></div>
+            <div class="cs-hor-row cs-hor-note"><span>Jours fériés</span><span>9h00 – 20h00</span></div>
+          </div>
         </div>
-        <div class="resa-card">
-          <div class="rc-icon">🏓</div><h3>Piste Padel</h3>
-          <p>Indoor premium. Court central panoramique disponible sur demande.</p>
-          <div class="rc-price">60€ <span>/ 1h30</span></div><button class="btn-rc">Réserver</button>
-        </div>
-        <div class="resa-card">
-          <div class="rc-icon">🎓</div><h3>Cours & Coaching</h3>
-          <p>Cours collectifs ou privés avec nos enseignants diplômés d'État.</p>
-          <div class="rc-price">Sur devis</div><button class="btn-rc">S'inscrire</button>
-        </div>
-        <div class="resa-card">
-          <div class="rc-icon">🏅</div><h3>Abonnement Membre</h3>
-          <p>Accès illimité, tarifs préférentiels, priorité de réservation.</p>
-          <div class="rc-price">Dès 89€ <span>/ mois</span></div><button class="btn-rc">Devenir membre</button>
+        <div class="cs-infoprat-block">
+          <div class="cs-tag-label">Accès & Contact</div>
+          <h2 class="cs-ip-h2">Nous<br><em>trouver</em></h2>
+          <div class="cs-contact-list">
+            <div class="cs-cl-item"><span class="cs-cl-icon">📍</span><span>6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">📞</span><span>01 47 51 66 72</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">✉️</span><span>contact@tcchataigneraie.com</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">🚇</span><span>RER A — Rueil-Malmaison (10 min à pied)</span></div>
+            <div class="cs-cl-item"><span class="cs-cl-icon">🚗</span><span>Parking gratuit sur place (150 places)</span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Lifestyle -->
-    <section class="lifestyle">
-      <h2>Un art de vivre</h2>
-      <p>Au-delà du sport, un lieu de vie premium à 20 minutes de Paris</p>
-      <div class="ls-grid">
-        <div class="ls-card">
-          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80" alt="">
-          <div class="ls-label"><h3>Restaurant & Bar</h3><p>Vue panoramique sur les courts · Ouvert 7j/7</p></div>
-        </div>
-        <div class="ls-card">
-          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=700&q=80" alt="">
-          <div class="ls-label"><h3>Espace Fitness & Spa</h3><p>Salle de sport et espace bien-être · Accès membres</p></div>
-        </div>
-        <div class="ls-card">
-          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="">
-          <div class="ls-label"><h3>Terrasse Estivale</h3><p>Le spot incontournable de l'été dans l'Ouest Parisien</p></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="partners b2c">
+    <div class="partners" style="background:var(--navy);">
       <p>Nos partenaires officiels</p>
       <div class="partners-row">
         <div class="pname">Wilson</div><div class="pname">Babolat</div>
-        <div class="pname">Guinot</div><div class="pname">FFT</div>
+        <div class="pname">Guinot</div><div class="pname">Technogym</div>
       </div>
     </div>
 
-    <footer class="b2c">
+    <footer>
       <div><p class="fb-name">La <span>Châtaigneraie</span></p>
         <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
         <p class="fb-addr">01 47 51 66 72 · contact@tcchataigneraie.com</p>
         <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Ouvert 7j/7 · 8h00 – 23h00</p>
       </div>
-      <div class="fc"><h4>Sports</h4><a href="#">Tennis</a><a href="#">Padel</a><a href="#">Cours & École</a><a href="#">Compétitions</a></div>
-      <div class="fc"><h4>Le Club</h4><a href="#">Notre histoire</a><a href="#">Club House</a><a href="#">Restaurant</a><a href="#">Fitness & Spa</a></div>
-      <div class="fc"><h4>Infos</h4><a href="#">Tarifs</a><a href="#">Abonnements</a><a href="#">Actualités</a><a href="#">Contact</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#">Restaurant</a><a href="#">Bar & Terrasse</a><a href="#">Fitness</a><a href="#">Notre histoire</a></div>
+      <div class="fc"><h4>Sports</h4><a href="#" onclick="enterMode('tennis');return false;">Tennis</a><a href="#" onclick="enterMode('padel');return false;">Padel</a><a href="#" onclick="enterMode('competition');return false;">Compétitions</a></div>
+      <div class="fc"><h4>Infos</h4><a href="#">Tarifs</a><a href="#" onclick="enterMode('entreprise');return false;">Entreprises</a><a href="#">Contact</a></div>
     </footer>
     <div class="footer-btm footer-btm-wrap" style="background:#0f1535;">
-      <span>© 2026 Tennis Club de la Châtaigneraie</span>
-      <span>Mentions légales · Confidentialité</span>
+      <span>© 2026 Tennis Club de la Châtaigneraie</span><span>Mentions légales · Confidentialité</span>
     </div>
 
-  </div><!-- /page-b2c -->
+  </div><!-- /page-club -->
 
 
   <!-- ════════════════════════════════════════════
-       PAGE B2B — ENTREPRISES
+       PAGE ENTREPRISE
   ════════════════════════════════════════════ -->
-  <div id="page-b2b" class="page-section">
+  <div id="page-entreprise" class="page-section">
 
     <div class="announce-bar b2b">
-      📋 Recevez votre devis personnalisé sous 24h — Événements corporate 2026
+      📋 Devis personnalisé sous 24h — Séminaires, Team Building, Réceptions corporate 2026
       <span>Nous contacter →</span>
     </div>
 
-    <!-- Search widget B2B -->
-    <div class="search-wrap sw-b2b">
-      <img class="search-bg-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1400&q=70" alt="">
-      <div class="search-bg-overlay"></div>
-      <div class="search-inner">
-        <h2 class="search-heading">Quel <em>événement</em> planifiez-vous ?</h2>
-        <div class="search-card">
-          <div class="swf">
-            <div class="swf-icon">📅</div>
-            <div><div class="swf-label">Date souhaitée</div><input type="date" placeholder="Date de l'événement"></div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">🏆</div>
-            <div><div class="swf-label">Type d'événement</div>
-              <select><option>Tournoi inter-entreprises</option><option>Séminaire</option><option>Team Building</option><option>Cocktail / Réception</option></select>
-            </div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">👥</div>
-            <div><div class="swf-label">Participants</div>
-              <select><option>Moins de 20</option><option>20 à 50</option><option>50 à 100</option><option>Plus de 100</option></select>
-            </div>
-          </div>
-          <div class="swf">
-            <div class="swf-icon">💶</div>
-            <div><div class="swf-label">Budget estimé</div>
-              <select><option>À définir</option><option>5 000 – 15 000 €</option><option>15 000 – 40 000 €</option><option>40 000 € +</option></select>
-            </div>
-          </div>
-          <button class="sw-go">Obtenir un devis</button>
-        </div>
+    <div class="page-hero page-hero-entreprise">
+      <div class="ph-overlay"></div>
+      <div class="ph-content">
+        <div class="ph-tag">Espaces Entreprise</div>
+        <h1 class="ph-title">Événements<br><em>Corporate</em></h1>
+        <p class="ph-sub">Séminaires · Team Building · Réceptions · À 15 min de La Défense</p>
+        <button class="btn-ph-book navy" onclick="document.getElementById('devis-form-section').scrollIntoView({behavior:'smooth'})">Demander un devis →</button>
       </div>
     </div>
 
-    <!-- Services B2B grid -->
     <section class="b2b-services">
       <div class="sec-label b2b-label">Nos offres</div>
-      <h2 class="sec-h2" style="margin-bottom:12px;">Des expériences<br>sur mesure</h2>
+      <h2 class="sec-h2">Des expériences sur mesure</h2>
       <p class="sec-sub">À 15 minutes de La Défense, choisissez parmi nos formats éprouvés.</p>
       <div class="b2b-grid">
         <div class="b2b-card">
-          <img src="https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp" alt="">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&q=80" alt="Séminaire">
           <div class="b2b-card-overlay"></div>
           <div class="b2b-card-content">
-            <div class="b2b-card-num">01 — Padel</div>
-            <h3>Tournois inter-entreprises</h3>
-            <p>Format P100 à P500. Organisation clé en main, arbitrage professionnel, remise de trophées.</p>
-            <a href="#" class="b2b-card-link">En savoir plus</a>
-          </div>
-        </div>
-        <div class="b2b-card">
-          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=700&q=80" alt="">
-          <div class="b2b-card-overlay"></div>
-          <div class="b2b-card-content">
-            <div class="b2b-card-num">02 — Séminaire</div>
+            <div class="b2b-card-num">01 — Séminaire</div>
             <h3>Espaces séminaire & réunions</h3>
-            <p>Salles modulables jusqu'à 150 personnes, restauration gastronomique, terrasse panoramique.</p>
-            <a href="#" class="b2b-card-link">En savoir plus</a>
+            <p>Salles modulables jusqu'à 150 personnes, restauration gastronomique, terrasse panoramique, matériel AV.</p>
+            <span class="b2b-card-link">Dès 3 500 € / journée</span>
           </div>
         </div>
         <div class="b2b-card">
-          <img src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=700&q=80" alt="">
+          <img src="https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_700,h_560,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp" alt="Team Building">
           <div class="b2b-card-overlay"></div>
           <div class="b2b-card-content">
-            <div class="b2b-card-num">03 — Sport</div>
+            <div class="b2b-card-num">02 — Team Building</div>
             <h3>Team Building sportif</h3>
-            <p>Ateliers tennis & padel animés par nos coaches, accessible à tous les niveaux.</p>
-            <a href="#" class="b2b-card-link">En savoir plus</a>
+            <p>Tournois inter-équipes tennis & padel animés par nos coaches. Format P100 à P500. Organisation clé en main.</p>
+            <span class="b2b-card-link">Dès 2 000 € / demi-journée</span>
           </div>
         </div>
         <div class="b2b-card">
-          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=700&q=80" alt="Réception">
           <div class="b2b-card-overlay"></div>
           <div class="b2b-card-content">
-            <div class="b2b-card-num">04 — Réception</div>
+            <div class="b2b-card-num">03 — Réception</div>
             <h3>Cocktails & soirées privées</h3>
-            <p>Privatisation complète du club, jusqu'à 150 convives, traiteur et animation sur mesure.</p>
-            <a href="#" class="b2b-card-link">En savoir plus</a>
+            <p>Privatisation complète jusqu'à 150 convives. Traiteur, animation, décoration sur mesure.</p>
+            <span class="b2b-card-link">Dès 5 000 € / soirée</span>
+          </div>
+        </div>
+        <div class="b2b-card">
+          <img src="https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=700&q=80" alt="Tournoi">
+          <div class="b2b-card-overlay"></div>
+          <div class="b2b-card-content">
+            <div class="b2b-card-num">04 — Tournoi</div>
+            <h3>Tournois inter-entreprises</h3>
+            <p>Format P100 à P500 homologué FFP. Arbitrage professionnel, remise de trophées, photos & vidéos.</p>
+            <span class="b2b-card-link">Devis sur mesure</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Process -->
     <section class="b2b-process">
-      <div class="sec-label b2b-label">Simple & rapide</div>
+      <div class="sec-label" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);display:inline-block;">Simple & rapide</div>
       <h2 class="sec-h2" style="color:var(--blanc);">De l'idée à l'événement</h2>
-      <p class="sec-sub">Notre équipe dédiée vous accompagne à chaque étape.</p>
+      <p class="sec-sub" style="color:rgba(255,255,255,.55);">Notre équipe dédiée vous accompagne à chaque étape.</p>
       <div class="process-steps">
         <div class="ps"><div class="ps-num">01</div><h4>Vous nous contactez</h4><p>Par formulaire, téléphone ou email — réponse sous 24h garantie.</p></div>
         <div class="ps"><div class="ps-num">02</div><h4>Devis sur mesure</h4><p>Proposition détaillée adaptée à votre budget et votre format.</p></div>
         <div class="ps"><div class="ps-num">03</div><h4>Nous organisons tout</h4><p>Planning, logistique, restauration — vous n'avez qu'à arriver.</p></div>
         <div class="ps"><div class="ps-num">04</div><h4>Vous profitez</h4><p>Votre équipe repart avec des souvenirs mémorables.</p></div>
       </div>
-      <button class="btn-process">Demander un devis →</button>
     </section>
 
-    <!-- Why us -->
+    <section class="devis-section" id="devis-form-section">
+      <div class="devis-inner">
+        <div class="sec-label b2b-label" style="display:inline-block;">Demande de devis</div>
+        <h2 class="sec-h2">Parlons de votre projet</h2>
+        <p class="sec-sub">Réponse garantie sous 24h ouvrées. Tous les formats sont personnalisables.</p>
+        <div class="devis-form" id="devis-form">
+          <div class="df-field">
+            <div class="df-label">Société</div>
+            <input type="text" placeholder="Nom de votre entreprise">
+          </div>
+          <div class="df-field">
+            <div class="df-label">Prénom & Nom</div>
+            <input type="text" placeholder="Votre nom complet">
+          </div>
+          <div class="df-field">
+            <div class="df-label">Email professionnel</div>
+            <input type="email" placeholder="prenom@societe.fr">
+          </div>
+          <div class="df-field">
+            <div class="df-label">Téléphone</div>
+            <input type="tel" placeholder="06 00 00 00 00">
+          </div>
+          <div class="df-field">
+            <div class="df-label">Type d'événement</div>
+            <select>
+              <option value="">Choisissez un format…</option>
+              <option>Séminaire (demi-journée / journée)</option>
+              <option>Team Building sportif</option>
+              <option>Cocktail & Réception</option>
+              <option>Tournoi inter-entreprises</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="df-field">
+            <div class="df-label">Date souhaitée</div>
+            <input type="date">
+          </div>
+          <div class="df-field">
+            <div class="df-label">Nombre de participants</div>
+            <select>
+              <option value="">Combien de personnes ?</option>
+              <option>Moins de 20</option>
+              <option>20 à 50</option>
+              <option>50 à 100</option>
+              <option>100 à 150</option>
+              <option>Plus de 150</option>
+            </select>
+          </div>
+          <div class="df-field">
+            <div class="df-label">Budget indicatif</div>
+            <select>
+              <option value="">À définir</option>
+              <option>Moins de 5 000 €</option>
+              <option>5 000 – 15 000 €</option>
+              <option>15 000 – 40 000 €</option>
+              <option>Plus de 40 000 €</option>
+            </select>
+          </div>
+          <div class="df-field full">
+            <div class="df-label">Message & besoins spécifiques</div>
+            <textarea placeholder="Décrivez votre événement, contraintes particulières, souhaits…"></textarea>
+          </div>
+          <button class="btn-devis-submit" onclick="submitDevis()">Envoyer ma demande →</button>
+        </div>
+        <div class="devis-confirm" id="devis-confirm">
+          <div class="devis-confirm-icon">✅</div>
+          <h3>Demande bien reçue !</h3>
+          <p>Notre équipe événementielle vous recontactera sous 24h ouvrées avec votre devis personnalisé.<br>En attendant, appelez-nous au 01 47 51 66 72.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="b2b-why">
       <div class="b2b-why-visual"></div>
       <div class="b2b-why-content">
@@ -892,45 +1366,42 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
           <li>Restaurant panoramique & terrasse jusqu'à 150 couverts</li>
           <li>Équipe événementielle dédiée avec 60 ans d'expérience</li>
           <li>Partenaire officiel Wilson & FFT pour vos tournois</li>
-          <li>Parking gratuit · Accessible en RER & voiture</li>
+          <li>Parking gratuit · Accessible en RER A & voiture</li>
         </ul>
-        <button class="btn-b2b-devis">Obtenir mon devis →</button>
+        <button class="btn-b2b-devis" onclick="document.getElementById('devis-form-section').scrollIntoView({behavior:'smooth'})">Obtenir mon devis →</button>
       </div>
     </section>
 
-    <!-- Stats B2B -->
-    <div class="stats-bar b2b">
+    <div class="stats-bar">
       <div class="stat-item"><div class="stat-n">150<sup>+</sup></div><div class="stat-l">Événements / an</div></div>
       <div class="stat-item"><div class="stat-n">15'</div><div class="stat-l">De La Défense</div></div>
       <div class="stat-item"><div class="stat-n">60</div><div class="stat-l">Ans d'expérience</div></div>
-      <div class="stat-item"><div class="stat-n">24h</div><div class="stat-l">Délai devis</div></div>
+      <div class="stat-item"><div class="stat-n">24h</div><div class="stat-l">Délai devis garanti</div></div>
     </div>
 
     <div class="partners b2b">
-      <p>Ils nous font confiance</p>
+      <p>Ils nous ont fait confiance</p>
       <div class="partners-row">
-        <div class="pname">Wilson</div><div class="pname">Babolat</div>
-        <div class="pname">Guinot</div><div class="pname">FFT</div>
+        <div class="pname">LVMH</div><div class="pname">BNP Paribas</div>
+        <div class="pname">EDF</div><div class="pname">Société Générale</div>
       </div>
     </div>
 
-    <footer class="b2b">
+    <footer>
       <div><p class="fb-name">La <span>Châtaigneraie</span></p>
         <p class="fb-addr">6-12 avenue de la Châtaigneraie<br>92500 Rueil-Malmaison</p>
-        <p class="fb-addr">01 47 51 66 72</p>
-        <p class="fb-addr">b2b@tcchataigneraie.com</p>
-        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Devis sous 24h · 7j/7</p>
+        <p class="fb-addr">01 47 51 66 72 · events@tcchataigneraie.com</p>
+        <p class="fb-addr" style="margin-top:10px;opacity:.4;font-size:11px;">Événements corporate · Lun–Ven 9h–18h</p>
       </div>
-      <div class="fc"><h4>Événements</h4><a href="#">Tournois Padel</a><a href="#">Séminaires</a><a href="#">Team Building</a><a href="#">Réceptions</a></div>
-      <div class="fc"><h4>Espaces</h4><a href="#">Salles modulables</a><a href="#">Terrasse</a><a href="#">Restaurant</a><a href="#">Courts privatisés</a></div>
-      <div class="fc"><h4>Contact B2B</h4><a href="#">Demander un devis</a><a href="#">Nos références</a><a href="#">Brochure PDF</a><a href="#">Accès & Plan</a></div>
+      <div class="fc"><h4>Événements</h4><a href="#">Séminaires</a><a href="#">Team Building</a><a href="#">Réceptions</a><a href="#">Tournois</a></div>
+      <div class="fc"><h4>Le Club</h4><a href="#" onclick="enterMode('tennis');return false;">Tennis</a><a href="#" onclick="enterMode('padel');return false;">Padel</a><a href="#" onclick="enterMode('club');return false;">Club House</a></div>
+      <div class="fc"><h4>Contact</h4><a href="#" onclick="document.getElementById('devis-form-section').scrollIntoView({behavior:'smooth'});return false;">Demander un devis</a><a href="#">01 47 51 66 72</a><a href="#">Mentions légales</a></div>
     </footer>
-    <div class="footer-btm" style="background:#0f1535;">
-      <span>© 2026 Tennis Club de la Châtaigneraie</span>
-      <span>Mentions légales · Confidentialité</span>
+    <div class="footer-btm footer-btm-wrap" style="background:#0f1535;">
+      <span>© 2026 Tennis Club de la Châtaigneraie</span><span>Mentions légales · Confidentialité</span>
     </div>
 
-  </div><!-- /page-b2b -->
+  </div><!-- /page-entreprise -->
 
 </div><!-- /app -->
 
@@ -1022,77 +1493,62 @@ setInterval(() => {
 /* ══════════════════════════════
    MODE SYSTEM
 ══════════════════════════════ */
-let currentMode = null; // null = choice screen, 'b2c' or 'b2b'
-
-function scrollToClubInfo() {
-  document.getElementById('cs-info').scrollIntoView({ behavior:'smooth' });
-}
+let currentMode = null;
+const ALL_MODES = ['tennis','padel','competition','club','entreprise'];
 
 function goHome() {
   if (!heroDone) return;
-  // Hide any active page
-  document.getElementById('page-b2c').classList.remove('active');
-  document.getElementById('page-b2b').classList.remove('active');
-  // Restore choice screen
+  ALL_MODES.forEach(m => document.getElementById('page-'+m).classList.remove('active'));
   const cs = document.getElementById('choice-screen');
   cs.style.display = 'flex';
   cs.classList.remove('exit');
   cs.style.opacity = '0';
   requestAnimationFrame(() => { cs.style.transition = 'opacity .4s ease'; cs.style.opacity = '1'; });
-  // Reset nav
   currentMode = null;
-  document.getElementById('nav-pill').classList.add('hidden');
   fctaEl.classList.remove('show');
   window.scrollTo(0, 0);
   if (menuOpen) toggleMenu();
 }
 
 function enterMode(mode) {
+  if (!heroDone) { skipHero(); }
   currentMode = mode;
-  // Exit choice screen
   const cs = document.getElementById('choice-screen');
-  cs.classList.add('exit');
-  setTimeout(() => {
-    cs.style.display = 'none';
+  if (cs.style.display !== 'none') {
+    cs.classList.add('exit');
+    setTimeout(() => { cs.style.display = 'none'; showPage(mode); }, 420);
+  } else {
     showPage(mode);
-  }, 420);
+  }
 }
 
 function showPage(mode) {
-  // Hide both pages
-  document.getElementById('page-b2c').classList.remove('active');
-  document.getElementById('page-b2b').classList.remove('active');
-  // Show chosen
+  ALL_MODES.forEach(m => document.getElementById('page-'+m).classList.remove('active'));
   document.getElementById('page-'+mode).classList.add('active');
   updateNavMode(mode);
   window.scrollTo(0,0);
 }
 
-function switchMode(mode) {
-  if (mode === currentMode) { if (menuOpen) toggleMenu(); return; }
-  currentMode = mode;
-  const leaving = document.getElementById('page-'+(mode==='b2c'?'b2b':'b2c'));
-  leaving.style.opacity = '0';
-  leaving.style.transition = 'opacity .3s ease';
-  setTimeout(() => {
-    leaving.classList.remove('active');
-    leaving.style.opacity = '';
-    leaving.style.transition = '';
-    document.getElementById('page-'+mode).classList.add('active');
-    updateNavMode(mode);
-    window.scrollTo(0,0);
-  }, 300);
-  if (menuOpen) toggleMenu();
+function updateNavMode(mode) {
+  const ctaMap = {
+    tennis:      { txt:'🎾 Réserver — Anybuddy', bg:'var(--violet)', fn:() => window.open('https://www.anybuddy.com','_blank') },
+    padel:       { txt:'🏓 Réserver — Anybuddy', bg:'var(--violet)', fn:() => window.open('https://www.anybuddy.com','_blank') },
+    competition: { txt:'🏆 Voir le calendrier',  bg:'var(--violet)', fn:() => document.querySelector('.comp-calendar').scrollIntoView({behavior:'smooth'}) },
+    club:        { txt:'📍 Horaires & accès',    bg:'var(--navy)',   fn:() => document.querySelector('#page-club .cs-infoprat').scrollIntoView({behavior:'smooth'}) },
+    entreprise:  { txt:'📋 Demander un devis',   bg:'var(--navy)',   fn:() => document.getElementById('devis-form-section').scrollIntoView({behavior:'smooth'}) },
+  };
+  const cta = ctaMap[mode];
+  if (cta) {
+    fctaEl.textContent = cta.txt;
+    fctaEl.style.background = cta.bg;
+    fctaEl.onclick = cta.fn;
+    fctaEl.classList.add('show');
+  }
 }
 
-function updateNavMode(mode) {
-  const pill = document.getElementById('nav-pill');
-  pill.classList.remove('hidden');
-  document.getElementById('np-b2c').className = 'np-btn' + (mode==='b2c' ? ' on-b2c':'');
-  document.getElementById('np-b2b').className = 'np-btn' + (mode==='b2b' ? ' on-b2b':'');
-  fctaEl.textContent = mode === 'b2c' ? '🎾 Réserver maintenant' : '📋 Demander un devis';
-  fctaEl.style.background = mode === 'b2b' ? 'var(--navy)' : 'var(--violet)';
-  fctaEl.classList.add('show');
+function submitDevis() {
+  document.getElementById('devis-form').style.display = 'none';
+  document.getElementById('devis-confirm').classList.add('show');
 }
 
 /* ══════════════════════════════
