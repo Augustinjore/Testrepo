@@ -433,12 +433,71 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 #fcta.show { opacity:1; pointer-events:all; }
 #fcta:hover { background:var(--navy); transform:translateY(-1px); box-shadow:0 8px 28px rgba(39,47,101,.3); }
 
-/* mockup note */
-.mnote { position:fixed; bottom:0; left:0; right:0; background:rgba(17,17,17,.92); color:rgba(255,255,255,.4); text-align:center; padding:8px; font-size:11px; font-weight:500; z-index:500; letter-spacing:.5px; }
-
 /* ──────────────────────────────
-   PAGE HERO (all inner pages)
+   BOOKING MODAL
 ────────────────────────────── */
+#bm-overlay {
+  position:fixed; inset:0; z-index:350;
+  background:rgba(17,17,17,.72);
+  display:none; align-items:center; justify-content:center;
+  padding:20px;
+}
+#bm-overlay.open { display:flex; }
+.bm-box {
+  background:var(--blanc); max-width:700px; width:100%;
+  max-height:92vh; overflow-y:auto; position:relative;
+  animation:fadeUp .3s ease;
+}
+.bm-close {
+  position:absolute; top:20px; right:20px; z-index:1;
+  background:none; border:1px solid var(--gris-lt); color:var(--gris);
+  font-size:11px; font-weight:700; letter-spacing:2px; padding:8px 16px;
+  cursor:pointer; transition:all .2s; font-family:inherit;
+}
+.bm-close:hover { border-color:var(--noir); color:var(--noir); }
+.bm-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--noir); padding:40px 40px 0; }
+.bm-sport-tabs { display:flex; border-top:1px solid var(--gris-lt); border-bottom:1px solid var(--gris-lt); margin-top:24px; }
+.bm-sport-tab { flex:1; background:var(--blanc); border:none; border-right:1px solid var(--gris-lt); padding:15px 10px; font-size:11px; font-weight:700; letter-spacing:.5px; color:var(--gris); cursor:pointer; transition:all .2s; font-family:inherit; }
+.bm-sport-tab:last-child { border-right:none; }
+.bm-sport-tab.active { background:var(--violet); color:var(--blanc); }
+.bm-sport-tab:hover:not(.active) { background:var(--gris-xlt); color:var(--noir); }
+.bm-row { display:flex; }
+.bm-field { flex:1; padding:20px 24px; border-bottom:1px solid var(--gris-lt); border-right:1px solid var(--gris-lt); }
+.bm-field:last-child { border-right:none; }
+.bm-label { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gris-mid); margin-bottom:10px; }
+.bm-select { border:none; background:none; font-family:inherit; font-size:15px; font-weight:600; color:var(--noir); outline:none; width:100%; cursor:pointer; appearance:none; }
+.bm-slots-wrap { padding:20px 24px; border-bottom:1px solid var(--gris-lt); }
+.bm-slots { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.bm-slot {
+  background:var(--gris-xlt); border:1px solid var(--gris-lt);
+  padding:10px 16px; font-size:12px; font-weight:700; color:var(--noir);
+  cursor:pointer; transition:all .2s; font-family:inherit;
+}
+.bm-slot:hover { background:rgba(123,45,131,.08); border-color:var(--violet); color:var(--violet); }
+.bm-slot.selected { background:var(--violet); border-color:var(--violet); color:var(--blanc); }
+.bm-slot.taken { color:var(--gris-lt); cursor:not-allowed; text-decoration:line-through; pointer-events:none; }
+.bm-footer { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; gap:16px; }
+.bm-price { font-size:13px; color:var(--gris); flex:1; }
+.bm-confirm-btn {
+  background:var(--violet); color:var(--blanc); border:none;
+  padding:14px 28px; font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; cursor:pointer; transition:background .2s;
+  font-family:inherit; white-space:nowrap;
+}
+.bm-confirm-btn:disabled { background:var(--gris-lt); color:var(--gris-mid); cursor:not-allowed; }
+.bm-confirm-btn:not(:disabled):hover { background:var(--violet-dk); }
+.bm-confirmed { text-align:center; padding:64px 40px; }
+.bm-confirmed-icon { font-size:52px; margin-bottom:16px; }
+.bm-confirmed h3 { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--violet); margin-bottom:12px; }
+.bm-confirmed-detail { font-size:15px; font-weight:600; color:var(--noir); line-height:1.6; margin-bottom:8px; }
+.bm-confirmed p { font-size:13px; color:var(--gris); margin-bottom:28px; }
+.bm-new-btn {
+  background:none; border:1px solid var(--gris-lt); color:var(--noir);
+  padding:12px 28px; font-size:11px; font-weight:700; letter-spacing:2px;
+  text-transform:uppercase; cursor:pointer; font-family:inherit; transition:all .2s;
+}
+.bm-new-btn:hover { border-color:var(--noir); }
+</style>
 .page-hero {
   position:relative; height:70vh; min-height:480px; overflow:hidden;
   display:flex; align-items:flex-end; padding-bottom:72px;
@@ -446,9 +505,9 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 }
 .page-hero-tennis    { background-image:url('https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp'); }
 .page-hero-padel     { background-image:url('https://static.wixstatic.com/media/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_c0c6ad3b6658479aa334afb07f79fca9~mv2.webp'); }
-.page-hero-competition { background-image:url('https://images.unsplash.com/photo-1516817028998-e7dbecfd7d66?w=1800&q=80'); }
+.page-hero-competition { background-image:url('https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=1800&q=80'); background-position:center 20%; }
 .page-hero-club      { background-image:url('https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp'); }
-.page-hero-entreprise { background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1800&q=80'); }
+.page-hero-entreprise { background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80'); }
 .ph-overlay {
   position:absolute; inset:0;
   background:linear-gradient(to right, rgba(17,17,17,.86) 0%, rgba(17,17,17,.18) 100%);
@@ -595,7 +654,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   </div>
   <div class="nav-right">
     <div id="nav-pill" class="hidden"></div>
-    <button class="btn-nav-resa">Réserver →</button>
+    <button class="btn-nav-resa" onclick="openBooking('tennis')">Réserver →</button>
   </div>
 </nav>
 
@@ -738,7 +797,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
         <div class="ph-tag">Espace Tennis</div>
         <h1 class="ph-title">Courts de <em>Tennis</em></h1>
         <p class="ph-sub">7 courts · Terre battue · Éclairés · 8h–23h</p>
-        <a href="https://www.anybuddy.com" target="_blank" rel="noopener" class="btn-ph-book">Réserver sur Anybuddy →</a>
+        <button class="btn-ph-book" onclick="openBooking('tennis')">Réserver un court →</button>
       </div>
     </div>
 
@@ -759,14 +818,14 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
           <h3>Courts 1 à 5 — Extérieurs</h3>
           <p>Terre battue, éclairage LED. Tribunes sur le court central. Accessibles d'avril à octobre en conditions optimales.</p>
           <div class="rc-price">40€ <span>/ 1h30</span></div>
-          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+          <button class="btn-rc" onclick="openBooking('tennis')">Réserver</button>
         </div>
         <div class="resa-card">
           <div class="rc-icon">🏠</div>
           <h3>Courts 6 & 7 — Couverts</h3>
           <p>Sous bulle pressurisée. Disponibles 12 mois sur 12, idéals en hiver ou par mauvais temps.</p>
           <div class="rc-price">50€ <span>/ 1h30</span></div>
-          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+          <button class="btn-rc" onclick="openBooking('tennis')">Réserver</button>
         </div>
         <div class="resa-card">
           <div class="rc-icon">🎓</div>
@@ -814,8 +873,8 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
     <div class="partners">
       <p>Partenaires officiels tennis</p>
       <div class="partners-row">
-        <div class="pname">Wilson</div><div class="pname">Babolat</div>
-        <div class="pname">FFT</div><div class="pname">Head</div>
+        <div class="pname">Wilson</div><div class="pname">FFT</div>
+        <div class="pname">Head</div><div class="pname">Prince</div>
       </div>
     </div>
 
@@ -852,7 +911,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
         <div class="ph-tag">Espace Padel</div>
         <h1 class="ph-title">Pistes de <em>Padel</em></h1>
         <p class="ph-sub">4 pistes · 100% indoor · Court panoramique · 8h–23h</p>
-        <a href="https://www.anybuddy.com" target="_blank" rel="noopener" class="btn-ph-book">Réserver sur Anybuddy →</a>
+        <button class="btn-ph-book" onclick="openBooking('padel')">Réserver une piste →</button>
       </div>
     </div>
 
@@ -873,14 +932,14 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
           <h3>Pistes 1 & 2 — Standards</h3>
           <p>Courts indoor verre 3 côtés. Idéals pour les parties loisir et les entraînements réguliers.</p>
           <div class="rc-price">30€ <span>/ 1h (2j)</span></div>
-          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+          <button class="btn-rc" onclick="openBooking('padel')">Réserver</button>
         </div>
         <div class="resa-card">
           <div class="rc-icon">🏆</div>
           <h3>Pistes 3 & 4 — Court Central</h3>
           <p>Court panoramique avec tribunes 100 places. Utilisé pour les tournois homologués.</p>
           <div class="rc-price">60€ <span>/ 1h30 (4j)</span></div>
-          <a href="https://www.anybuddy.com" target="_blank" rel="noopener" style="display:block;"><button class="btn-rc" style="width:100%;">Réserver</button></a>
+          <button class="btn-rc" onclick="openBooking('padel')">Réserver</button>
         </div>
         <div class="resa-card">
           <div class="rc-icon">🎓</div>
@@ -912,7 +971,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
           <li>Location de raquettes disponible</li>
           <li>Tournois homologués FFP réguliers</li>
         </ul>
-        <a href="https://www.anybuddy.com" target="_blank" rel="noopener"><button class="btn-b2b-devis">Réserver une piste →</button></a>
+        <button class="btn-b2b-devis" onclick="openBooking('padel')">Réserver une piste →</button>
       </div>
     </section>
 
@@ -1181,8 +1240,8 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
     <div class="partners" style="background:var(--navy);">
       <p>Nos partenaires officiels</p>
       <div class="partners-row">
-        <div class="pname">Wilson</div><div class="pname">Babolat</div>
-        <div class="pname">Guinot</div><div class="pname">Technogym</div>
+        <div class="pname">Wilson</div><div class="pname">Guinot</div>
+        <div class="pname">Technogym</div><div class="pname">Head</div>
       </div>
     </div>
 
@@ -1356,7 +1415,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
     </section>
 
     <section class="b2b-why">
-      <div class="b2b-why-visual"></div>
+      <div class="b2b-why-visual" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80');"></div>
       <div class="b2b-why-content">
         <div class="b2b-why-tag">Pourquoi La Châtaigneraie</div>
         <h2>Le choix de l'excellence corporate</h2>
@@ -1404,6 +1463,51 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   </div><!-- /page-entreprise -->
 
 </div><!-- /app -->
+
+<!-- ══ BOOKING MODAL ══ -->
+<div id="bm-overlay" onclick="if(event.target===this)closeBooking()">
+  <div class="bm-box">
+    <button class="bm-close" onclick="closeBooking()">✕ Fermer</button>
+    <h2 class="bm-title">Réserver en ligne</h2>
+    <div class="bm-sport-tabs">
+      <button class="bm-sport-tab active" data-sport="tennis" onclick="setBMsport('tennis')">🎾 Tennis</button>
+      <button class="bm-sport-tab" data-sport="padel"  onclick="setBMsport('padel')">🏓 Padel</button>
+      <button class="bm-sport-tab" data-sport="salle"  onclick="setBMsport('salle')">💪 Salle de sport</button>
+    </div>
+    <div id="bm-form">
+      <div class="bm-row">
+        <div class="bm-field">
+          <div class="bm-label">👥 Nombre de joueurs</div>
+          <select class="bm-select" id="bm-players">
+            <option value="1">1 joueur</option>
+            <option value="2" selected>2 joueurs</option>
+            <option value="3">3 joueurs</option>
+            <option value="4">4 joueurs</option>
+          </select>
+        </div>
+        <div class="bm-field">
+          <div class="bm-label">📅 Date</div>
+          <input type="date" class="bm-select" id="bm-date">
+        </div>
+      </div>
+      <div class="bm-slots-wrap">
+        <div class="bm-label">🕐 Choisissez un créneau horaire</div>
+        <div class="bm-slots" id="bm-slots"></div>
+      </div>
+      <div class="bm-footer">
+        <div class="bm-price" id="bm-price">Sélectionnez un créneau pour voir le tarif</div>
+        <button class="bm-confirm-btn" id="bm-confirm-btn" onclick="confirmBooking()" disabled>Confirmer →</button>
+      </div>
+    </div>
+    <div id="bm-confirmed" style="display:none;" class="bm-confirmed">
+      <div class="bm-confirmed-icon">✅</div>
+      <h3>Réservation confirmée !</h3>
+      <div id="bm-confirmed-detail" class="bm-confirmed-detail"></div>
+      <p>Un email de confirmation vous sera envoyé sous 5 minutes.</p>
+      <button class="bm-new-btn" onclick="newBooking()">Nouvelle réservation →</button>
+    </div>
+  </div>
+</div>
 
 <button id="fcta">🎾 Réserver maintenant</button>
 <div class="mnote">🎨 MAQUETTE V5 — Refonte La Châtaigneraie · Groupe 6 · ESG Sport MS2</div>
@@ -1531,8 +1635,8 @@ function showPage(mode) {
 
 function updateNavMode(mode) {
   const ctaMap = {
-    tennis:      { txt:'🎾 Réserver — Anybuddy', bg:'var(--violet)', fn:() => window.open('https://www.anybuddy.com','_blank') },
-    padel:       { txt:'🏓 Réserver — Anybuddy', bg:'var(--violet)', fn:() => window.open('https://www.anybuddy.com','_blank') },
+    tennis:      { txt:'🎾 Réserver un court',  bg:'var(--violet)', fn:() => openBooking('tennis') },
+    padel:       { txt:'🏓 Réserver une piste', bg:'var(--violet)', fn:() => openBooking('padel') },
     competition: { txt:'🏆 Voir le calendrier',  bg:'var(--violet)', fn:() => document.querySelector('.comp-calendar').scrollIntoView({behavior:'smooth'}) },
     club:        { txt:'📍 Horaires & accès',    bg:'var(--navy)',   fn:() => document.querySelector('#page-club .cs-infoprat').scrollIntoView({behavior:'smooth'}) },
     entreprise:  { txt:'📋 Demander un devis',   bg:'var(--navy)',   fn:() => document.getElementById('devis-form-section').scrollIntoView({behavior:'smooth'}) },
@@ -1566,7 +1670,110 @@ function setMenuImg(i) {
   menuImgs[ami].classList.remove('active');
   menuImgs[i].classList.add('active'); ami = i;
 }
-document.addEventListener('keydown', e => { if (e.key==='Escape' && menuOpen) toggleMenu(); });
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') { if (menuOpen) toggleMenu(); else closeBooking(); }
+});
+
+/* ══════════════════════════════
+   BOOKING MODAL
+══════════════════════════════ */
+let bmSport = 'tennis', bmSlot = null;
+
+const BM_DATA = {
+  tennis: {
+    slots: ['08h00','09h30','11h00','12h30','14h00','15h30','17h00','18h30','20h00','21h30'],
+    taken: ['11h00','17h00'],
+    prix:  '40 € / 1h30 (extérieur) · 50 € / 1h30 (couvert)',
+    courts:['Court 1','Court 2','Court 3','Court 4','Court 5 (éclairé)','Court 6 (couvert)','Court 7 (couvert)'],
+    label: 'Tennis'
+  },
+  padel: {
+    slots: ['08h00','09h00','10h00','11h00','12h00','13h00','14h00','15h00','16h00','17h00','18h00','19h00','20h00','21h00'],
+    taken: ['10h00','14h00','19h00'],
+    prix:  '30 € / 1h (2 joueurs) · 60 € / 1h30 (4 joueurs)',
+    courts:['Piste 1','Piste 2','Piste 3','Piste 4 (centrale)'],
+    label: 'Padel'
+  },
+  salle: {
+    slots: ['07h30','08h30','09h30','10h30','11h30','14h00','15h00','16h00','17h30','18h30','19h30','20h30'],
+    taken: [],
+    prix:  'Inclus membres · 15 € / séance (visiteur)',
+    courts:['Espace cardio','Espace musculation'],
+    label: 'Salle de sport'
+  }
+};
+
+function openBooking(sport) {
+  bmSport = sport || 'tennis';
+  bmSlot = null;
+  document.getElementById('bm-form').style.display = 'block';
+  document.getElementById('bm-confirmed').style.display = 'none';
+  document.querySelectorAll('.bm-sport-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.sport === bmSport));
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const iso = tomorrow.toISOString().split('T')[0];
+  document.getElementById('bm-date').value = iso;
+  document.getElementById('bm-date').min = iso;
+  renderBMslots();
+  document.getElementById('bm-price').textContent = 'Sélectionnez un créneau pour voir le tarif';
+  document.getElementById('bm-confirm-btn').disabled = true;
+  document.getElementById('bm-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBooking() {
+  document.getElementById('bm-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function setBMsport(sport) {
+  bmSport = sport; bmSlot = null;
+  document.querySelectorAll('.bm-sport-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.sport === sport));
+  renderBMslots();
+  document.getElementById('bm-price').textContent = 'Sélectionnez un créneau pour voir le tarif';
+  document.getElementById('bm-confirm-btn').disabled = true;
+}
+
+function renderBMslots() {
+  const {slots, taken} = BM_DATA[bmSport];
+  document.getElementById('bm-slots').innerHTML = slots.map(s => {
+    const tk = taken.includes(s);
+    return `<button class="bm-slot${tk?' taken':''}${s===bmSlot?' selected':''}"
+      ${tk?'disabled':''} onclick="selectBMslot('${s}')">${s}</button>`;
+  }).join('');
+}
+
+function selectBMslot(slot) {
+  bmSlot = slot;
+  renderBMslots();
+  document.getElementById('bm-price').textContent = '💶 ' + BM_DATA[bmSport].prix;
+  document.getElementById('bm-confirm-btn').disabled = false;
+}
+
+function confirmBooking() {
+  const date   = document.getElementById('bm-date').value;
+  const players= document.getElementById('bm-players').value;
+  const d      = BM_DATA[bmSport];
+  const court  = d.courts[Math.floor(Math.random() * d.courts.length)];
+  const dateStr= date
+    ? new Date(date+'T12:00').toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})
+    : 'Date à confirmer';
+  document.getElementById('bm-form').style.display = 'none';
+  document.getElementById('bm-confirmed-detail').innerHTML =
+    `<strong>${d.label}</strong> · ${court}<br>${dateStr} · ${bmSlot} · ${players} joueur${players>1?'s':''}`;
+  document.getElementById('bm-confirmed').style.display = 'block';
+}
+
+function newBooking() {
+  bmSlot = null;
+  document.getElementById('bm-form').style.display = 'block';
+  document.getElementById('bm-confirmed').style.display = 'none';
+  renderBMslots();
+  document.getElementById('bm-price').textContent = 'Sélectionnez un créneau pour voir le tarif';
+  document.getElementById('bm-confirm-btn').disabled = true;
+}
 </script>
 </body>
 </html>
