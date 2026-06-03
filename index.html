@@ -149,54 +149,71 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 }
 #choice-screen.exit { opacity:0; transform:scale(1.02); pointer-events:none; }
 
-/* Panels row — full viewport height */
-.cp-row { position:relative; display:flex; height:100vh; overflow:hidden; }
-.cp-row:hover .cp { flex:.55; }
-.cp-row .cp:hover { flex:1.45; }
-
-.cp {
-  position:relative; overflow:hidden; flex:1;
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding:72px 64px; transition:flex .6s cubic-bezier(.76,0,.24,1); cursor:pointer;
+/* ── Hero 5 choix ── */
+.cs-hero {
+  position:relative; height:100vh; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
 }
-.cp .cp-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
-.cp:hover .cp-bg { transform:scale(1.03); }
-.cp-overlay { position:absolute; inset:0; }
-.cp-b2c .cp-overlay { background:linear-gradient(to top,rgba(17,17,17,.88) 0%,rgba(17,17,17,.4) 45%,rgba(17,17,17,.08) 100%); }
-.cp-b2b .cp-overlay { background:linear-gradient(to top,rgba(17,17,17,.88) 0%,rgba(17,17,17,.4) 45%,rgba(17,17,17,.08) 100%); }
-
-.cp-inner { position:relative; z-index:2; max-width:400px; }
-.cp-b2b .cp-inner { margin-left:auto; text-align:right; }
-
-.cp-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; padding:4px 10px; margin-bottom:18px; border:1px solid rgba(255,255,255,.35); color:rgba(255,255,255,.7); }
-.cp h2 { font-family:'Playfair Display',serif; font-size:clamp(48px,5vw,80px); font-weight:900; color:var(--blanc); line-height:.9; margin-bottom:16px; letter-spacing:-2px; }
-.cp p { color:rgba(255,255,255,.6); font-size:14px; line-height:1.65; max-width:340px; margin-bottom:32px; }
-.cp-b2b p { margin-left:auto; }
-
-.cp-cta {
-  display:inline-flex; align-items:center; gap:10px; padding:14px 28px;
-  font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
-  border:1.5px solid rgba(255,255,255,.5); background:none; color:var(--blanc);
-  cursor:pointer; transition:all .25s; font-family:inherit;
+.cs-hero-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.cs-hero-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom,rgba(17,17,17,.6) 0%,rgba(17,17,17,.28) 50%,rgba(17,17,17,.68) 100%);
 }
-.cp-cta:hover { background:var(--blanc); color:var(--noir); border-color:var(--blanc); }
-
-/* vertical divider + pill */
-.cp-divider { position:absolute; left:50%; top:0; bottom:0; width:1px; background:rgba(255,255,255,.2); z-index:10; transform:translateX(-50%); pointer-events:none; }
-.cp-divider-pill {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  background:var(--blanc); border-radius:100px; padding:7px 16px;
-  font-size:10px; font-weight:800; letter-spacing:2px; color:var(--noir);
-  box-shadow:0 4px 24px rgba(0,0,0,.25); white-space:nowrap; z-index:20;
+.cs-hero-content {
+  position:relative; z-index:10; text-align:center;
+  padding:0 40px; max-width:1100px; width:100%;
+}
+.cs-hero-tag {
+  font-size:10px; font-weight:600; letter-spacing:6px; text-transform:uppercase;
+  color:rgba(255,255,255,.5); margin-bottom:14px;
+}
+.cs-hero-title {
+  font-family:'Playfair Display',serif; font-size:clamp(52px,9vw,108px);
+  font-weight:900; color:var(--blanc); line-height:.88; letter-spacing:-3px;
+  margin-bottom:16px;
+}
+.cs-hero-title em { font-style:italic; color:var(--or); }
+.cs-hero-sub {
+  font-size:11px; color:rgba(255,255,255,.45); letter-spacing:4px;
+  text-transform:uppercase; margin-bottom:52px;
 }
 
-/* ── Informational sections (no CTAs) ── */
-.cs-scroll-hint {
-  display:flex; flex-direction:column; align-items:center; gap:12px;
-  padding:32px 20px 24px; background:var(--blanc);
+/* 5 glass cards */
+.cs-choices { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:44px; }
+.cs-choice { cursor:pointer; transition:transform .4s cubic-bezier(.175,.885,.32,1.4); }
+.cs-choice:hover { transform:translateY(-7px) scale(1.04); }
+.cs-choice-glass {
+  padding:26px 22px 22px; border-radius:20px;
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:
+    inset 1.5px 1.5px 1px rgba(255,255,255,.45),
+    inset -1px -1px 1px rgba(255,255,255,.1),
+    0 8px 32px rgba(0,0,0,.28);
+  text-align:center; min-width:148px; transition:all .35s ease;
 }
-.cs-sh-text { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:var(--gris-mid); }
-.cs-sh-line { width:1px; height:36px; background:linear-gradient(to bottom,var(--gris-mid),transparent); }
+.cs-choice:hover .cs-choice-glass {
+  background:rgba(255,255,255,.2);
+  border-color:rgba(255,255,255,.48);
+  box-shadow:
+    inset 2px 2px 1px rgba(255,255,255,.55),
+    inset -1px -1px 1px rgba(255,255,255,.18),
+    0 18px 52px rgba(0,0,0,.35);
+}
+.cs-choice-icon { font-size:30px; margin-bottom:12px; }
+.cs-choice-label {
+  font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--blanc); line-height:1.5;
+}
+
+/* Scroll hint inside hero */
+.cs-scroll-hint { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.cs-sh-text {
+  font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+}
+.cs-sh-line { width:1px; height:36px; background:linear-gradient(to bottom,rgba(255,255,255,.35),transparent); }
 
 .cs-stats {
   display:flex; justify-content:center; background:var(--blanc);
@@ -486,49 +503,55 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   <!-- ── CHOICE SCREEN ── -->
   <div id="choice-screen">
 
-    <!-- Panels row (100vh) -->
-    <div class="cp-row">
-
-      <!-- B2C panel -->
-      <div class="cp cp-b2c" onclick="enterMode('b2c')">
-        <img class="cp-bg" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1200,h_900,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="Tennis La Châtaigneraie">
-        <div class="cp-overlay"></div>
-        <div class="cp-inner">
-          <div class="cp-tag">Espace Particulier</div>
-          <h2>Particulier</h2>
-          <p>Tennis, padel, cours et bien-être — réservez votre créneau en quelques secondes.</p>
-          <button class="cp-cta">Entrer →</button>
+    <!-- Hero avec 5 choix en glass morphism -->
+    <div class="cs-hero">
+      <img class="cs-hero-bg" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="La Châtaigneraie">
+      <div class="cs-hero-overlay"></div>
+      <div class="cs-hero-content">
+        <div class="cs-hero-tag">Rueil-Malmaison · Depuis 1963</div>
+        <h1 class="cs-hero-title">La <em>Châtaigneraie</em></h1>
+        <p class="cs-hero-sub">Que souhaitez-vous explorer ?</p>
+        <div class="cs-choices">
+          <div class="cs-choice" onclick="enterMode('b2c')">
+            <div class="cs-choice-glass">
+              <div class="cs-choice-icon">🎾</div>
+              <div class="cs-choice-label">Tennis</div>
+            </div>
+          </div>
+          <div class="cs-choice" onclick="enterMode('b2c')">
+            <div class="cs-choice-glass">
+              <div class="cs-choice-icon">🏓</div>
+              <div class="cs-choice-label">Padel</div>
+            </div>
+          </div>
+          <div class="cs-choice" onclick="enterMode('b2c')">
+            <div class="cs-choice-glass">
+              <div class="cs-choice-icon">🏆</div>
+              <div class="cs-choice-label">Compétition</div>
+            </div>
+          </div>
+          <div class="cs-choice" onclick="enterMode('b2b')">
+            <div class="cs-choice-glass">
+              <div class="cs-choice-icon">💼</div>
+              <div class="cs-choice-label">Événements<br>Entreprise</div>
+            </div>
+          </div>
+          <div class="cs-choice" onclick="scrollToClubInfo()">
+            <div class="cs-choice-glass">
+              <div class="cs-choice-icon">🏛️</div>
+              <div class="cs-choice-label">Le Club</div>
+            </div>
+          </div>
+        </div>
+        <div class="cs-scroll-hint">
+          <span class="cs-sh-text">Découvrir le club</span>
+          <div class="cs-sh-line"></div>
         </div>
       </div>
-
-      <!-- divider -->
-      <div style="position:absolute;inset:0;pointer-events:none;z-index:10;">
-        <div class="cp-divider"></div>
-        <div class="cp-divider-pill">ou</div>
-      </div>
-
-      <!-- B2B panel -->
-      <div class="cp cp-b2b" onclick="enterMode('b2b')">
-        <img class="cp-bg" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80" alt="Événements entreprise">
-        <div class="cp-overlay"></div>
-        <div class="cp-inner">
-          <div class="cp-tag">Espace Entreprise</div>
-          <h2>Entreprise</h2>
-          <p>Séminaires, team buildings et réceptions — un cadre d'exception à 15 min de La Défense.</p>
-          <button class="cp-cta">Entrer →</button>
-        </div>
-      </div>
-
-    </div><!-- /cp-row -->
-
-    <!-- Scroll hint -->
-    <div class="cs-scroll-hint">
-      <div class="cs-sh-text">Découvrir le club</div>
-      <div class="cs-sh-line"></div>
     </div>
 
     <!-- Chiffres clés -->
-    <div class="cs-stats">
+    <div class="cs-stats" id="cs-info">
       <div class="cs-stat"><div class="cs-stat-n">1963</div><div class="cs-stat-l">Fondation</div></div>
       <div class="cs-stat"><div class="cs-stat-n">11</div><div class="cs-stat-l">Courts & pistes</div></div>
       <div class="cs-stat"><div class="cs-stat-n">5k<sup>+</sup></div><div class="cs-stat-l">Membres actifs</div></div>
@@ -1000,6 +1023,10 @@ setInterval(() => {
    MODE SYSTEM
 ══════════════════════════════ */
 let currentMode = null; // null = choice screen, 'b2c' or 'b2b'
+
+function scrollToClubInfo() {
+  document.getElementById('cs-info').scrollIntoView({ behavior:'smooth' });
+}
 
 function goHome() {
   if (!heroDone) return;
