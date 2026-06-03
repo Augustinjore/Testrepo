@@ -161,21 +161,25 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 }
 .cs-hero-content {
   position:relative; z-index:10; text-align:center;
-  padding:0 40px; max-width:1100px; width:100%;
+  padding:0 48px; max-width:1100px; width:100%;
 }
 .cs-hero-tag {
-  font-size:10px; font-weight:600; letter-spacing:6px; text-transform:uppercase;
-  color:rgba(255,255,255,.5); margin-bottom:14px;
+  font-size:9px; font-weight:600; letter-spacing:7px; text-transform:uppercase;
+  color:rgba(255,255,255,.42); margin-bottom:26px;
 }
 .cs-hero-title {
-  font-family:'Playfair Display',serif; font-size:clamp(52px,9vw,108px);
-  font-weight:900; color:var(--blanc); line-height:.88; letter-spacing:-3px;
-  margin-bottom:16px;
+  font-family:'Playfair Display',serif; font-size:clamp(44px,7vw,90px);
+  font-weight:900; color:var(--blanc); line-height:.93; letter-spacing:-2px;
+  margin-bottom:32px;
 }
 .cs-hero-title em { font-style:italic; color:rgba(255,255,255,.88); }
+.cs-hero-rule {
+  width:36px; height:1px; background:rgba(255,255,255,.25);
+  margin:0 auto 28px; display:block;
+}
 .cs-hero-sub {
-  font-size:11px; color:rgba(255,255,255,.45); letter-spacing:4px;
-  text-transform:uppercase; margin-bottom:52px;
+  font-size:9px; color:rgba(255,255,255,.38); letter-spacing:6px;
+  text-transform:uppercase; margin-bottom:68px;
 }
 
 /* canvas ripple background */
@@ -183,32 +187,32 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 .cs-hero { cursor:crosshair; }
 
 /* 5 glass cards */
-.cs-choices { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:44px; }
+.cs-choices { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:52px; }
 .cs-choice { cursor:pointer; transition:transform .4s cubic-bezier(.175,.885,.32,1.4); }
-.cs-choice:hover { transform:translateY(-7px) scale(1.04); }
+.cs-choice:hover { transform:translateY(-8px) scale(1.04); }
 .cs-choice-glass {
-  padding:26px 22px 22px; border-radius:20px;
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.28);
+  padding:30px 24px 24px; border-radius:18px;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.22);
   box-shadow:
-    inset 1.5px 1.5px 1px rgba(255,255,255,.45),
-    inset -1px -1px 1px rgba(255,255,255,.1),
-    0 8px 32px rgba(0,0,0,.28);
-  text-align:center; min-width:148px; transition:all .35s ease;
+    inset 1px 1px 1px rgba(255,255,255,.4),
+    inset -1px -1px 1px rgba(255,255,255,.08),
+    0 10px 40px rgba(0,0,0,.32);
+  text-align:center; min-width:152px; transition:all .35s ease;
 }
 .cs-choice:hover .cs-choice-glass {
-  background:rgba(255,255,255,.2);
-  border-color:rgba(255,255,255,.48);
+  background:rgba(255,255,255,.17);
+  border-color:rgba(255,255,255,.42);
   box-shadow:
-    inset 2px 2px 1px rgba(255,255,255,.55),
-    inset -1px -1px 1px rgba(255,255,255,.18),
-    0 18px 52px rgba(0,0,0,.35);
+    inset 2px 2px 1px rgba(255,255,255,.5),
+    inset -1px -1px 1px rgba(255,255,255,.14),
+    0 20px 60px rgba(0,0,0,.38);
 }
-.cs-choice-icon { font-size:30px; margin-bottom:12px; }
+.cs-choice-icon { font-size:30px; margin-bottom:14px; }
 .cs-choice-label {
-  font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
-  color:var(--blanc); line-height:1.5;
+  font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(255,255,255,.88); line-height:1.7;
 }
 
 /* Scroll hint inside hero */
@@ -730,7 +734,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
       <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(0)" onclick="enterMode('tennis');toggleMenu();return false;"><span class="num">01</span>Tennis</a></li>
       <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(1)" onclick="enterMode('padel');toggleMenu();return false;"><span class="num">02</span>Padel</a></li>
       <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(2)" onclick="enterMode('competition');toggleMenu();return false;"><span class="num">03</span>Compétition</a></li>
-      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(3)" onclick="enterMode('entreprise');toggleMenu();return false;"><span class="num">04</span>Espaces Entreprise</a></li>
+      <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(3)" onclick="enterMode('entreprise');toggleMenu();return false;"><span class="num">04</span>Entreprise</a></li>
       <li class="menu-nav-item"><a href="#" onmouseenter="setMenuImg(4)" onclick="enterMode('club');toggleMenu();return false;"><span class="num">05</span>Le Club</a></li>
     </ul>
     <div class="menu-footer">
@@ -791,6 +795,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
       <div class="cs-hero-content">
         <div class="cs-hero-tag">Rueil-Malmaison · Depuis 1963</div>
         <h1 class="cs-hero-title">La <em>Châtaigneraie</em></h1>
+        <span class="cs-hero-rule"></span>
         <p class="cs-hero-sub">Que souhaitez-vous explorer ?</p>
         <div class="cs-choices">
           <div class="cs-choice" onclick="enterMode('tennis')">
@@ -861,7 +866,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
                   <line x1="19" y1="20" x2="19" y2="26"/>
                 </svg>
               </div>
-              <div class="cs-choice-label">Événements<br>Entreprise</div>
+              <div class="cs-choice-label">Entreprise</div>
             </div>
           </div>
           <div class="cs-choice" onclick="enterMode('club')">
