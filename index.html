@@ -96,7 +96,7 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 
 .nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; background:none; border:none; cursor:pointer; padding:0; transition:color .3s, opacity .2s; }
 .nav-logo:hover { opacity:.7; }
-.nav-logo span { color:var(--or); font-style:italic; }
+.nav-logo span { color:var(--violet); font-style:italic; }
 .nav-right { display:flex; align-items:center; gap:12px; }
 #nav-pill { display:flex; overflow:hidden; border:1.5px solid rgba(255,255,255,.25); }
 .np-btn { padding:8px 18px; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; border:none; background:none; color:rgba(255,255,255,.45); cursor:pointer; transition:all .25s; font-family:inherit; }
@@ -126,7 +126,7 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 .h-titles { position:relative; z-index:10; text-align:center; pointer-events:none; }
 .h-sub { font-size:clamp(10px,1.4vw,15px); font-weight:600; color:rgba(255,255,255,.5); letter-spacing:6px; text-transform:uppercase; margin-bottom:10px; }
 .h-main { font-family:'Playfair Display',serif; font-size:clamp(40px,7.5vw,104px); font-weight:900; color:var(--blanc); line-height:.9; letter-spacing:-2px; }
-.h-main em { font-style:italic; color:var(--or); }
+.h-main em { font-style:italic; color:rgba(255,255,255,.88); }
 #h-hint { position:absolute; bottom:44px; left:50%; transform:translateX(-50%); z-index:10; color:rgba(255,255,255,.4); font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; display:flex; flex-direction:column; align-items:center; gap:10px; animation:floatY 2.2s ease-in-out infinite; }
 #h-hint::after { content:''; display:block; width:1px; height:40px; background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent); }
 @keyframes floatY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
@@ -172,11 +172,15 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
   font-weight:900; color:var(--blanc); line-height:.88; letter-spacing:-3px;
   margin-bottom:16px;
 }
-.cs-hero-title em { font-style:italic; color:var(--or); }
+.cs-hero-title em { font-style:italic; color:rgba(255,255,255,.88); }
 .cs-hero-sub {
   font-size:11px; color:rgba(255,255,255,.45); letter-spacing:4px;
   text-transform:uppercase; margin-bottom:52px;
 }
+
+/* canvas ripple background */
+#cs-ripple { position:absolute; inset:0; width:100%; height:100%; display:block; z-index:0; }
+.cs-hero { cursor:crosshair; }
 
 /* 5 glass cards */
 .cs-choices { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:44px; }
@@ -615,7 +619,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 .ph-content { position:relative; z-index:2; padding:0 64px; max-width:1100px; }
 .ph-tag { font-size:9px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:16px; }
 .ph-title { font-family:'Playfair Display',serif; font-size:clamp(42px,7vw,88px); font-weight:900; color:var(--blanc); line-height:.9; letter-spacing:-2px; margin-bottom:20px; }
-.ph-title em { font-style:italic; color:var(--or); }
+.ph-title em { font-style:italic; color:rgba(255,255,255,.88); }
 .ph-sub { font-size:11px; color:rgba(255,255,255,.5); letter-spacing:3px; text-transform:uppercase; margin-bottom:32px; }
 .btn-ph-book {
   display:inline-block; background:var(--violet); color:var(--blanc);
@@ -783,8 +787,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 
     <!-- Hero avec 5 choix en glass morphism -->
     <div class="cs-hero">
-      <img class="cs-hero-bg" src="https://static.wixstatic.com/media/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/6d6084_b9e2ccf0b4874a6381d478c9d5ebe763~mv2.webp" alt="La Châtaigneraie">
-      <div class="cs-hero-overlay"></div>
+      <canvas id="cs-ripple"></canvas>
       <div class="cs-hero-content">
         <div class="cs-hero-tag">Rueil-Malmaison · Depuis 1963</div>
         <h1 class="cs-hero-title">La <em>Châtaigneraie</em></h1>
@@ -792,31 +795,90 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
         <div class="cs-choices">
           <div class="cs-choice" onclick="enterMode('tennis')">
             <div class="cs-choice-glass">
-              <div class="cs-choice-icon">🎾</div>
+              <div class="cs-choice-icon">
+                <!-- Tennis racket -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="19" cy="15" rx="9.5" ry="11.5"/>
+                  <line x1="10" y1="11.5" x2="28" y2="11.5"/>
+                  <line x1="9.5" y1="15" x2="28.5" y2="15"/>
+                  <line x1="10" y1="18.5" x2="28" y2="18.5"/>
+                  <line x1="15.5" y1="3.5" x2="15.5" y2="26"/>
+                  <line x1="19" y1="3" x2="19" y2="26.5"/>
+                  <line x1="22.5" y1="3.5" x2="22.5" y2="26"/>
+                  <line x1="19" y1="26.5" x2="19" y2="35"/>
+                  <line x1="15" y1="32" x2="23" y2="32"/>
+                </svg>
+              </div>
               <div class="cs-choice-label">Tennis</div>
             </div>
           </div>
           <div class="cs-choice" onclick="enterMode('padel')">
             <div class="cs-choice-glass">
-              <div class="cs-choice-icon">🏓</div>
+              <div class="cs-choice-icon">
+                <!-- Padel paddle -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="10" y="4" width="18" height="21" rx="6"/>
+                  <circle cx="15" cy="11" r="1.3"/>
+                  <circle cx="19" cy="11" r="1.3"/>
+                  <circle cx="23" cy="11" r="1.3"/>
+                  <circle cx="15" cy="15.5" r="1.3"/>
+                  <circle cx="19" cy="15.5" r="1.3"/>
+                  <circle cx="23" cy="15.5" r="1.3"/>
+                  <circle cx="15" cy="20" r="1.3"/>
+                  <circle cx="19" cy="20" r="1.3"/>
+                  <circle cx="23" cy="20" r="1.3"/>
+                  <line x1="19" y1="25" x2="19" y2="35"/>
+                  <line x1="15" y1="32" x2="23" y2="32"/>
+                </svg>
+              </div>
               <div class="cs-choice-label">Padel</div>
             </div>
           </div>
           <div class="cs-choice" onclick="enterMode('competition')">
             <div class="cs-choice-glass">
-              <div class="cs-choice-icon">🏆</div>
+              <div class="cs-choice-icon">
+                <!-- Trophy cup -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 6h12v10a6 6 0 0 1-12 0V6z"/>
+                  <path d="M13 9 Q7 12 13 17"/>
+                  <path d="M25 9 Q31 12 25 17"/>
+                  <line x1="19" y1="22" x2="19" y2="28"/>
+                  <line x1="13" y1="28" x2="25" y2="28"/>
+                  <line x1="13" y1="31.5" x2="25" y2="31.5"/>
+                </svg>
+              </div>
               <div class="cs-choice-label">Compétition</div>
             </div>
           </div>
           <div class="cs-choice" onclick="enterMode('entreprise')">
             <div class="cs-choice-glass">
-              <div class="cs-choice-icon">💼</div>
+              <div class="cs-choice-icon">
+                <!-- Briefcase -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="15" width="28" height="18" rx="2"/>
+                  <path d="M14 15v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3"/>
+                  <line x1="5" y1="23" x2="33" y2="23"/>
+                  <line x1="19" y1="20" x2="19" y2="26"/>
+                </svg>
+              </div>
               <div class="cs-choice-label">Événements<br>Entreprise</div>
             </div>
           </div>
           <div class="cs-choice" onclick="enterMode('club')">
             <div class="cs-choice-glass">
-              <div class="cs-choice-icon">🏛️</div>
+              <div class="cs-choice-icon">
+                <!-- Classical building / club -->
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" stroke="rgba(255,255,255,.92)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="19,3 4,14 34,14"/>
+                  <line x1="3" y1="14" x2="35" y2="14"/>
+                  <line x1="9" y1="14" x2="9" y2="32"/>
+                  <line x1="15" y1="14" x2="15" y2="32"/>
+                  <line x1="23" y1="14" x2="23" y2="32"/>
+                  <line x1="29" y1="14" x2="29" y2="32"/>
+                  <rect x="14" y="22" width="10" height="10"/>
+                  <line x1="3" y1="32" x2="35" y2="32"/>
+                </svg>
+              </div>
               <div class="cs-choice-label">Le Club</div>
             </div>
           </div>
@@ -1921,6 +1983,107 @@ function newBooking() {
   document.getElementById('bm-price').textContent = 'Sélectionnez un créneau pour voir le tarif';
   document.getElementById('bm-confirm-btn').disabled = true;
 }
+
+/* ══════════════════════════════
+   RIPPLE CANVAS BACKGROUND
+══════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('cs-ripple');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let ripples = [], uid = 0;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+
+  function addRipple(x, y) {
+    ripples.push({ x, y, born: Date.now(), id: uid++ });
+  }
+
+  /* ambient auto-ripples */
+  function ambientRipple() {
+    addRipple(Math.random() * canvas.width, Math.random() * canvas.height);
+    setTimeout(ambientRipple, 2600 + Math.random() * 1800);
+  }
+  setTimeout(() => { addRipple(canvas.width * .5, canvas.height * .5); ambientRipple(); }, 600);
+
+  /* click creates ripple on the hero background */
+  const hero = canvas.parentElement;
+  hero.addEventListener('click', function(e) {
+    const r = canvas.getBoundingClientRect();
+    addRipple(e.clientX - r.left, e.clientY - r.top);
+  });
+
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    /* gradient background — dark navy to deep violet */
+    const g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0,   '#0d1330');
+    g.addColorStop(0.5, '#1a2048');
+    g.addColorStop(1,   '#2a1040');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    /* subtle noise overlay — faint diagonal lines for texture */
+    ctx.save();
+    ctx.globalAlpha = 0.025;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 1;
+    for (let i = -H; i < W + H; i += 28) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i + H, H);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    /* ripples */
+    const now = Date.now();
+    const dur  = 2800;
+    const diag = Math.hypot(W, H);
+    ripples = ripples.filter(r => now - r.born < dur);
+    ripples.forEach(r => {
+      const t  = (now - r.born) / dur;
+      const maxR = diag * 0.55;
+
+      /* ring 1 — white */
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, t * maxR, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(255,255,255,${(1 - t) * .28})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      /* ring 2 — violet, delayed */
+      if (t > .12) {
+        const t2 = (t - .12) / .88;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, t2 * maxR * .78, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(123,45,131,${(1 - t2) * .22})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      /* ring 3 — white fine, more delayed */
+      if (t > .28) {
+        const t3 = (t - .28) / .72;
+        ctx.beginPath();
+        ctx.arc(r.x, r.y, t3 * maxR * .52, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(255,255,255,${(1 - t3) * .12})`;
+        ctx.lineWidth = .7;
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
 /* ══════════════════════════════
    CONTACT PANEL
