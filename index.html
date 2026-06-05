@@ -8,18 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --violet: #7B2D83;
-  --violet-dk: #5e1f65;
-  --navy: #272F65;
-  --navy-dk: #1a2048;
+  --violet: #2A4545;
+  --violet-dk: #1e3434;
+  --navy: #2A4545;
+  --navy-dk: #1e3434;
+  --teal: #2A4545;
+  --teal-dk: #1e3434;
+  --teal-lt: #3d6060;
   --blanc: #FFFFFF;
-  --creme: #FAFAF8;
-  --gris-xlt: #F4F4F2;
-  --gris-lt: #E8E8E6;
-  --gris-mid: #9CA3AF;
-  --gris: #6B7280;
-  --noir: #111111;
-  --or: #d4a843;
+  --creme: #f5fafa;
+  --gris-xlt: #eaf2f2;
+  --gris-lt: #cfdede;
+  --gris-mid: #7a9c9c;
+  --gris: #4e6e6e;
+  --noir: #0d1e1e;
+  --or: #2A4545;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
@@ -94,9 +97,11 @@ body { font-family:'Inter',sans-serif; background:var(--blanc); color:var(--noir
 #main-nav.live .np-btn.on-b2c { background:var(--violet); color:var(--blanc); }
 #main-nav.live .np-btn.on-b2b { background:var(--navy); color:var(--blanc); }
 
-.nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; background:none; border:none; cursor:pointer; padding:0; transition:color .3s, opacity .2s; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--blanc); letter-spacing:1px; background:none; border:none; cursor:pointer; padding:0; transition:color .3s, opacity .2s; display:flex; align-items:center; gap:10px; }
 .nav-logo:hover { opacity:.7; }
-.nav-logo span { color:var(--violet); font-style:italic; }
+.nav-logo-mark { flex-shrink:0; }
+.nav-logo span { color:rgba(255,255,255,.7); font-style:italic; }
+#main-nav.live .nav-logo span { color:var(--teal); font-style:italic; }
 .nav-right { display:flex; align-items:center; gap:12px; }
 #nav-pill { display:flex; overflow:hidden; border:1.5px solid rgba(255,255,255,.25); }
 .np-btn { padding:8px 18px; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; border:none; background:none; color:rgba(255,255,255,.45); cursor:pointer; transition:all .25s; font-family:inherit; }
@@ -481,7 +486,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
   padding:10px 16px; font-size:12px; font-weight:700; color:var(--noir);
   cursor:pointer; transition:all .2s; font-family:inherit;
 }
-.bm-slot:hover { background:rgba(123,45,131,.08); border-color:var(--violet); color:var(--violet); }
+.bm-slot:hover { background:rgba(42,69,69,.1); border-color:var(--violet); color:var(--violet); }
 .bm-slot.selected { background:var(--violet); border-color:var(--violet); color:var(--blanc); }
 .bm-slot.taken { color:var(--gris-lt); cursor:not-allowed; text-decoration:line-through; pointer-events:none; }
 .bm-footer { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; gap:16px; }
@@ -661,7 +666,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 .comp-level-card { background:var(--blanc); padding:44px 36px; transition:background .2s; }
 .comp-level-card:hover { background:var(--gris-xlt); }
 .comp-level-badge { display:inline-block; padding:4px 12px; font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
-.clb-debutant { background:rgba(123,45,131,.08); color:var(--violet); }
+.clb-debutant { background:rgba(42,69,69,.1); color:var(--violet); }
 .clb-inter    { background:rgba(39,47,101,.08);  color:var(--navy); }
 .clb-avance   { background:rgba(17,17,17,.06);   color:var(--noir); }
 .comp-level-card h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--noir); margin-bottom:6px; }
@@ -679,7 +684,7 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 .comp-table tr:hover td { background:var(--gris-xlt); }
 .ct-date { font-weight:700; white-space:nowrap; color:var(--navy); }
 .ct-sport-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; padding:3px 10px; text-transform:uppercase; }
-.ctb-tennis { background:rgba(123,45,131,.08); color:var(--violet); }
+.ctb-tennis { background:rgba(42,69,69,.1); color:var(--violet); }
 .ctb-padel  { background:rgba(39,47,101,.08);  color:var(--navy); }
 .ct-status { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 12px; }
 .cts-ouvert { background:rgba(0,150,80,.1); color:#007040; }
@@ -755,7 +760,14 @@ footer p.fb-addr { font-size:13px; line-height:1.8; margin-bottom:4px; }
 <!-- ══ NAV ══ -->
 <nav id="main-nav" class="hero-mode">
   <div class="nav-left">
-    <button class="nav-logo" onclick="goHome()" title="Retour à l'accueil">La <span>Châtaigneraie</span></button>
+    <button class="nav-logo" onclick="goHome()" title="Retour à l'accueil">
+      <svg class="nav-logo-mark" width="30" height="30" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="7" fill="#2A4545"/>
+        <path d="M22 12C20 9.8 17.2 8.8 14.2 9.6C10.2 10.7 8 14.4 9 18.2C9.9 21.5 13.2 23.5 16.6 23C18.8 22.6 20.8 21.2 22 19" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <circle cx="23" cy="23" r="2" fill="white"/>
+      </svg>
+      La <span>Châtaigneraie</span>
+    </button>
     <button class="nav-menu-btn" onclick="toggleMenu()">
       <div class="hbg"><span></span><span></span><span></span></div>
     </button>
@@ -2029,9 +2041,9 @@ function newBooking() {
 
     /* gradient background — dark navy to deep violet */
     const g = ctx.createLinearGradient(0, 0, W, H);
-    g.addColorStop(0,   '#0d1330');
-    g.addColorStop(0.5, '#1a2048');
-    g.addColorStop(1,   '#2a1040');
+    g.addColorStop(0,   '#0a1c1c');
+    g.addColorStop(0.5, '#1a3535');
+    g.addColorStop(1,   '#0d2828');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
 
@@ -2069,7 +2081,7 @@ function newBooking() {
         const t2 = (t - .12) / .88;
         ctx.beginPath();
         ctx.arc(r.x, r.y, t2 * maxR * .78, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(123,45,131,${(1 - t2) * .22})`;
+        ctx.strokeStyle = `rgba(150,210,210,${(1 - t2) * .2})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
